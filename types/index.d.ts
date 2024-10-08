@@ -33,9 +33,28 @@ declare type User = {
     watchedMovies: Movie[];
 };
 
+declare type SearchBarProps = {
+    onSearch: (query: string) => void;
+}
+
 declare interface navBarProps{
     firstName: string;
 }
 declare interface sideBarProps{
     firstName: string;
+    isOpen: boolean;
+}
+declare type HamburgerButtonProps = {
+    isOpen: boolean;
+    onClick: () => void;
+}
+
+declare module '@heroicons/react/outline' {
+    import { FC, SVGProps } from 'react';
+  
+    const icons: {
+      [key: string]: FC<SVGProps<SVGSVGElement>>;
+    };
+  
+    export = icons;
 }

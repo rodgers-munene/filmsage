@@ -1,10 +1,10 @@
 'use client'
 import { sideBarProps } from '@/types'
-import React from 'react'
+import React, { FC } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-const Sidebar = ( { firstName }: sideBarProps ) => {
+const Sidebar: FC<sideBarProps> = ( { firstName, isOpen } ) => {
   const signedIn = {firstName: "RodgersM"}
   const pathname = usePathname()
   let Links = [
@@ -16,24 +16,28 @@ const Sidebar = ( { firstName }: sideBarProps ) => {
   ]
 
   return (
-    <div className='sidebar bg-gray-900'>
+    <div className={`sidebar bg-gray-900 h-screen overflow-y-auto transition-transform duration-300 transform ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
        <div className="w-full flex flex-col justify-between">
-          <div className='sidebar-link w-full h-screen'>
+          <div className='sidebar-items w-full h-screen'>
+               <div className='sidebar-link'>
                 {Links.map((link) =>(
-                  <Link className= {`h-10 rounded-lg pl-2 pt-2 ${pathname === link.link ? 'text-black bg-blue-300': ''}`} href={link.link}>{link.name}</Link>
-                ))}
-            
+                    <Link className= {`h-10 rounded-lg pl-2 pt-2 ${pathname === link.link ? 'text-black bg-blue-300': ''}`} href={link.link}>{link.name}</Link>
+                  ))}
+               </div>
+                <div className=''>
+                    <h1 className='pl-5'>
+                    {signedIn && signedIn.firstName}
+                    </h1>
+                    {!signedIn && (
+                      <div>
+                        <button>Login</button>
+                        <button>Sign Up</button>
+                     </div>
+                    )}
+                </div>
           </div>
 
-          <div className='sidebar-link'>
-          {signedIn && signedIn.firstName}
-          {!signedIn && (
-            <div>
-            <button>Login</button>
-            <button>Sign Up</button>
-            </div>
-          )}
-          </div>
+          
        </div>
     </div>
   )

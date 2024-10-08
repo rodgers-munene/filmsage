@@ -9,8 +9,6 @@ const Home = () => {
     <div>
       < Header 
       firstName={loggedIn?.firstName || "User"}/>
-      <Sidebar 
-      firstName={loggedIn.firstName || "User"}/>
     </div>
   )
 }
