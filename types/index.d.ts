@@ -39,6 +39,7 @@ declare type SearchBarProps = {
 
 declare interface navBarProps{
     firstName: string;
+    // toggleSideBar: () => void;
 }
 declare interface sideBarProps{
     firstName: string;
@@ -47,6 +48,11 @@ declare interface sideBarProps{
 declare type HamburgerButtonProps = {
     isOpen: boolean;
     onClick: () => void;
+}
+declare type MovieCardProps = {
+    url: string
+    itemList: movies[];
+    pageName: string;
 }
 
 declare module '@heroicons/react/outline' {

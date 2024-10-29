@@ -6,15 +6,12 @@ import { usePathname } from 'next/navigation' //used to determine if a link is a
 import SearchBar from './search-bar'
 import Hamburger from './hamburger'
 import Sidebar from './sidebar'
+import { useSidebar } from '@/context/SidebarContext'
 
 const Header = ( { firstName }: navBarProps ) => {
     const pathname = usePathname()
     const [searchResult, setSearchResult] = useState('');
-    const [isSidebarOpen, setSidebarOpen] = useState(true);
-
-    const toggleSideBar = () =>{
-      setSidebarOpen(!isSidebarOpen)
-    }
+    const { isSidebarOpen, toggleSidebar } = useSidebar()
 
     const handleSearch = (query: any) => {
     // You can perform the search logic here (e.g., fetching results from an API)
@@ -24,8 +21,8 @@ const Header = ( { firstName }: navBarProps ) => {
   return (
     <div className='home-header bg-gray-900 text-white h-14 border-b-2 border-gray-400'>
        <div className='w-full flex flex-row items-center ml-2'>
-          <div>
-            < Hamburger isOpen={isSidebarOpen} onClick={toggleSideBar}/>
+          <div className=''>
+            < Hamburger isOpen={isSidebarOpen} onClick={toggleSidebar}/>
             < Sidebar isOpen={isSidebarOpen} firstName='Rodgers'/>
           </div>
           <div className='ml-4'>
