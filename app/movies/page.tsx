@@ -42,13 +42,6 @@ const Movies = () => {
           < Header 
           firstName={loggedIn?.firstName || "User"}/>
         </div>
-        <div>
-        < MovieCard 
-          url={IMAGE_BASE_URL}
-          itemList={movies}
-          pageName='MOVIES'
-        />
-        </div>
       </div>
     )
 }

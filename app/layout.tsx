@@ -22,9 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex flex-col bg-gray-50 text-gray-950
+      <body className={`${inter.className}bg-gray-50 text-gray-950
       relative dark:bg-gray-950 dark:text-gray-50
-      dark:text-opacity-90 antialiased`}>
+      dark:text-opacity-90 antialiased overflow-x-hidden`}>
 
       {/* bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-gray-300 via-gray-500 to-gray-700 */}
 

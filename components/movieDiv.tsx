@@ -2,7 +2,8 @@ import React from 'react'
 
 type MovieData = {
     poster_path: string,
-    title: string
+    title: string,
+    id: number,
 }
 
 type MovieDivProps = {
@@ -13,15 +14,23 @@ const MovieDiv = ( { movies }: MovieDivProps ) => {
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
 
   return (
-    <div className='relative flex flex-nowrap overflow-x-scroll min-w-screen ml-28'>
-        {movies.map( (movie, index) => (
-            <div className='flex  gap-5 border border-black w-52 h-20'>
-                <img 
-                src={movie.poster_path? `${IMAGE_BASE_URL}${movie.poster_path}` : "/default_image.png"}
-                alt={movie.title}
-                className='' />
+    <div className='my-8 ml-28'>
+        <h2 className='text-2xl font-semibold mb-4'>Action Movies</h2>
+        <div className='overflow-x-scroll whitespace-nowrap py-2 hide-scrollbar'>
+            <div className='flex space-x-4'>
+            {movies.map( (movie, index) => (
+                <div
+                 key={movie.id}
+                 className='inline-block min-w-[200px] max-w-sm rounded-lg overflow-hidden'>
+                    <img 
+                    src={movie.poster_path? `${IMAGE_BASE_URL}${movie.poster_path}` : "/default_image.png"}
+                    alt={movie.title}
+                    className='w-full h-auto' />
+                    <h1 className='text-lg font-semibold truncate'>{movie.title}</h1>
+                </div>
+            ))}
             </div>
-        ))}
+        </div>
     </div>
   )
 }

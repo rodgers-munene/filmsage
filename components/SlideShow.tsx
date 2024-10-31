@@ -34,15 +34,15 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
   }
   
   return (
-    <div className='relative w-screen h-screen mx-auto flex mt-14 min-w-screen'>
+    <div className='relative w-screen h-[34rem] mx-auto flex mt-14 min-w-screen'>
       
      {slides.map((slide, index) => (
       <div
       key={index}
       className={`absolute inset-0 transition-opacity duration-500 ${index === currentIndex? "opacity-100 " : "opacity-0"}`}
       >
-       <div className='relative w-2/3 h-3/4 flex ml-28 flex-col'>
-       <h1 className='text-gray-700 dark:text-gray-100 text-30 font-bold'>Trending this week</h1>
+       <div className='relative w-2/3 h-full flex ml-28 flex-col'>
+       <h1 className='text-gray-700 dark:text-gray-100 text-2xl font-semibold'>Trending this week</h1>
         <img 
           src={slide.poster_path ? `${IMAGE_BASE_URL}${slide.poster_path}` : '/default_image.png'}
           alt={slide.title}
@@ -53,20 +53,20 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
 
           <button
             onClick={prevSlide}
-            className='absolute top-1/2 left-2 -translate-y-1/2 bg-gray-100 text-gray-800 p-2 rounded-full hover:bg-gray-800 transition duration-200'
+            className='absolute w-11 top-1/2 left-2 -translate-y-1/2 bg-gray-800 text-gray-100 p-2 rounded-full hover:bg-gray-800 transition text-xl duration-200'
             >
               &larr;
           </button>
 
           <button
             onClick={nextSlide}
-            className='absolute top-1/2 right-2 -translate-y-1/2 bg-gray-100 text-gray-800 p-2 rounded-full hover:bg-gray-800 transition duration-200'
+            className='absolute w-11 top-1/2 right-2 -translate-y-1/2 bg-gray-800 text-gray-100 p-2 rounded-full hover:bg-gray-800 text-xl transition duration-200'
             >
               &rarr;
           </button>
 
            {/*Navigation indicators*/}
-          <div className="absolute bottom-2  left-1/2 transform -translate-x-1/2 flex space-x-2">
+          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
               {slides.map((_, index) => (
                 <button
                   key={index}

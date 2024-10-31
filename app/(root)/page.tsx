@@ -58,7 +58,7 @@ const handleMainClick = () => {
 // fetchMovies()
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="flex flex-col">
       <div>
         < Header 
         firstName={loggedIn?.firstName || "User"}/>
