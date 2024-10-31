@@ -16,22 +16,22 @@ const Sidebar: FC<sideBarProps> = ( { firstName, isOpen } ) => {
   ]
 
   return (
-    <div className={`sidebar bg-gray-900 h-screen overflow-y-auto transition-transform duration-300 transform ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
+    <div className={`sidebar bg-[#b4c0d6] dark:bg-[#0d0a2b] h-screen overflow-y-auto transition-transform duration-300 transform ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
        <div className="w-full flex flex-col justify-between">
           <div className='sidebar-items w-full h-screen'>
                <div className='sidebar-link'>
                 {Links.map((link) =>(
-                    <Link className= {`h-10 rounded-lg pl-2 pt-2 ${pathname === link.link ? 'text-black bg-blue-300': ''}`} href={link.link}>{link.name}</Link>
+                    <Link className= {`h-10 rounded-lg pl-2 pt-2 ${pathname === link.link ? 'text-gray-100 dark:text-gray-700 bg-gray-600': 'text-gray-700 dark:text-gray-100'}`} href={link.link}>{link.name}</Link>
                   ))}
                </div>
                 <div className=''>
-                    <h1 className='pl-5'>
+                    <h1 className='pl-5 text-gray-700 dark:text-gray-100'>
                     {signedIn && signedIn.firstName}
                     </h1>
                     {!signedIn && (
                       <div>
-                        <button>Login</button>
-                        <button>Sign Up</button>
+                        <button className='text-gray-700 dark:text-gray-100'>Login</button>
+                        <button className='text-gray-700 dark:text-gray-100'>Sign Up</button>
                      </div>
                     )}
                 </div>

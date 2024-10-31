@@ -1,7 +1,7 @@
 import { MovieCardProps } from '@/types'
 import React from 'react'
 import Image from 'next/image'
-import defaultImage from '@/public/images/default-movie.webp'
+
 
 const MovieCard = ( { url, itemList, pageName } : MovieCardProps ) => {
     
@@ -13,7 +13,7 @@ const MovieCard = ( { url, itemList, pageName } : MovieCardProps ) => {
                 {itemList? (itemList.map((item : any) => (
                     <div>
                     <Image 
-                        src={item.poster_path? `${url}${item.poster_path}` : defaultImage}
+                        src={item.poster_path? `${url}${item.poster_path}` : "/default-movie.webp"}
                         alt={item.title}
                         width={200}
                         height={350}

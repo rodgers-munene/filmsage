@@ -61,7 +61,7 @@
   }
 
   .header-2 {
-    @apply text-18 font-semibold text-gray-100;
+    @apply text-18 font-semibold text-gray-700 dark:text-gray-100;
   }
 
   .text-10 {
