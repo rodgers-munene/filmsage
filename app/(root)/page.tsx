@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from '@/components/header'
 import { useSidebar } from '@/context/SidebarContext'
-import Image from 'next/image'
 import { fetchTrending, fetchAction, fetchComedy, fetchDrama, fetchRomance, fetchSciFi, fetchThriller} from '@/lib/data'
 import Slideshow from '@/components/SlideShow'
 import MovieDiv from '@/components/movieDiv'
@@ -19,22 +18,6 @@ const Home = () => {
   const [romance, setRomance] = useState([])
   
   const [loading, setLoading] = useState(true)
-
-  const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
-  const url = "https://api.themoviedb.org/3/discover/movie?api_key=ae068f4ef971b7e5066b4e6790067735"
-// fetching the data
-// async function fetchMovies() {
-//   try {
-//     let response = await fetch(`${url}`)
-
-//     let data = await response.json();
-//     setMovies(data.results)
-
-//   } catch (error) {
-//     console.log("Error fetching data:", error); //error handling
-    
-//   }
-// }
 
 useEffect(() =>{
   const getTrending = async () =>{
@@ -82,7 +65,8 @@ const handleMainClick = () => {
         firstName={loggedIn?.firstName || "User"}/>
       </div>
 
-      {/* trending this week slideshow */}
+      <div onClick={handleMainClick} className='w-screen h-screen'>
+        {/* trending this week slideshow */}
 
       <div className=''>
         <Slideshow slides={trending} interval={5000}/>
@@ -117,6 +101,7 @@ const handleMainClick = () => {
       {/* Romance */}
       <div className=''>
           <MovieDiv movies={romance} title='Romance'/>
+      </div>
       </div>
 
     </div>
