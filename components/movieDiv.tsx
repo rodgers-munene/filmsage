@@ -7,15 +7,16 @@ type MovieData = {
 }
 
 type MovieDivProps = {
-    movies: MovieData[]
+    movies: MovieData[],
+    title: string 
 }
 
-const MovieDiv = ( { movies }: MovieDivProps ) => {
+const MovieDiv = ( { movies, title }: MovieDivProps ) => {
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
 
   return (
-    <div className='my-8 ml-28'>
-        <h2 className='text-2xl font-semibold mb-4'>Action Movies</h2>
+    <div className='my-8 ml-14'>
+        <h2 className='text-2xl font-semibold mb-4'>{title}</h2>
         <div className='overflow-x-scroll whitespace-nowrap py-2 hide-scrollbar'>
             <div className='flex space-x-4'>
             {movies.map( (movie, index) => (

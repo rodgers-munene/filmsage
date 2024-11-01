@@ -41,12 +41,12 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
       key={index}
       className={`absolute inset-0 transition-opacity duration-500 ${index === currentIndex? "opacity-100 " : "opacity-0"}`}
       >
-       <div className='relative w-2/3 h-full flex ml-28 flex-col'>
+       <div className='relative w-[60%] h-full flex ml-14 flex-col'>
        <h1 className='text-gray-700 dark:text-gray-100 text-2xl font-semibold'>Trending this week</h1>
         <img 
           src={slide.poster_path ? `${IMAGE_BASE_URL}${slide.poster_path}` : '/default_image.png'}
           alt={slide.title}
-          className=' object-fill w-full transition-transform duration-500 ease-in-out transform scale-100 overflow-hidden'
+          className=' w-full rounded-xl transition-transform duration-500 ease-in-out transform overflow-hidden'
           />
 
            {/* Navigation Button */}
