@@ -17,24 +17,37 @@ const Sidebar: FC<sideBarProps> = ( { firstName, isOpen } ) => {
   ]
 
   return (
-    <div className={`sidebar bg-[#b4c0d6] dark:bg-[#0d0a2b] h-screen overflow-y-auto transition-transform duration-300 transform ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
+    <div className={`sidebar w-64 bg-[#b4c0d6] dark:bg-[#0d0a2b] h-screen overflow-y-auto  transition-transform duration-200 transform ${isOpen ? "translate-x-0 w-64 custom-scrollbar" : "-translate-x-52 hide-scrollbar"}`}>
        <div className="w-full flex flex-col justify-between">
-          <div className='sidebar-items w-full h-screen'>
-               <div className='sidebar-link'>
-                {Links.map((link) =>(
-                    <Link className= {`h-10 rounded-lg flex pl-2 pt-2 ${pathname === link.link ? 'text-gray-100 dark:text-gray-700 bg-gray-600': 'text-gray-700 dark:text-gray-100'}`} href={link.link}>
-                      <link.icon className='h-6 w-6' />
-                      <span className='pl-2'>{link.name}</span>
-                      </Link>
-                  ))}
+          <div className='sidebar-items h-screen'>
+               <div className={isOpen? "sidebar-link" : "flex flex-col w-56 gap-12 py-1"}>
+                {isOpen? 
+                Links.map((link, index) =>(
+                  <Link className= {`h-10 rounded-lg flex pl-2 pt-2 ${pathname === link.link ? 'text-gray-100 dark:text-gray-700 bg-gray-600': 'text-gray-700 dark:text-gray-100'}`} href={link.link}>
+                    <link.icon className='h-6 w-6' />
+                    <span className='pl-2'>{link.name}</span>
+                    </Link>
+                )): 
+                Links.map((link, index) => (
+                  <Link href={link.link} title={link.name} className={`h-10 w-9 flex items-center justify-center ml-auto rounded-lg ${pathname === link.link? 'text-gray-100 dark:text-gray-700 bg-gray-600': 'text-gray-700 dark:text-gray-100'}`}>
+                    <link.icon className='h-6 w-6'/>
+                  </Link>
+                ))
+                }
                </div>
-                <div className=''>
-                    <div className='flex pl-5'>
+                <div className='relative w-56'>
+                    {isOpen ? 
+                    (<div className='flex pl-5'>
                       <UserIcon className='h-6 w-6 text-gray-700 dark:text-gray-100'/>
                       <h1 className='pl-1 text-gray-700 dark:text-gray-100'>
                       {signedIn && signedIn.firstName}
-                    </h1>
-                    </div>
+                      </h1>
+                    </div>): 
+                    (<div className='h-10 w-10 flex items-center justify-center ml-auto'>
+                      
+                      <UserIcon title={signedIn.firstName} className='h-6 w-6 text-gray-700 dark:text-gray-100'/>
+                     
+                     </div>)}
                     {!signedIn && (
                       <div className='flex flex-col '>
                         <button className='text-gray-700 dark:text-gray-100'>Login</button>

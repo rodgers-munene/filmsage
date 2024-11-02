@@ -127,7 +127,7 @@
 
   /* Sidebar */
   .sidebar {
-    @apply fixed top-14 left-0 flex w-64 items-start flex-col justify-between border-r border-gray-500 pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
+    @apply fixed top-14 left-0 flex items-start flex-col justify-between border-r border-gray-500 pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
   }
   .sidebar-items{
     @apply flex flex-col gap-36;
