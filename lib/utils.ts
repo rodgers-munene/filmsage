@@ -1,5 +1,5 @@
-export default function Utils {
+export default function Utils( { prop }:any ) {
     return(
-        
+     {prop}
     )
 }
