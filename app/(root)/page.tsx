@@ -38,6 +38,8 @@ useEffect(() =>{
       setSciFi(sciFiMovies.results)
       setRomance(romanceMovies.results)
 
+      console.log(trendingMovies.results)
+
     } catch (error) {
         console.log(error)
     }finally{
@@ -54,7 +56,7 @@ const handleMainClick = () => {
   }
 }
 
-// fetchMovies()
+
 
   return (
     <div className="flex flex-col">

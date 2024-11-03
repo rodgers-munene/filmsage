@@ -122,7 +122,7 @@
   }
 
   .home-header {
-    @apply fixed flex flex-row z-[20] justify-between items-center fixed top-0 left-0 w-screen;
+    @apply fixed flex flex-row justify-between items-center top-0 left-0 w-screen;
   }
 
   /* Sidebar */
