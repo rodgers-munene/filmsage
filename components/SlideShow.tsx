@@ -124,7 +124,7 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
             </button> */}
 
             {/*Navigation indicators*/}
-            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            {/* <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {slides.map((_, index) => (
                   <button
                     key={index}
@@ -132,7 +132,9 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
                     onClick={() => setCurrentIndex(index)}
                   />
                 ))}
-            </div>
+            </div> */}
+
+            
         </div>
 
         <div className='absolute right-20 top-12'>
