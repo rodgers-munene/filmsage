@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 type MovieData = {
     poster_path: string,
@@ -20,15 +21,15 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
         <div className='overflow-x-scroll whitespace-nowrap py-2 hide-scrollbar'>
             <div className='flex space-x-4'>
             {movies.map( (movie, index) => (
-                <div
-                 key={movie.id}
-                 className='inline-block min-w-[200px] max-w-sm rounded-lg overflow-hidden'>
+                <Link href={`/movies/${movie.id}`}
+                    key={movie.id}
+                    className='inline-block min-w-[200px] max-w-sm rounded-lg overflow-hidden'>
                     <img 
                     src={movie.poster_path? `${IMAGE_BASE_URL}${movie.poster_path}` : "/default_image.png"}
                     alt={movie.title}
-                    className='w-full h-auto' />
+                    className='w-full h-auto object-fill' />
                     <h1 className='text-lg font-semibold truncate'>{movie.title}</h1>
-                </div>
+                </Link>
             ))}
             </div>
         </div>

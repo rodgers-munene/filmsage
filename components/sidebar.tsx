@@ -23,13 +23,13 @@ const Sidebar: FC<sideBarProps> = ( { firstName, isOpen } ) => {
                <div className={isOpen? "sidebar-link" : "flex flex-col w-56 gap-12 py-1"}>
                 {isOpen? 
                 Links.map((link, index) =>(
-                  <Link className= {`h-10 rounded-lg flex pl-2 pt-2 ${pathname === link.link ? 'text-gray-100 dark:text-gray-700 bg-gray-600': 'text-gray-700 dark:text-gray-100'}`} href={link.link}>
+                  <Link key={index} className= {`h-10 rounded-lg flex pl-2 pt-2 ${pathname === link.link ? 'text-gray-100 dark:text-gray-700 bg-gray-600': 'text-gray-700 dark:text-gray-100'}`} href={link.link}>
                     <link.icon className='h-6 w-6' />
                     <span className='pl-2'>{link.name}</span>
                     </Link>
                 )): 
                 Links.map((link, index) => (
-                  <Link href={link.link} title={link.name} className={`h-10 w-9 flex items-center justify-center ml-auto rounded-lg ${pathname === link.link? 'text-gray-100 dark:text-gray-700 bg-gray-600': 'text-gray-700 dark:text-gray-100'}`}>
+                  <Link key={index} href={link.link} title={link.name} className={`h-10 w-9 flex items-center justify-center ml-auto rounded-lg ${pathname === link.link? 'text-gray-100 dark:text-gray-700 bg-gray-600': 'text-gray-700 dark:text-gray-100'}`}>
                     <link.icon className='h-6 w-6'/>
                   </Link>
                 ))
