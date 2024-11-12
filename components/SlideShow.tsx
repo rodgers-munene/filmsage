@@ -55,8 +55,19 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
           {/* Trending this week */}
           
           {/* Title, watch button and favorite button */}
-          <div className='w-full h-full z-20  flex items-end justify-center'>
-              <div className='relative flex flex-col gap-6 w-1/2 h-1/2'>
+          <div className='w-full h-full z-20  flex items-end justify-center gap-3'>
+              <Image
+              src={slide.poster_path ? `${IMAGE_BASE_URL}${slide.poster_path}` : '/default_image.png'} 
+              alt={slide.title}
+              width={200}
+              height={100}
+              objectFit='contain'
+              priority
+              className='rounded-md shadow-xl'
+              >
+
+              </Image>
+              <div className='relative flex flex-col gap-6 w-1/2 h-1/2 '>
                 <div className='ml-2 '>
                     <h2 className='text-white/90 font-bold uppercase text-3xl'>{slide.title}</h2>
                 </div>
@@ -91,8 +102,8 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
             src={slide.poster_path ? `${IMAGE_BASE_URL}${slide.poster_path}` : '/default_image.png'}
             alt={slide.title}
             className='object-fill transition-transform duration-500 ease-in-out transform overflow-hidden'
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            layout='fill'
+            objectFit='cover'
             priority
             />
             

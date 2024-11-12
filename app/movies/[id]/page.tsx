@@ -35,11 +35,11 @@ export default async function MovieDetails({ params }: { params: { id: string } 
     )
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-    const movie = await fetchMovie(params.id)
+// export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+//     const movie = await fetchMovie(params.id)
     
-    return{
-        title: movie.title,
-        description: movie.overview
-    };
-}
+//     return{
+//         title: movie.title,
+//         description: movie.overview
+//     };
+// }
