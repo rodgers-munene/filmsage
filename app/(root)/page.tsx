@@ -62,11 +62,6 @@ const handleMainClick = () => {
     <div className="flex flex-col">
       {/* header */}
 
-      <div>
-        < Header 
-        firstName={loggedIn?.firstName || "User"}/>
-      </div>
-
       <div onClick={handleMainClick} className='w-screen h-screen'>
         {/* trending this week slideshow */}
 
