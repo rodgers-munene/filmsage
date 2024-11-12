@@ -1,10 +1,11 @@
-import { useRouter } from "next/router";
 import { Metadata } from "next";
+import Image from "next/image";
 
 interface Movie{
     id: number
     title: string
     overview: string
+    poster_path: string
 }
 
 interface MovieDetailsParams {
@@ -16,6 +17,7 @@ async function fetchMovie(id: string): Promise<Movie> {
         next:  {revalidate: 60},
     })
 
+    
     if(!res.ok) throw new Error("Failed to fetch movie data")
     return res.json();
 }
@@ -23,14 +25,24 @@ async function fetchMovie(id: string): Promise<Movie> {
 
 export default async function MovieDetails({ params }: { params: { id: string } } ){
    const movieData= await fetchMovie(params.id)
+   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
     if(!movieData) {return( <div>Loading</div>)}
 
     return(
-        <div>
-            {movieData.title}
-           {movieData.id}
-           {movieData.overview}
+        <div className="w-full h-screen flex justify-center items-center">
+           <div>
+             <Image
+             src={movieData.poster_path ? `${IMAGE_BASE_URL}${movieData.poster_path}` : '/default_image.png'}
+             alt={movieData.title}
+             width={200}
+             height={100}
+             style={{ objectFit: 'contain' }}
+             >
+            
+             </Image>
+             {movieData.title}
+           </div>
         </div>
     )
 }

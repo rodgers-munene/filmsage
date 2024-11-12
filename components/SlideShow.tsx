@@ -6,6 +6,7 @@ import { Genres } from '@/lib/data'
 
 interface Slide {
   poster_path: string,
+  backdrop_path: string,
   title: string,
   genre_ids: number[],
   release_date: string,
@@ -61,7 +62,8 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
               alt={slide.title}
               width={200}
               height={100}
-              objectFit='contain'
+              style={{ objectFit: 'cover' }}
+
               priority
               className='rounded-md shadow-xl'
               >
@@ -94,16 +96,16 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
           </div>
 
           {/* shade */}
-          <div className=' absolute w-full h-full pointer-events-none z-10 bg-black opacity-60'>   
+          <div className=' absolute w-full h-full pointer-events-none z-10 bg-black opacity-50'>   
           </div>
 
           {/* image */}
           <Image
-            src={slide.poster_path ? `${IMAGE_BASE_URL}${slide.poster_path}` : '/default_image.png'}
+            src={slide.backdrop_path ? `${IMAGE_BASE_URL}${slide.backdrop_path}` : '/default_image.png'}
             alt={slide.title}
             className='object-fill transition-transform duration-500 ease-in-out transform overflow-hidden'
-            layout='fill'
-            objectFit='cover'
+            fill
+            style={{ objectFit: 'cover', width: '100%'}}
             priority
             />
             
