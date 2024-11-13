@@ -20,7 +20,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true)
 
 useEffect(() =>{
-  const getTrending = async () =>{
+  const getData = async () =>{
     try {
       const trendingMovies = await fetchTrending()
       const actionMovies = await fetchAction()
@@ -47,7 +47,7 @@ useEffect(() =>{
     }
   } 
 
-  getTrending()
+  getData()
 }, [])
 
 const handleMainClick = () => {

@@ -34,6 +34,7 @@ export async function fetchAction() {
    }
 }
 
+
 //Comedy
 export async function fetchComedy(){
    try {
@@ -119,3 +120,18 @@ export async function fetchTrending() {
 // Top-rated
 
 // New
+
+// getconfiguration
+export async function fetchConfig(){
+   try {
+      let response = await fetch(`https://api.themoviedb.org/3/configuration?api_key=${process.env.TMDB_API_KEY}`)
+
+      let data = await response.json()
+      return data
+
+   } catch (error) {
+
+      console.error("Error fetching Image Configurations!", error)
+      
+   }
+}

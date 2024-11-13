@@ -1,11 +1,13 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import DetailsCard from "@/components/detailsCard";
 
 interface Movie{
     id: number
     title: string
     overview: string
     poster_path: string
+    backdrop_path: string
 }
 
 interface MovieDetailsParams {
@@ -30,18 +32,9 @@ export default async function MovieDetails({ params }: { params: { id: string } 
     if(!movieData) {return( <div>Loading</div>)}
 
     return(
-        <div className="w-full h-screen flex justify-center items-center">
+        <div className="relative w-full h-[90vh] flex justify-center items-center">
            <div>
-             <Image
-             src={movieData.poster_path ? `${IMAGE_BASE_URL}${movieData.poster_path}` : '/default_image.png'}
-             alt={movieData.title}
-             width={200}
-             height={100}
-             style={{ objectFit: 'contain' }}
-             >
-            
-             </Image>
-             {movieData.title}
+                <DetailsCard  movieData={movieData}/>
            </div>
         </div>
     )
