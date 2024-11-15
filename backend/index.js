@@ -17,8 +17,8 @@ app.listen(PORT, () =>{
     console.log(`Server running on https://localhost:${PORT}`)
 })
 
-app.get('/', (req, res) => {
-    db.query('SELECT * FROM movies', (err, results) =>{
+app.get('/action', (req, res) => {
+    db.query('SELECT * FROM action', (err, results) =>{
         if(err) throw err;
         res.json(results)
     })
