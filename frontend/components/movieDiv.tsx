@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 
 type MovieData = {
-    image_path: string,
+    poster_path: string,
     title: string,
     id: number,
     genre: string
@@ -27,7 +27,7 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
                     key={movie.id}
                     className='inline-block min-w-[200px] max-w-sm rounded-lg overflow-hidden'>
                     <img 
-                    src={movie.image_path? `http://localhost:5000/images/${title.toLowerCase()}/poster/${movie.id}.jpg`: "/default_image.png"}
+                    src={movie.poster_path? `${IMAGE_BASE_URL}${movie.poster_path}`: "/default_image.png"}
                     alt={movie.title}
                     className='w-full h-auto object-fill' />
                     <h1 className='text-lg font-semibold truncate'>{movie.title}</h1>

@@ -1,7 +1,7 @@
 import { MovieCardProps } from '@/types'
 import React from 'react'
 import Image from 'next/image'
-import '../../backend/public/images'
+
 
 
 const MovieCard = ( { url, itemList, pageName } : MovieCardProps ) => {

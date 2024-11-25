@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import Header from '@/components/header'
 import { useSidebar } from '@/context/SidebarContext'
-// import { fetchTrending, fetchAction, fetchComedy, fetchDrama, fetchRomance, fetchSciFi, fetchThriller} from '@/lib/data'
-import { fetchAction } from '@/lib/data'
+import { fetchTrending, fetchAction, fetchComedy, fetchDrama, fetchRomance, fetchSciFi, fetchThriller} from '@/lib/data'
+// import { fetchAction } from '@/lib/data'
 import Slideshow from '@/components/SlideShow'
 import MovieDiv from '@/components/movieDiv'
 
@@ -23,23 +23,23 @@ const Home = () => {
 useEffect(() =>{
   const getData = async () =>{
     try {
-      // const trendingMovies = await fetchTrending()
+      const trendingMovies = await fetchTrending()
       const actionMovies = await fetchAction()
-      // const comedyMovies = await fetchComedy()
-      // const dramaMovies = await fetchDrama()
-      // const sciFiMovies = await fetchSciFi()
-      // const romanceMovies = await fetchRomance()
-      // const thrillerMovies = await fetchThriller()
+      const comedyMovies = await fetchComedy()
+      const dramaMovies = await fetchDrama()
+      const sciFiMovies = await fetchSciFi()
+      const romanceMovies = await fetchRomance()
+      const thrillerMovies = await fetchThriller()
 
-      // setTrending(trendingMovies.results)
-      setAction(actionMovies)
-      // setComedy(comedyMovies.results)
-      // setDrama(dramaMovies.results)
-      // setThriller(thrillerMovies.results)
-      // setSciFi(sciFiMovies.results)
-      // setRomance(romanceMovies.results)
+      setTrending(trendingMovies.results)
+      setAction(actionMovies.results)
+      setComedy(comedyMovies.results)
+      setDrama(dramaMovies.results)
+      setThriller(thrillerMovies.results)
+      setSciFi(sciFiMovies.results)
+      setRomance(romanceMovies.results)
 
-      // console.log(actionMovies)
+      console.log(actionMovies.results)
 
     } catch (error) {
         console.log(error)

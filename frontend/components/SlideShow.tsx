@@ -5,10 +5,11 @@ import { Genres } from '@/lib/data'
 // import getConfig from 'next/config'
 
 interface Slide {
+  id: number,
   poster_path: string,
   backdrop_path: string,
   title: string,
-  genre_ids: number[],
+  genre_ids: number,
   release_date: string,
   media_type: string,
 }
@@ -24,6 +25,7 @@ function getGenreName(genreId: number): string{
 const Slideshow = ( {slides, interval}: SlideshowProps ) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+  const BACKDROP_BASE_URL = 'https://image.tmdb.org/t/p/w1280';
 
   // Automatic SLideshow
   useEffect(() =>{
@@ -58,7 +60,7 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
           {/* Title, watch button and favorite button */}
           <div className='w-full h-full z-20  flex items-end justify-center gap-3'>
               <Image
-              src={slide.poster_path ? `${IMAGE_BASE_URL}${slide.poster_path}` : '/default_image.png'} 
+              src={slide.poster_path? `${IMAGE_BASE_URL}${slide.poster_path}`: "/default_image.png"}
               alt={slide.title}
               width={200}
               height={100}
@@ -75,7 +77,7 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
                 </div>
 
                 <div className='flex w-1/2 justify-between'>
-                  <h2 className='ml-2 text-white font-semibold '>{getGenreName(slide.genre_ids[0])}</h2>
+                  <h2 className='ml-2 text-white font-semibold '>{getGenreName(slide.genre_ids)}</h2>
                   <h2 className='text-white font-semibold flex flex-center'> <CalendarIcon className='h-4 w-4 mr-2 text-red-800'/>
                   {getYear(slide.release_date)}
                   </h2>
@@ -101,7 +103,7 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
 
           {/* image */}
           <Image
-            src={slide.backdrop_path ? `${IMAGE_BASE_URL}${slide.backdrop_path}` : '/default_image.png'}
+            src={slide.backdrop_path ? `${BACKDROP_BASE_URL}${slide.backdrop_path}` : '/default_image.png'}
             alt={slide.title}
             className='object-fill transition-transform duration-500 ease-in-out transform overflow-hidden'
             fill

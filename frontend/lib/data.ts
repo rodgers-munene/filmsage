@@ -1,11 +1,10 @@
 // tmdb links
 // action - https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=28
-// comedy - https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=35
-// drama - https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=18
-// thriller - https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=53
-// romance - https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=10749
-// scifi - https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=878
-// trending - https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.TMDB_API_KEY}
+// comedy - 
+// drama - 
+// thriller - 
+// romance - 
+// trending - 
 
 
 // Genres
@@ -34,7 +33,7 @@ export const Genres = {
 //Action & adventure 
 export async function fetchAction() {
    try {
-      let response = await fetch(`http://localhost:5000/action`)
+      let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=28`)
       
       let data = await response.json()
       return data
@@ -45,83 +44,84 @@ export async function fetchAction() {
 }
 
 
-// //Comedy
-// export async function fetchComedy(){
-//    try {
-//       let response = await fetch(``)
+//Comedy
+export async function fetchComedy(){
+   try {
+      let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=35`)
 
-//       let data = await response.json()
-//       return data;
-//    } catch (error) {
-//       console.error("There is a problem fetching the data", error) 
-//    }
-// }
+      let data = await response.json()
+      return data;
+   } catch (error) {
+      console.error("There is a problem fetching the data", error) 
+   }
+}
 
-// // Drama
-// export async function fetchDrama(){
-//    try {
-//       let response = await fetch(``)
+// Drama
+export async function fetchDrama(){
+   try {
+      let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=18`)
 
-//       let data = await response.json()
+      let data = await response.json()
 
-//       return data;
-//    } catch (error) {
-//       console.error("There is a problem fetching the data", error)
-//    }
-// }
+      return data;
+   } catch (error) {
+      console.error("There is a problem fetching the data", error)
+   }
+}
 
 
-// // Thriller
-// export async function fetchThriller(){
-//    try {
-//       let response = await fetch(``)
+// Thriller
+export async function fetchThriller(){
+   try {
+      let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=53`)
 
-//       let data = await response.json()
+      let data = await response.json()
 
-//       return data;
-//    } catch (error) {
-//       console.error("There is a problem fetching the data", error)
-//    }
-// }
+      return data;
+   } catch (error) {
+      console.error("There is a problem fetching the data", error)
+   }
+}
 
-// // Romance 
-// export async function fetchRomance(){
-//    try {
-//       let response = await fetch(``)
+// Romance 
+export async function fetchRomance(){
+   try {
+      let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=10749
+// scifi - `)
 
-//       let data = await response.json()
+      let data = await response.json()
 
-//       return data;
-//    } catch (error) {
-//       console.error("There is a problem fetching the data", error)
-//    }
-// }
+      return data;
+   } catch (error) {
+      console.error("There is a problem fetching the data", error)
+   }
+}
 
-// // Sci-fi
-// export async function fetchSciFi(){
-//    try {
-//       let response = await fetch(``)
+// Sci-fi
+export async function fetchSciFi(){
+   try {
+      let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=878`)
 
-//       let data = await response.json()
+      let data = await response.json()
 
-//       return data;
-//    } catch (error) {
-//       console.error("There is a problem fetching the data", error)
-//    }
-// }
+      return data;
+   } catch (error) {
+      console.error("There is a problem fetching the data", error)
+   }
+}
 
-// // Trending
-// export async function fetchTrending() {
-//    try {
-//     let response = await fetch(``)
+// Trending
+export async function fetchTrending() {
+   try {
+    let response = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.TMDB_API_KEY}`)
 
-//     let data = await response.json()
-//     return data
+    let data = await response.json()
+    return data
 
-//    } catch (error) {
-//     console.error("There is a problem fetching the data", error)
-//    }
-// }
+   } catch (error) {
+    console.error("There is a problem fetching the data", error)
+   }
+}
 
 // family && animation
 
