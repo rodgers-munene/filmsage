@@ -12,6 +12,9 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+.filterDiv{
+  width: calc(100vw - 60px);
+}
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {

@@ -17,7 +17,8 @@ const Sidebar: FC<sideBarProps> = ( { firstName, isOpen } ) => {
   ]
 
   return (
-    <div className={`sidebar w-64 bg-[#0d0a2b] dark:bg-[#0d0a2b] h-screen overflow-y-auto  transition-transform duration-200 transform ${isOpen ? "translate-x-0 w-64 custom-scrollbar" : "-translate-x-52 hide-scrollbar"}`}>
+    // bg-[#0d0a2b]
+    <div className={`sidebar w-64 bg-gray-950 dark:bg-[#0d0a2b] h-screen overflow-y-auto  transition-transform duration-200 transform ${isOpen ? "translate-x-0 w-64 custom-scrollbar" : "-translate-x-52 hide-scrollbar"}`}>
        <div className="w-full flex flex-col justify-between">
           <div className='sidebar-items h-screen'>
                <div className={isOpen? "sidebar-link" : "flex flex-col w-56 gap-12 py-1"}>

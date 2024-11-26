@@ -22,8 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // bg-[#0d0a2b] - backup background color
     <html lang="en">
-      <body className={`${inter.className} bg-[#0d0a2b] text-gray-50
+      <body className={`${inter.className} bg-gray-950 text-gray-50
       relative dark:bg-gray-950 dark:text-gray-50
       dark:text-opacity-90 antialiased overflow-x-hidden`}>
          

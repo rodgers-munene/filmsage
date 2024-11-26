@@ -30,16 +30,28 @@ export const Genres = {
    37: "Western"
 }
 
+// fetch all available genres
+
+export async function fetchGenres() {
+   try {
+      let response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.TMDB_API_KEY}`)
+      let data = await response.json() 
+      return data
+   } catch (error) {
+      console.error("Error fetching genres")
+   }
+}
+
 //Action & adventure 
 export async function fetchAction() {
    try {
       let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=28`)
       
       let data = await response.json()
-      return data
+      return data.results
 
    } catch (error) {
-      console.log("There is a problem fetching the data", error)
+      console.error("There is a problem fetching the data", error)
    }
 }
 
@@ -50,7 +62,7 @@ export async function fetchComedy(){
       let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=35`)
 
       let data = await response.json()
-      return data;
+      return data.results;
    } catch (error) {
       console.error("There is a problem fetching the data", error) 
    }
@@ -63,7 +75,7 @@ export async function fetchDrama(){
 
       let data = await response.json()
 
-      return data;
+      return data.results;
    } catch (error) {
       console.error("There is a problem fetching the data", error)
    }
@@ -77,7 +89,7 @@ export async function fetchThriller(){
 
       let data = await response.json()
 
-      return data;
+      return data.results;
    } catch (error) {
       console.error("There is a problem fetching the data", error)
    }
@@ -91,7 +103,7 @@ export async function fetchRomance(){
 
       let data = await response.json()
 
-      return data;
+      return data.results;
    } catch (error) {
       console.error("There is a problem fetching the data", error)
    }
@@ -104,7 +116,7 @@ export async function fetchSciFi(){
 
       let data = await response.json()
 
-      return data;
+      return data.results;
    } catch (error) {
       console.error("There is a problem fetching the data", error)
    }
@@ -116,7 +128,7 @@ export async function fetchTrending() {
     let response = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.TMDB_API_KEY}`)
 
     let data = await response.json()
-    return data
+    return data.results
 
    } catch (error) {
     console.error("There is a problem fetching the data", error)

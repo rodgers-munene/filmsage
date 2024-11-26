@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import Header from '@/components/header'
 import { useSidebar } from '@/context/SidebarContext'
 import { fetchTrending, fetchAction, fetchComedy, fetchDrama, fetchRomance, fetchSciFi, fetchThriller} from '@/lib/data'
-// import { fetchAction } from '@/lib/data'
 import Slideshow from '@/components/SlideShow'
-import MovieDiv from '@/components/movieDiv'
+// import MovieDiv from '@/components/movieDiv'
+import FilterDiv from '@/components/filterDiv'
 
 const Home = () => {
   const loggedIn = { firstName: "Rodgers"}
@@ -31,15 +31,14 @@ useEffect(() =>{
       const romanceMovies = await fetchRomance()
       const thrillerMovies = await fetchThriller()
 
-      setTrending(trendingMovies.results)
-      setAction(actionMovies.results)
-      setComedy(comedyMovies.results)
-      setDrama(dramaMovies.results)
-      setThriller(thrillerMovies.results)
-      setSciFi(sciFiMovies.results)
-      setRomance(romanceMovies.results)
+      setTrending(trendingMovies)
+      setAction(actionMovies)
+      setComedy(comedyMovies)
+      setDrama(dramaMovies)
+      setThriller(thrillerMovies)
+      setSciFi(sciFiMovies)
+      setRomance(romanceMovies)
 
-      console.log(actionMovies.results)
 
     } catch (error) {
         console.log(error)
@@ -64,42 +63,10 @@ const handleMainClick = () => {
       {/* header */}
 
       <div onClick={handleMainClick} className='w-screen h-screen'>
-        {/* trending this week slideshow */}
+     
+      {/* filters */}
+      <FilterDiv />
 
-      <div className=''>
-        <Slideshow slides={trending} interval={5000}/>
-      </div>
-
-      {/* action div */}
-
-      <div className=''>
-        <MovieDiv movies={action} title='Action'/>
-      </div>
-
-      {/* comedy movies */}
-      <div className=''>
-          <MovieDiv movies={comedy} title='Comedy'/>
-      </div>
-
-      {/* drama movies */}
-      <div className=''>
-          <MovieDiv movies={drama} title='Drama'/>
-      </div>
-
-      {/* Thriller */}
-      <div className=''>
-          <MovieDiv movies={thriller} title='Thriller'/>
-      </div>
-
-      {/* Scifi */}
-      <div className=''>
-          <MovieDiv movies={sciFi} title='SciFi'/>
-      </div>
-
-      {/* Romance */}
-      <div className=''>
-          <MovieDiv movies={romance} title='Romance'/>
-      </div>
       </div>
 
     </div>
