@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { fetchGenres } from '@/lib/data'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
+import SortDiv from './sortDiv';
+import Select from 'react-select/base';
 
 type Genre = {
   id: number;
@@ -13,6 +15,7 @@ const FilterDiv = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] =  useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
+
 
 
 
@@ -52,6 +55,7 @@ const FilterDiv = () => {
       container.addEventListener('scroll', checkScrollButtons);
 
     }
+  
 
     return () =>{
       if(container){
@@ -74,17 +78,23 @@ const FilterDiv = () => {
     getData()
     
   }, [])
+
+  
+
+
   return (
-    <div className='filterDiv h-20 flex mt-14 items-center ml-[88px] relative'>
+    <div className='w-full h-auto'>
+      {/* genres filter div */}
+      <div className='filterDiv h-20 flex mt-14 items-center ml-[88px] relative'>
       
       {canScrollLeft && (
         <button
         onClick={() => {
          scrollContainer('left')
         }} // Calls scrollLeft when clicked.
-        className={`absolute left-[-38px] top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full shadow-md hover:bg-gray-400}`}
+        className={"absolute left-[-38px] top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-400}"}
       >
-        <ChevronLeftIcon className='h-5 w-5 text-black' />
+        <ChevronLeftIcon className='h-5 w-5 text-white' />
       </button>
       )}
     
@@ -93,7 +103,7 @@ const FilterDiv = () => {
       ref={containerRef}
       className='filterDiv h-full overflow-auto flex justify-evenly items-center no-scrollbar'>        
         {genres? genres.map((genre) => (
-        <div className='min-w-28 flex justify-center items-center mx-4'>
+        <div className='min-w-32 flex justify-center items-center mx-4'>
            <button className='bg-gray-300 px-0 py-1 w-full text-black rounded-lg'>{genre.name}</button>
         </div>
       )): "loading"}
@@ -105,13 +115,17 @@ const FilterDiv = () => {
         onClick={() => {
           scrollContainer('right')
         }}
-        className='absolute right-[-38px] top-1/2 transform bg-gray-300 bg-opacity-80 -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-400'
+        className='absolute right-[-38px] top-1/2 transform bg-opacity-80 -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-400'
         >
-          <ChevronRightIcon className='h-5 w-5 text-black' />
+          <ChevronRightIcon className='h-5 w-5 text-white' />
   
         </button>
       )}
 
+    </div>
+
+      {/* sort by div */}
+    <SortDiv />
     </div>
   )
 }
