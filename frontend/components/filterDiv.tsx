@@ -104,7 +104,7 @@ const FilterDiv = () => {
       className='filterDiv h-full overflow-auto flex justify-evenly items-center no-scrollbar'>        
         {genres? genres.map((genre) => (
         <div className='min-w-32 flex justify-center items-center mx-4'>
-           <button className='bg-gray-300 px-0 py-1 w-full text-black rounded-lg'>{genre.name}</button>
+           <button className='bg-[#373737] px-0 py-1 w-full text-white rounded-lg'>{genre.name}</button>
         </div>
       )): "loading"}
 
