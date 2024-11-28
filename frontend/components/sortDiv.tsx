@@ -21,7 +21,7 @@ const SortDiv = () => {
     }
 
   return (
-    <div className='sortDiv ml-14 h-20'>
+    <div className='sortDiv ml-[70px] h-20'>
       <div className='w-1/3 flex justify-between items-center'>
         <div className='flex w-2/3 justify-around items-center'>
         <p>Sort By: </p>
