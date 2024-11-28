@@ -22,10 +22,11 @@ const SortDiv = () => {
 
   return (
     <div className='sortDiv ml-[70px] h-20'>
+      {/* latest and year select */}
       <div className='w-1/3 flex justify-between items-center'>
         <div className='flex w-2/3 justify-around items-center'>
-        <p>Sort By: </p>
-        <button className='bg-[#373737] px-6 py-2 rounded-lg'>Latest</button>
+          <p>Sort By: </p>
+          <button className='bg-[#373737] px-6 py-2 rounded-lg'>Latest</button>
         </div>
         <Box width="130px" height="50px" >
           <TextField
@@ -99,6 +100,12 @@ const SortDiv = () => {
           </TextField>
         </Box>
       </div>
+
+      {/* rating select range  */}
+
+      <div>
+      </div>
+
     </div>
   )
 }
