@@ -2,60 +2,33 @@
 import React, { useEffect, useState } from 'react'
 import Header from '@/components/header'
 import { useSidebar } from '@/context/SidebarContext'
-import { fetchTrending, fetchAction, fetchComedy, fetchDrama, fetchRomance, fetchSciFi, fetchThriller} from '@/lib/data'
+import { fetchMoviesByGenre } from '@/lib/data'
 import Slideshow from '@/components/SlideShow'
-// import MovieDiv from '@/components/movieDiv'
+import MovieDiv from '@/components/movieDiv'
 import FilterDiv from '@/components/filterDiv'
+import { useGenreContext } from '@/context/GenreMoviesContext'
 
 const Home = () => {
   const loggedIn = { firstName: "Rodgers"}
   const { isSidebarOpen, toggleSidebar } = useSidebar();
-  const [trending, setTrending] = useState([])
-  const [action, setAction] = useState([])
-  const [comedy, setComedy] = useState([])
-  const [drama, setDrama] = useState([])
-  const [sciFi, setSciFi] = useState([])
-  const [thriller, setThriller] = useState([])
-  const [romance, setRomance] = useState([])
+  const { selectedGenres } = useGenreContext()
+  const [movies, setMovies] = useState([])
   
   const [loading, setLoading] = useState(true)
 
-useEffect(() =>{
-  const getData = async () =>{
-    try {
-      const trendingMovies = await fetchTrending()
-      const actionMovies = await fetchAction()
-      const comedyMovies = await fetchComedy()
-      const dramaMovies = await fetchDrama()
-      const sciFiMovies = await fetchSciFi()
-      const romanceMovies = await fetchRomance()
-      const thrillerMovies = await fetchThriller()
-
-      setTrending(trendingMovies)
-      setAction(actionMovies)
-      setComedy(comedyMovies)
-      setDrama(dramaMovies)
-      setThriller(thrillerMovies)
-      setSciFi(sciFiMovies)
-      setRomance(romanceMovies)
-
-
-    } catch (error) {
-        console.log(error)
-    }finally{
-      setLoading(false)
-    }
-  } 
-
-  getData()
-}, [])
 
 const handleMainClick = () => {
   if(isSidebarOpen){
     toggleSidebar();
   }
 }
+useEffect(()=>{
+  const fetchMovies = async () =>{
+    const data = await fetchMoviesByGenre(selectedGenres)
+    setMovies(data)
+  }
 
+}, [selectedGenres])
 
 
   return (
@@ -66,6 +39,8 @@ const handleMainClick = () => {
      
       {/* filters */}
       <FilterDiv />
+
+      <MovieDiv movies={movies} title='Movies' />
 
       </div>
 

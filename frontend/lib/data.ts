@@ -42,13 +42,23 @@ export async function fetchGenres() {
    }
 }
 
+export async function fetchMoviesByGenre(genreIds: number[]) {
+   try {
+      const genreQuery = genreIds.join(",")
+      let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=${genreQuery}`)
+      let data = await response.json()
+      return data.results
+   } catch (error) {
+      console.error("Error Fetching data")
+   }
+}
+
 //Action & adventure 
 export async function fetchAction() {
    try {
       let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=28`)
-      
       let data = await response.json()
-      return data.results
+      return data
 
    } catch (error) {
       console.error("There is a problem fetching the data", error)

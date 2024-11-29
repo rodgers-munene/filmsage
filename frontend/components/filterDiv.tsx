@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { fetchGenres } from '@/lib/data'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import SortDiv from './sortDiv';
-import Select from 'react-select/base';
+import { fetchMoviesByGenre } from '@/lib/data';
+import { useGenreContext } from '@/context/GenreMoviesContext';
 
 type Genre = {
   id: number;
@@ -10,11 +11,15 @@ type Genre = {
 };
 
 
+
 const FilterDiv = () => {
   const[genres, setGenres] = useState<Genre[]>([])
   const containerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] =  useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
+  const { selectedGenres, toggleGenre} = useGenreContext()
+  const [movies, setMovies] = useState([])
+
 
 
 
@@ -79,6 +84,19 @@ const FilterDiv = () => {
     
   }, [])
 
+  useEffect(() => {
+    const getMoviesByGenre = async () => {
+      try {
+        const moviesByGenre = await fetchMoviesByGenre(selectedGenres)
+
+        setMovies(moviesByGenre)
+      } catch (error) {
+        console.error("Error fetching the movies by genre")
+      }
+    }
+
+    getMoviesByGenre()
+  }, [])
   
 
 
@@ -103,8 +121,14 @@ const FilterDiv = () => {
       ref={containerRef}
       className='filterDiv h-full overflow-auto flex justify-evenly items-center no-scrollbar'>        
         {genres? genres.map((genre) => (
-        <div className='min-w-32 flex justify-center items-center mx-4'>
-           <button className='bg-[#373737] px-0 py-1 w-full text-white rounded-lg'>{genre.name}</button>
+        <div 
+        key={genre.id}
+        className='min-w-32 flex justify-center items-center mx-4'>
+           <button
+           onClick={() =>{
+            toggleGenre(genre.id)
+           }}
+           className={`px-0 py-1 w-full text-white rounded-lg ${selectedGenres.includes(genre.id) ? "bg-red-600" : "bg-[#373737]"}`}>{genre.name}</button>
         </div>
       )): "loading"}
 

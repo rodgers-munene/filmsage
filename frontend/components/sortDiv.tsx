@@ -114,7 +114,7 @@ const SortDiv = () => {
           
           >
             {years.map((year) => (
-              <MenuItem value={year}
+              <MenuItem key={year} value={year}
               
               >{year}</MenuItem>
             ))}

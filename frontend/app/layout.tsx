@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider } from "@/context/SidebarContext";
 import Header from "@/components/header"
+import { GenreProvider } from "@/context/GenreMoviesContext";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -27,12 +28,13 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gray-950 text-gray-50
       relative dark:bg-gray-950 dark:text-gray-50
       dark:text-opacity-90 antialiased overflow-x-hidden`}>
-         
-        <SidebarProvider>
-          < Header 
-          firstName={loggedIn?.firstName || "User"}/>
-          {children}
-        </SidebarProvider>
+         <GenreProvider>
+          <SidebarProvider>
+            < Header 
+            firstName={loggedIn?.firstName || "User"}/>
+            {children}
+          </SidebarProvider>
+         </GenreProvider>
         
       </body>
     </html>
