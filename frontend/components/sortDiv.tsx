@@ -8,7 +8,7 @@ const SortDiv = () => {
 
     // Handling  sort By year
     const currentYear = new Date().getFullYear() // get current year
-    const startYear = 1900;
+    const startYear = 2000;
 
     // generate an array of all the years dynamically
     const years = Array.from({length: currentYear - startYear + 1}, (_, i) => currentYear - i)
@@ -42,7 +42,7 @@ const SortDiv = () => {
     }
 
   return (
-    <div className='sortDiv ml-6 h-20 flex justify-between items-center'>
+    <div className='sortDiv h-20 flex justify-between items-center'>
       {/* latest and year select */}
       <div className='w-1/3 flex justify-between items-center'>
         <div className='flex w-2/3 justify-around items-center'>

@@ -13,7 +13,7 @@
   display: none;
 }
 .filterDiv{
-  width: calc(100vw - 130px);
+  width: calc(100vw - 80px);
 }
 .sortDiv{
   width: calc(100vw - 60px);

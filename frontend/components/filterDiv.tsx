@@ -105,14 +105,14 @@ const FilterDiv = () => {
   return (
     <div className='w-full h-auto'>
       {/* genres filter div */}
-      <div className='filterDiv h-20 flex mt-14 items-center ml-[88px] relative'>
+      <div className='filterDiv h-20 flex mt-14 ml-7 items-center relative'>
       
       {canScrollLeft && (
         <button
         onClick={() => {
          scrollContainer('left')
         }} // Calls scrollLeft when clicked.
-        className={"absolute left-[-38px] top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-400}"}
+        className={"absolute left-[-28px] top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-400}"}
       >
         <ChevronLeftIcon className='h-5 w-5 text-white' />
       </button>

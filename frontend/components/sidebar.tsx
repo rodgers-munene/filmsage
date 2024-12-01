@@ -18,7 +18,7 @@ const Sidebar: FC<sideBarProps> = ( { firstName, isOpen } ) => {
 
   return (
     // bg-[#0d0a2b]
-    <div className={`sidebar w-64 bg-gray-950 dark:bg-[#0d0a2b] h-screen overflow-y-auto  transition-transform duration-200 transform ${isOpen ? "translate-x-0 w-64 custom-scrollbar" : "-translate-x-52 hide-scrollbar"}`}>
+    <div className={`sidebar w-64 bg-gray-950 dark:bg-[#0d0a2b] h-screen overflow-y-auto  transition-transform duration-200 transform ${isOpen ? "translate-x-0 w-64 custom-scrollbar" : "-translate-x-64"}`}>
        <div className="w-full flex flex-col justify-between">
           <div className='sidebar-items h-screen'>
                <div className={isOpen? "sidebar-link" : "flex flex-col w-56 gap-12 py-1"}>
@@ -29,12 +29,12 @@ const Sidebar: FC<sideBarProps> = ( { firstName, isOpen } ) => {
                     <link.icon className='h-6 w-6' />
                     <span className='pl-2'>{link.name}</span>
                     </Link>
-                )): 
-                Links.map((link, index) => (
-                  <Link key={index} href={link.link} title={link.name} className={`h-10 w-9 flex items-center justify-center ml-auto rounded-lg ${pathname === link.link? 'text-gray-50 dark:text-gray-700 bg-gray-600': 'text-gray-200 dark:text-gray-100'}`}>
-                    <link.icon className='h-6 w-6'/>
-                  </Link>
-                ))
+                )): ""
+                // Links.map((link, index) => (
+                //   <Link key={index} href={link.link} title={link.name} className={`h-10 w-9 flex items-center justify-center ml-auto rounded-lg ${pathname === link.link? 'text-gray-50 dark:text-gray-700 bg-gray-600': 'text-gray-200 dark:text-gray-100'}`}>
+                //     <link.icon className='h-6 w-6'/>
+                //   </Link>
+                // ))
                 }
                </div>
                 <div className='relative w-56'>
@@ -44,12 +44,9 @@ const Sidebar: FC<sideBarProps> = ( { firstName, isOpen } ) => {
                       <h1 className='pl-1 text-gray-700 dark:text-gray-100'>
                       {signedIn && signedIn.firstName}
                       </h1>
-                    </div>): 
-                    (<div className='h-10 w-10 flex items-center justify-center ml-auto'>
-                      
-                      <UserIcon title={signedIn.firstName} className='h-6 w-6 text-gray-200 dark:text-gray-100'/>
-                     
-                     </div>)}
+                    </div>): ""}
+
+
                     {!signedIn && (
                       <div className='flex flex-col '>
                         <button className='text-gray-700 dark:text-gray-100'>Login</button>

@@ -9,14 +9,11 @@ import FilterDiv from '@/components/filterDiv'
 import { useGenreContext } from '@/context/GenreMoviesContext'
 
 const Home = () => {
-  const loggedIn = { firstName: "Rodgers"}
   const { isSidebarOpen, toggleSidebar } = useSidebar();
   const { selectedGenres } = useGenreContext()
   const [movies, setMovies] = useState([])
   
-  const [loading, setLoading] = useState(true)
-
-
+  
 const handleMainClick = () => {
   if(isSidebarOpen){
     toggleSidebar();
