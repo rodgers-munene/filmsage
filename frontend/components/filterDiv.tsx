@@ -127,7 +127,7 @@ const FilterDiv = () => {
         <div className='min-w-32 flex justify-center items-center mx-4'>
           <button
           onClick={resetGenres}
-          className={`px-0 py-1 w-full text-white rounded-lg ${selectedGenres.length === 0? "bg-red-600": "bg-[#373737]"}`}  >
+          className={`px-0 py-1 w-full text-white rounded-lg ${selectedGenres.length === 0? "bg-red-700": "bg-[#373737]"}`}  >
             All
           </button>
         </div>
@@ -141,7 +141,7 @@ const FilterDiv = () => {
            onClick={() =>{
             toggleGenre(genre.id)
            }}
-           className={`px-0 py-1 w-full text-white rounded-lg ${selectedGenres.includes(genre.id) ? "bg-red-600" : "bg-[#373737]"}`}>{genre.name}</button>
+           className={`px-0 py-1 w-full text-white rounded-lg ${selectedGenres.includes(genre.id) ? "bg-red-700" : "bg-[#373737]"}`}>{genre.name}</button>
         </div>
       )): "loading"}
 
