@@ -26,8 +26,11 @@ useEffect(()=>{
   const fetchMovies = async () =>{
     const data = await fetchMoviesByGenre(selectedGenres)
     setMovies(data)
+  
   }
-
+  
+  fetchMovies()
+  console.log(selectedGenres)
 }, [selectedGenres])
 
 

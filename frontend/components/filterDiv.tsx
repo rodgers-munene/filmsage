@@ -17,7 +17,7 @@ const FilterDiv = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] =  useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
-  const { selectedGenres, toggleGenre} = useGenreContext()
+  const { selectedGenres, toggleGenre, resetGenres} = useGenreContext()
   const [movies, setMovies] = useState([])
 
 
@@ -97,6 +97,8 @@ const FilterDiv = () => {
 
     getMoviesByGenre()
   }, [])
+
+
   
 
 
@@ -120,6 +122,17 @@ const FilterDiv = () => {
       <div 
       ref={containerRef}
       className='filterDiv h-full overflow-auto flex justify-evenly items-center no-scrollbar'>        
+ 
+      {/* all button */}
+        <div className='min-w-32 flex justify-center items-center mx-4'>
+          <button
+          onClick={resetGenres}
+          className={`px-0 py-1 w-full text-white rounded-lg ${selectedGenres.length === 0? "bg-red-600": "bg-[#373737]"}`}  >
+            All
+          </button>
+        </div>
+
+      {/* other genres buttons */}
         {genres? genres.map((genre) => (
         <div 
         key={genre.id}
