@@ -21,17 +21,17 @@ const DetailsCard = ( { movieData }: DetailsCardProps ) => {
   return (
     <div>
         <div>
-            <Image
-            src={`${BACKDROP_BASE_URL}${movieData.backdrop_path}`}
-            alt={movieData.title}
-            fill
-            objectFit=''
-            priority
-            >
+           {/* hero section */}
+            {movieData && (
+              <Image
+              src={`${BACKDROP_BASE_URL}${movieData.backdrop_path}`}
+              alt={movieData.title}
+              height={500}
+              width={500}
+              >
 
-            </Image>
-            <div>
-            </div>
+              </Image>
+            )}
         </div>
     </div>
   )

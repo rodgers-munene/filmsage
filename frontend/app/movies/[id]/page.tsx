@@ -29,7 +29,9 @@ export default async function MovieDetails({ params }: { params: { id: string } 
    const movieData= await fetchMovie(params.id)
    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
-    if(!movieData) {return( <div>Loading</div>)}
+    if(!movieData) {return( 
+    <div>Loading</div>
+)}
 
     return(
         <div className="relative w-full h-[90vh] flex justify-center items-center">
