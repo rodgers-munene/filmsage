@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { fetchGenres } from '@/lib/data'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import SortDiv from './sortDiv';
-import { fetchMoviesByGenre } from '@/lib/data';
+import { fetchMoviesByGenre, fetchGenres } from '@/lib/data';
 import { useGenreContext } from '@/context/GenreMoviesContext';
 
 type Genre = {
