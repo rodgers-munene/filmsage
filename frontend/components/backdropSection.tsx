@@ -55,11 +55,12 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
                     <span className="text-black font-bold text-xs">IMDb</span>
                 </div>
                 <div className='px-2'>
-                    <p>{movieData.vote_average}</p>
+                    <p className='text-sm'>{movieData.vote_average.toFixed(1)}</p>
                 </div>
                 {/* genres */}
                 <div className='flex'>
                   {movieData.genres? movieData.genres.map((genre) => (
+                    //@ts-ignore
                     <p key={genre.id} className='text-xs text-gray-600 mx-1'>{genre.name}</p>
                   )): <p className='text-sm text-gray-600 mx-1'>Undefined</p>}
                 </div>
