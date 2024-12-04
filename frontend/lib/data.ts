@@ -8,7 +8,7 @@
 
 
 // Genres
-export const Genres = {
+export const Genres: { [key: number]: string }  = {
    28: "Action",
    12: "Adventure",
    16: "Animation",

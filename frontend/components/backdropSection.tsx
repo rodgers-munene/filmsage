@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { PlayIcon } from '@heroicons/react/20/solid'
 
@@ -12,13 +12,19 @@ interface Movie{
     backdrop_path:string
     release_date: string
     vote_average: number
+    genres: number[]
 }
 
 interface DetailsCardProps {
     movieData: Movie;
 }
 
+
+
 const BackdropSection = ( {movieData} : DetailsCardProps ) => {
+ 
+
+ 
 
     const BACKDROP_BASE_URL = 'https://image.tmdb.org/t/p/w1280';
 
@@ -31,9 +37,11 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
     }
   return (
     <div>
-         <div className='relative w-[calc(100vw - 50px)] h-72 flex justify-around bg-gray-900 '>
+         <div className='relative w-[calc(100vw - 50px)] h-72 flex justify-between '>
+          {/* shade */}
+          <div className='absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900 to-transparent z-20'></div>
             {/* movie description */}
-            <div className='h-full w-1/3  flex flex-col justify-around'>
+            <div className='h-full w-1/3  flex flex-col justify-around z-30 ml-10'>
 
                 {/* title and Year */}
               <div className='flex items-center w-full'>
@@ -49,35 +57,43 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
                 <div className='px-2'>
                     <p>{movieData.vote_average}</p>
                 </div>
+                {/* genres */}
+                <div className='flex'>
+                  {movieData.genres? movieData.genres.map((genre) => (
+                    <p key={genre.id} className='text-xs text-gray-600 mx-1'>{genre.name}</p>
+                  )): <p className='text-sm text-gray-600 mx-1'>Undefined</p>}
+                </div>
               </div>
 
                 {/* buttons */}
               <div className='flex justify-between w-full'>
-                {detailsButtons.map((btn) => (
-                    <button className='text-gray-400 px-3 py-2 bg-gray-800 rounded-xl'>{btn}</button>
+                {detailsButtons.map((btn, index) => (
+                    <button key={index} className='text-gray-400 px-3 py-2 bg-gray-800 rounded-xl'>{btn}</button>
                 ))}
               </div>
 
             </div>
-
-            <div className='absolute h-full w-1/5 flex justify-center items-center z-10'>
+              
+              {/* play button */}
+            <div className='absolute h-full w-1/5 flex justify-center items-center z-50 left-[40%] '>
                 <button>
                   <PlayIcon className='h-16 w-16 text-red-600 rounded-full' />
                 </button>
             </div>
               {/* image background */}
-            <div className='w-1/2 h-full'>
+            <div className='relative w-1/2 h-full'>
               <div className='relative w-full h-full '>
                 <Image
                 src={`${BACKDROP_BASE_URL}${movieData.backdrop_path}`}
                 alt={movieData.title}
                 fill
-                objectFit='fill'
+                style={{ objectFit: 'fill' }}
+                sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority
                 >
 
                 </Image>
               </div>
-
 
             </div>
         </div>
