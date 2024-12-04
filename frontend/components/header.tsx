@@ -20,7 +20,7 @@ const Header = ( { firstName }: navBarProps ) => {
 
   return (
     // bg-[#0d0a2b -backup background
-    <div className='home-header bg-gray-950 dark:bg-[#0d0a2b] rounded-b-lg text-gray-200 dark:text-gray-100 h-14 border-b-2 border-white dark:border-black z-50'>
+    <div className='home-header bg-gray-950 dark:bg-[#0d0a2b] rounded-b-lg text-gray-200 dark:text-gray-100 h-14 border-b-2 border-white dark:border-black z-[999]'>
        <div className='w-full flex flex-row items-center ml-2'>
           <div className=''>
             < Hamburger isOpen={isSidebarOpen} onClick={toggleSidebar}/>

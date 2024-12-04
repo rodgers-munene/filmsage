@@ -13,6 +13,8 @@ interface Movie{
     release_date: string
     vote_average: number
     genres: number[]
+    runtime: number
+    vote_count: number
 }
 
 interface DetailsCardProps {
@@ -24,7 +26,19 @@ interface DetailsCardProps {
 const BackdropSection = ( {movieData} : DetailsCardProps ) => {
  
 
- 
+    const formatRunTime = (minutes: number) => {
+      const hours = Math.floor(minutes/60)
+      const remainingMinutes = minutes % 60
+
+      return `${hours}h ${remainingMinutes}m`
+    }
+
+    const formatVoteCount = (voteCount: number) => {
+      if (voteCount >= 1000) {
+        return (voteCount / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+      }
+      return voteCount.toString();
+    }
 
     const BACKDROP_BASE_URL = 'https://image.tmdb.org/t/p/w1280';
 
@@ -45,24 +59,27 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
 
                 {/* title and Year */}
               <div className='flex items-center w-full'>
-                <h1 className='text-2xl text-gray-400'> {movieData.title}</h1>
+                <h1 className='text-2xl text-gray-200 uppercase'> {movieData.title}</h1>
                 <p className='text-gray-400 ml-2 te'>({getYear(movieData.release_date)})</p>
               </div>
 
               {/* Ratings and timing */}
-              <div className='flex items-center'>
+              <div className='flex items-center absolute'>
                 <div className="w-12 h-6 flex bg-yellow-500 items-center justify-center rounded-md ">
                     <span className="text-black font-bold text-xs">IMDb</span>
                 </div>
                 <div className='px-2'>
-                    <p className='text-sm'>{movieData.vote_average.toFixed(1)}</p>
+                    <p className='text-sm'>{movieData.vote_average.toFixed(1)} ({formatVoteCount(movieData.vote_count)}) - </p>
                 </div>
                 {/* genres */}
                 <div className='flex'>
                   {movieData.genres? movieData.genres.map((genre) => (
                     //@ts-ignore
-                    <p key={genre.id} className='text-xs text-gray-600 mx-1'>{genre.name}</p>
-                  )): <p className='text-sm text-gray-600 mx-1'>Undefined</p>}
+                    <p key={genre.id} className='text-xs text-white mx-1'>{genre.name}</p>
+                  )): <p className='text-sm text-white mx-1'>Undefined</p>}
+                </div>
+                <div className='flex'>
+                  <p className='text-sm text-gray-200 mx-1'> - {formatRunTime(movieData.runtime)}</p>
                 </div>
               </div>
 

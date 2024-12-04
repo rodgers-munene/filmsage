@@ -7,7 +7,12 @@ interface Movie{
     title: string
     overview: string
     poster_path: string
-    backdrop_path: string
+    backdrop_path:string
+    release_date: string
+    vote_average: number
+    genres: number[]
+    runtime: number
+    vote_count: number
 }
 
 interface MovieDetailsParams {
@@ -34,7 +39,7 @@ export default async function MovieDetails({ params }: { params: { id: string } 
 )}
 
     return(
-        <div className="relative w-full h-[90vh] flex justify-center items-center">
+        <div className="">
            <div>
                 <DetailsCard  movieData={movieData}/>
            </div>
