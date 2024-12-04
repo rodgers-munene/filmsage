@@ -1,8 +1,15 @@
 import React from 'react'
 import Image from 'next/image'
+import { HandThumbUpIcon, HandThumbDownIcon, HeartIcon, CheckIcon } from '@heroicons/react/20/solid'
+import { formatRevalidate } from 'next/dist/server/lib/revalidate'
 
 interface Language{
   english_name: string
+}
+
+interface Genre {
+  id: number
+  name: string
 }
 
 interface Movie{
@@ -13,6 +20,7 @@ interface Movie{
   vote_average: number
   release_date: string
   spoken_languages: Language[]
+  genres: Genre[]
 }
 
 interface AboutSectionProps {
@@ -43,12 +51,13 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
 
 
   return (
-    <div className='w-full h-screen flex flex-grow'>
-        <div className='bg-white w-2/3'>
+    <div className='w-full h-auto flex flex-grow'>
+        <div className='w-2/3'>
 
         </div>
 
         <div className='w-1/3 flex flex-col'>
+        {/* about movie and movie poster */}
           <div className='w-full h-72 flex'>
             <div className='w-1/2 h-full pl-3 pt-4'>
              <h1 className='uppercase text-lg'>About the Movie</h1>
@@ -64,7 +73,7 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
              <p className='py-2 text-gray-500'>{formatYear(data.release_date)}</p>
              {/* languages */}
              {data.spoken_languages? data.spoken_languages.map((language, index) => (
-                <p className='text-sm text-gray-500'>{language.english_name}</p>
+                <p key={index} className='text-sm text-gray-500'>{language.english_name}</p>
              )): <p>Unknown</p> }
             </div>
 
@@ -78,6 +87,52 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
               priority
               className='rounded-lg'
               ></Image>
+            </div>
+          </div>
+
+          {/* buttons */}
+          <div className='w-full grid grid-cols-2 gap-6 justify-around mt-5'>
+            <button className='w-44 h-12 bg-gray-600 flex justify-center items-center rounded-md'><HandThumbUpIcon className='h-7 w-7' /></button>
+            <button className='w-44 h-12 bg-gray-600 flex justify-center items-center rounded-md'><HandThumbDownIcon className='h-7 w-7'/></button>
+            <button className='w-44 h-12 bg-gray-600 flex justify-center items-center rounded-md'><HeartIcon className='h-7 w-7'/><span className='ml-1'>Favorite</span></button>
+            <button className='w-44 h-12 bg-gray-600 flex justify-center items-center rounded-md'><CheckIcon className='h-7 w-7'/><span className='ml-1'> Seen</span></button>
+            <button className='w-[26rem] col-span-2 bg-gray-600 h-12 rounded-md'>Sign In to Sync Watchlist</button>
+          </div>
+
+             {/* genres */}
+          <div className='relative mt-7 w-full'>
+            <hr className='absolute w-[93%] border-gray-600 top-0'/>
+            <div className='h-24 flex flex-col justify-center'>
+              <h1 className='uppercase text-gray-400'>Genres</h1>
+              <div className='flex w-1/2 ' >
+                {data.genres? data.genres.map((genre) => (
+                  <p key={genre.id} className='mr-2 text-sm text-gray-300'>{genre.name}</p>
+                )): <p>Unknown</p>}
+              </div>
+            </div>
+
+
+          </div>
+
+          {/* runtime */}
+          <div className='relative w-full'>
+            <hr className='absolute w-[93%] top-0 border-gray-600'/>
+            <div className='h-24 flex flex-col justify-center'>
+              <h1 className='uppercase text-gray-400'>Runtime</h1>
+              <p className='text-sm text-gray-300'>{formatRunTime(data.runtime)}</p>
+            </div>
+          </div>
+
+          {/* Language*/}
+          <div className='relative w-full'>
+            <hr className='absolute w-[93%] top-0 border-gray-600'/>
+            <div className='h-24 flex flex-col justify-center'>
+              <h1 className='uppercase text-gray-400'>Languages</h1>
+              <div>
+              {data.spoken_languages? data.spoken_languages.map((language, index) => (
+                  <p key={index} className='text-sm text-gray-300 mr-2'>{language.english_name}</p>
+              )): <p className='text-sm text-gray-400'>Unknown</p> }
+              </div>
             </div>
           </div>
 
