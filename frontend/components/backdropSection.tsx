@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { PlayIcon } from '@heroicons/react/20/solid'
 
-
+interface Genre{
+  id: number
+  name: string
+}
 
 interface Movie{
     id: number
@@ -12,7 +15,7 @@ interface Movie{
     backdrop_path:string
     release_date: string
     vote_average: number
-    genres: number[]
+    genres: Genre[]
     runtime: number
     vote_count: number
 }
@@ -74,7 +77,7 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
                 {/* genres */}
                 <div className='flex'>
                   {movieData.genres? movieData.genres.map((genre) => (
-                    //@ts-ignore
+                    
                     <p key={genre.id} className='text-xs text-white mx-1'>{genre.name}</p>
                   )): <p className='text-sm text-white mx-1'>Undefined</p>}
                 </div>

@@ -47,7 +47,7 @@ const DetailsCard = ( { movieData }: DetailsCardProps ) => {
 
       {/* movie description, play button and image */}
       <BackdropSection movieData={movieData} />
-      <AboutShow />
+      <AboutShow data={movieData}/>
        
     </div>
   )
