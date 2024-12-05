@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { HandThumbUpIcon, HandThumbDownIcon, HeartIcon, CheckIcon } from '@heroicons/react/20/solid'
-import { formatRevalidate } from 'next/dist/server/lib/revalidate'
+import MovieProviders from './movieProviders'
 
 interface Language{
   english_name: string
@@ -13,6 +13,7 @@ interface Genre {
 }
 
 interface Movie{
+  id: number
   title: string
   poster_path: string
   runtime: number
@@ -28,6 +29,7 @@ interface AboutSectionProps {
 }
 
 const AboutShow = ( { data } : AboutSectionProps)  => {
+
   const BACKDROP_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
   const formatYear = (date: string) => {
@@ -49,13 +51,16 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
     return voteCount.toString();
   }
 
+  
 
   return (
     <div className='w-full h-auto flex flex-grow'>
+        {/* left section */}
         <div className='w-2/3'>
-
+          <MovieProviders data={data}/>
         </div>
 
+        {/* right section */}
         <div className='w-1/3 flex flex-col'>
         {/* about movie and movie poster */}
           <div className='w-full h-72 flex'>

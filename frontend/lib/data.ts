@@ -53,3 +53,14 @@ export async function fetchMoviesByGenre(genreIds: number[]) {
    }
 }
 
+export async function fetchMovieProviders(movieId: number) {
+   try {
+      let response  = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${process.env.TMDB_API_KEY}`)
+      let data = await response.json()
+      return data.results.US || {}
+
+   } catch (error) {
+      console.error("Error fetching data", error)
+   }
+}
+
