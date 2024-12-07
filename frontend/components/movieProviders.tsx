@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { fetchMovieProviders } from '@/lib/data'
-import { Stream } from 'stream'
+import { PlayIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
 
 interface Movie{
     id: number
@@ -19,18 +20,20 @@ interface Provider {
 const MovieProviders  = ( {data}: MovieProviderProps ) => {
   const [movieProviders, setMovieProviders] = useState('')
   const [streamServices, setStreamServices] = useState<Provider[]>([])
-  const [streamToggled, setIsStreamToggled] = useState<string>('flatrate')
-  const [availableProviders, setAvailableProviders] = useState<string[]>([])
+  const [streamToggled, setIsStreamToggled] = useState<string>('all')
+  const [availableProviders, setAvailableProviders] = useState<string[]>(['all'])
   const [message, setMessage] = useState('')
   
+
+  const BACKDROP_BASE_URL = 'https://image.tmdb.org/t/p/w154';
  
   // function to toggle current provider type
   
   const toggleProvider = (providerName: string) => {
     setIsStreamToggled(providerName)
-    if(!availableProviders.includes(providerName)){
-       setMessage(`Not Available!!`)      
-    }else{
+    if(!availableProviders.includes(providerName) || availableProviders.length === 1){
+       setMessage('Not Available!!')      
+    }else {
       setMessage('')
     }
 
@@ -45,7 +48,7 @@ const MovieProviders  = ( {data}: MovieProviderProps ) => {
       const providerTypes: Array<Provider['type']> = ['flatrate', 'buy', 'rent', 'ads'];
 
       const allProviders: Provider[] = [];
-      const availableTypes: Set<Provider['type']> = new Set();
+      const availableTypes: Set<Provider['type'] | 'all'> = new Set();
   
       // Process provider types and collect data
       providerTypes.forEach((type) => {
@@ -61,7 +64,9 @@ const MovieProviders  = ( {data}: MovieProviderProps ) => {
           );
         }
       });
-  
+      // ensure all is always included in the available types array
+      availableTypes.add('all');
+
       // Update state with results
       setStreamServices(allProviders); // Set all providers
       setAvailableProviders(Array.from(availableTypes)); // C
@@ -69,20 +74,27 @@ const MovieProviders  = ( {data}: MovieProviderProps ) => {
     getProviders()
   }, [data.id])
 
- 
-  
 
+  
+  const filteredProviders = streamServices.filter((stream) => stream.type === streamToggled);
  
   
 
 
   return (
-    <div className='w-full h-72 border'>
-        <div className=''>
-            <h1>Watch Now</h1>
+    <div className='w-full h-72'>
+        <div className='mt-4 ml-4'>
+            <h1 className='text-xl uppercase font-bold'>Watch Now</h1>
             <div className='flex flex-col'>
               {/* buttons */}
-              <div className='w-2/3 flex justify-between'>
+              <div className='w-2/3 flex justify-between mt-5'>
+                <button
+                className={`px-4 py-1 rounded-lg text-gray-300 ${streamToggled === 'all'? "bg-red-600": "bg-gray-900"}`}
+                onClick={() => {
+                  toggleProvider('all')
+                }}
+
+                >All</button>
                 <button
                 className={`px-4 py-1 rounded-lg text-gray-300 ${streamToggled === 'flatrate'? "bg-red-600": "bg-gray-900"}`}
                 onClick={() => {
@@ -108,15 +120,28 @@ const MovieProviders  = ( {data}: MovieProviderProps ) => {
                 }}
                 >Ads</button>
               </div>
-              <div>
-              {streamServices?.map((service) => (
-                <div>
-                 {service.type === streamToggled && (
-                  <p>{service.provider_name}</p>
-                 )}
-                </div>
-              ))}
-              <p>{message}</p>
+              {/* stream providers services */}
+              <div className='relative mt-5  w-[90%] h-auto max-h-40 min-h-20 bg-gray-900 rounded-xl overflow-y-auto custom-scrollbar flex flex-col'>
+                {(streamToggled === 'all' ? streamServices: filteredProviders).map((service) => (
+                      <div className='w-full h-auto  flex items-center justify-between py-4 pr-3 pl-1 hover:bg-gray-800 rounded-xl'>
+                        <Image
+                        src={`${BACKDROP_BASE_URL}${service.logo_path}`}
+                        alt={service.provider_name}
+                        width={50}
+                        height={70}
+                        priority
+                        className='rounded-lg'
+                        >
+
+                        </Image>
+                        <p>{service.provider_name}</p>
+
+                        <button className='flex bg-yellow-300 p-2 rounded-lg'><PlayIcon className='h-6 w-6'/> Watch Now</button>
+                      </div>
+                ))}
+                  
+                <p className='text-gray-500 pl-2 pt-2'>{message}</p>
+                
               </div>
               
             
