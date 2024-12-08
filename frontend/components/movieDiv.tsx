@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import { HeartIcon, PlayIcon } from '@heroicons/react/20/solid'
-import { Average } from 'next/font/google'
+import Image from 'next/image'
+
 
 
 type MovieData = {
@@ -34,15 +35,22 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
         <h2 className='text-2xl font-semibold mb-4 ml-5'>{title}</h2>
         <div className='py-2'>
             <div className='grid grid-cols-6 justify-around ml-3 gap-y-16 '>
-            {movies ? (movies.map( (movie, index) => (
+            {movies ? (movies.map( (movie) => (
                 <Link href={`/movies/${movie.id}`}
                     key={movie.id}
                     className='relative inline-block group w-[200px] h-[330px] max-w-sm rounded-lg hover:scale-105 transition-transform duration-500'>
-                    <img 
-                    src={movie.poster_path? `${IMAGE_BASE_URL}${movie.poster_path}`: "/default_image.png"}
-                    alt={movie.title}
-                    className='w-full h-full object-fill rounded-xl' />
-                    <h1 className='text-lg font-semibold truncate'>{movie.title}</h1>
+                    <Image
+                     src={movie.poster_path? `${IMAGE_BASE_URL}${movie.poster_path}`: "/default_image.png"}
+                     alt={movie.title}
+                     fill
+                     style={{objectFit: 'fill'}}
+                     sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                     className='rounded-xl'
+                    >
+
+                    </Image>
+                   <div className='absolute w-full -bottom-12'>
+                   <h1 className='text-lg font-semibold truncate'>{movie.title}</h1>
                     <div className='w-full flex justify-between'>
                         <p className='text-gray-500 text-sm'>
                             {getYear(movie.release_date)}
@@ -58,6 +66,7 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
                             </div>
                         </div>
                     </div>
+                   </div>
 
                     {/* hovered div */}
                     <div className='absolute top-0 left-0 w-full h-full bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-500 bg-black z-10 flex flex-col justify-around rounded-lg'>

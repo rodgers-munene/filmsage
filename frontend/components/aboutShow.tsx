@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { HandThumbUpIcon, HandThumbDownIcon, HeartIcon, CheckIcon } from '@heroicons/react/20/solid'
 import MovieProviders from './movieProviders'
+import MovieSynopsis from './movieSynopsis'
 
 interface Language{
   english_name: string
@@ -21,6 +22,7 @@ interface Movie{
   vote_average: number
   release_date: string
   spoken_languages: Language[]
+  overview: string
   genres: Genre[]
 }
 
@@ -58,6 +60,7 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
         {/* left section */}
         <div className='w-2/3'>
           <MovieProviders data={data}/>
+          <MovieSynopsis data={data} />
         </div>
 
         {/* right section */}
