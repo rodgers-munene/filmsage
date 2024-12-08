@@ -64,3 +64,13 @@ export async function fetchMovieProviders(movieId: number) {
    }
 }
 
+export async function fetchTrailers(movieId: number){
+   try {
+      let response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${process.env.TMDB_API_KEY}`)
+      let data = await response.json()
+      return data.results
+   } catch (error) {
+      console.error("Error fetching Trailers", error)
+   }
+} 
+
