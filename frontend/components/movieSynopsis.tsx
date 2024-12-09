@@ -45,20 +45,23 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
         </div>
       </div>
       {/* fetch movie trailers */}
-      <div className='w-full mt-6'>
+      <div className='w-full h-64 mt-6'>
+        <h1 className='uppercase text-xl font-bold ml-5'>Trailers</h1>
+          <div className='w-[90%] h-[90%] ml-5 mt-3 flex gap-x-10 overflow-auto custom-scrollbar'>
           {trailerTypes.map((clip) => (
             <iframe
             src={`https://www.youtube.com/embed/${clip.key}`}
-            width={200}
-            height={150}
+            width={310}
+            height={220}
             style={{ border: 'none' }}
             allowFullScreen
             title='Trailer'
-            className='mt-4 ml-6'
+            className='rounded-lg'
             >
 
             </iframe>
           ))}
+          </div>
       </div>
 
     </div>

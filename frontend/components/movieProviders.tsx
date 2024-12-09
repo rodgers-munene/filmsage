@@ -121,7 +121,7 @@ const MovieProviders  = ( {data}: MovieProviderProps ) => {
                 >Ads</button>
               </div>
               {/* stream providers services */}
-              <div className='relative mt-5  w-[90%] h-auto max-h-40 min-h-20 bg-gray-900 rounded-xl overflow-y-auto custom-scrollbar flex flex-col'>
+              <div className='relative mt-5  w-[90%] h-auto max-h-52 min-h-20 bg-gray-900 rounded-xl overflow-y-auto custom-scrollbar flex flex-col'>
                 {(streamToggled === 'all' ? streamServices: filteredProviders).map((service) => (
                       <div className='w-full h-auto  flex items-center justify-between py-4 pr-3 pl-1 hover:bg-gray-800 rounded-xl'>
                         <Image
