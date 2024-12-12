@@ -2,7 +2,17 @@ import { Metadata } from "next";
 import Image from "next/image";
 import DetailsCard from "@/components/detailsCard";
 
-interface Movie{
+interface Language{
+    english_name: string
+  }
+  
+  interface Genre {
+    id: number
+    name: string
+  }
+  
+  
+  interface Movie{
     id: number
     title: string
     overview: string
@@ -10,14 +20,12 @@ interface Movie{
     backdrop_path:string
     release_date: string
     vote_average: number
-    genres: number[]
+    genres: Genre[]
     runtime: number
     vote_count: number
-}
-
-interface MovieDetailsParams {
-    movieData: Movie;
-}
+    spoken_languages: Language[]
+  }
+  
 
 async function fetchMovie(id: string): Promise<Movie> {
     const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}`,{ 

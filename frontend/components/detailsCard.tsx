@@ -4,6 +4,16 @@ import React, { useEffect, useState } from 'react'
 import { XMarkIcon} from '@heroicons/react/20/solid'
 import BackdropSection from './backdropSection'
 import AboutShow from './aboutShow'
+import TrailerDiv from './trailerDiv'
+
+interface Language{
+  english_name: string
+}
+
+interface Genre {
+  id: number
+  name: string
+}
 
 
 interface Movie{
@@ -14,9 +24,10 @@ interface Movie{
   backdrop_path:string
   release_date: string
   vote_average: number
-  genres: number[]
+  genres: Genre[]
   runtime: number
   vote_count: number
+  spoken_languages: Language[]
 }
 
 interface DetailsCardProps {
@@ -31,7 +42,7 @@ const DetailsCard = ( { movieData }: DetailsCardProps ) => {
   }
   
   return (
-    <div className='w-screen h-screen'>
+    <div className='relative w-screen h-screen'>
       {/* movie title and year section */}
         <div className=' w-full h-36 flex items-center justify-between '>
           <div className='mt-16 ml-5'>
@@ -47,6 +58,7 @@ const DetailsCard = ( { movieData }: DetailsCardProps ) => {
 
       {/* movie description, play button and image */}
       <BackdropSection movieData={movieData} />
+      <TrailerDiv data={movieData}/> 
       <AboutShow data={movieData}/>
        
     </div>

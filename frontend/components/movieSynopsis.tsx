@@ -31,8 +31,7 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
    }, [data])
 
   const trailerTypes = trailerData.filter((clip) => clip.type === 'Trailer')
-  console.log(trailerTypes)
-  console.log(trailerData);
+  
   
 
   return (

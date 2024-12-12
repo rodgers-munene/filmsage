@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { PlayIcon } from '@heroicons/react/20/solid'
+import { useTrailer } from '@/context/TrailerDivContext'
 
 interface Genre{
   id: number
@@ -27,6 +28,7 @@ interface DetailsCardProps {
 
 
 const BackdropSection = ( {movieData} : DetailsCardProps ) => {
+  const { toggleVisibility } = useTrailer()
  
 
     const formatRunTime = (minutes: number) => {
@@ -97,7 +99,9 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
               
               {/* play button */}
             <div className='absolute h-full w-1/5 flex justify-center items-center z-50 left-[40%] '>
-                <button>
+                <button
+                onClick={toggleVisibility}
+                >
                   <PlayIcon className='h-16 w-16 text-red-600 rounded-full' />
                 </button>
             </div>
