@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import DetailsCard from "@/components/detailsCard";
+import DetailsCard from "@/components/movie-details-section/detailsCard";
 
 interface Language{
     english_name: string

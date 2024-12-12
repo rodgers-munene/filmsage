@@ -1,11 +1,11 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import Header from '@/components/header'
+// import Header from '@/components/header'
 import { useSidebar } from '@/context/SidebarContext'
 import { fetchMoviesByGenre } from '@/lib/data'
-import Slideshow from '@/components/SlideShow'
-import MovieDiv from '@/components/movieDiv'
-import FilterDiv from '@/components/filterDiv'
+import Slideshow from '@/components/home-section/SlideShow'
+import MovieDiv from '@/components/movie-page/movieDiv'
+import FilterDiv from '@/components/movie-page/filterDiv'
 import { useGenreContext } from '@/context/GenreMoviesContext'
 
 const Home = () => {

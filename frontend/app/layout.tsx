@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider } from "@/context/SidebarContext";
-import Header from "@/components/header"
+import Header from "@/components/global-sections/header"
 import { GenreProvider } from "@/context/GenreMoviesContext";
 import { TrailerProvider } from "@/context/TrailerDivContext";
 
