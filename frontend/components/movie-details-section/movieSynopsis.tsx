@@ -47,8 +47,9 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
       <div className='w-full h-64 mt-6'>
         <h1 className='uppercase text-xl font-bold ml-5'>Trailers</h1>
           <div className='w-[90%] h-[90%] ml-5 mt-3 flex gap-x-10 overflow-auto custom-scrollbar'>
-          {trailerTypes.map((clip) => (
+          {trailerTypes.map((clip, index) => (
             <iframe
+            key={index}
             src={`https://www.youtube.com/embed/${clip.key}`}
             width={310}
             height={220}

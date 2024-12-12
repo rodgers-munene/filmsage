@@ -48,6 +48,9 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #7878a3;
 }
+.trailer-div {
+  height: calc(100% - 40px);
+}
 
 /* For Webkit browsers (Chrome, Edge, Safari) */
 select::-webkit-scrollbar {

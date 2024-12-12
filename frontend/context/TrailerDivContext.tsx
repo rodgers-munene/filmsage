@@ -28,7 +28,6 @@ export const TrailerProvider = ( { children } : { children: ReactNode}) => {
 
     const toggleVisibility = () => {
         setVisibility((prev) => !prev);
-        console.log(visibility)
     }
     
     

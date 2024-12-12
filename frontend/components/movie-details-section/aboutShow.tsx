@@ -80,9 +80,11 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
              <p className='py-2 text-gray-500'>{formatRunTime(data.runtime)}</p>
              <p className='py-2 text-gray-500'>{formatYear(data.release_date)}</p>
              {/* languages */}
+             <div className='flex flex-wrap'>
              {data.spoken_languages? data.spoken_languages.map((language, index) => (
-                <p key={index} className='text-sm text-gray-500'>{language.english_name}</p>
+                <p key={index} className='text-sm text-gray-500 mr-1'>{language.english_name}</p>
              )): <p>Unknown</p> }
+             </div>
             </div>
 
             {/* poster image */}
@@ -112,7 +114,7 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
             <hr className='absolute w-[93%] border-gray-600 top-0'/>
             <div className='h-24 flex flex-col justify-center'>
               <h1 className='uppercase text-gray-400'>Genres</h1>
-              <div className='flex w-1/2 ' >
+              <div className='flex flex-wrap' >
                 {data.genres? data.genres.map((genre) => (
                   <p key={genre.id} className='mr-2 text-sm text-gray-300'>{genre.name}</p>
                 )): <p>Unknown</p>}
@@ -136,7 +138,7 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
             <hr className='absolute w-[93%] top-0 border-gray-600'/>
             <div className='h-24 flex flex-col justify-center'>
               <h1 className='uppercase text-gray-400'>Languages</h1>
-              <div>
+              <div className='flex flex-wrap'>
               {data.spoken_languages? data.spoken_languages.map((language, index) => (
                   <p key={index} className='text-sm text-gray-300 mr-2'>{language.english_name}</p>
               )): <p className='text-sm text-gray-400'>Unknown</p> }

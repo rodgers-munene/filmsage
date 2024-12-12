@@ -77,7 +77,7 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
                     <p className='text-sm'>{movieData.vote_average.toFixed(1)} ({formatVoteCount(movieData.vote_count)}) - </p>
                 </div>
                 {/* genres */}
-                <div className='flex'>
+                <div className='flex flex-wrap max-w-80'>
                   {movieData.genres? movieData.genres.map((genre) => (
                     
                     <p key={genre.id} className='text-xs text-white mx-1'>{genre.name}</p>
