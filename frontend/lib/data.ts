@@ -74,3 +74,14 @@ export async function fetchTrailers(movieId: number){
    }
 } 
 
+export async function fetchSimilar(movieId: number){
+   try {
+      let response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${process.env.TMDB_API_KEY}`)
+      let data = await response.json()
+      return data.results.slice(0, 10);
+   } catch (error) {
+      
+      console.error("Error fetching data", error)
+   }
+}
+

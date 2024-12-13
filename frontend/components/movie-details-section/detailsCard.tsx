@@ -5,6 +5,8 @@ import { XMarkIcon} from '@heroicons/react/20/solid'
 import BackdropSection from './backdropSection'
 import AboutShow from './aboutShow'
 import TrailerDiv from './trailerDiv'
+import SimilarMovies from './similarMovies'
+import { useRouter } from 'next/navigation'
 
 interface Language{
   english_name: string
@@ -35,6 +37,8 @@ interface DetailsCardProps {
 }
 const DetailsCard = ( { movieData }: DetailsCardProps ) => {
 
+  const router = useRouter()
+
   const getYear = (date: string) => {
     const newDate = new Date(date);
 
@@ -50,7 +54,9 @@ const DetailsCard = ( { movieData }: DetailsCardProps ) => {
             <p className='text-gray-300'>{getYear(movieData.release_date)}</p>
           </div>
           <div className='mt-16 mr-5'>
-            <button>
+            <button
+            onClick={() => router.back()}
+            >
                 <XMarkIcon className='h-10 w-10' />
             </button>
           </div>
@@ -60,7 +66,7 @@ const DetailsCard = ( { movieData }: DetailsCardProps ) => {
       <BackdropSection movieData={movieData} />
       <TrailerDiv data={movieData}/> 
       <AboutShow data={movieData}/>
-       
+      <SimilarMovies data={movieData} />
     </div>
   )
 }
