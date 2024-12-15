@@ -30,14 +30,14 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
       getTrailers()
    }, [data])
 
-  const trailerTypes = trailerData.filter((clip) => clip.type === 'Trailer')
+  const trailerTypes = trailerData.filter((clip) => (clip.type === 'Trailer' || clip.type === "Teaser" ) )
   
   
 
   return (
     <div className='w-full h-auto'>
 
-      <div className='w-full mt-4 h-40 flex items-center'>
+      <div className='w-full mt-4 min-h-40 h-auto flex items-center'>
         <div className='w-[90%] ml-7'>
             <h1 className='uppercase text-xl font-bold'>Synopsis</h1>
             <p className=' text-gray-400 mt-4'>{data.overview}</p>
@@ -45,7 +45,7 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
       </div>
       {/* fetch movie trailers */}
       <div className='w-full h-64 mt-6'>
-        <h1 className='uppercase text-xl font-bold ml-5'>Trailers</h1>
+        <h1 className='uppercase text-xl font-bold ml-5'>Trailers & Teasers</h1>
           <div className='w-[90%] h-[90%] ml-5 mt-3 flex gap-x-10 overflow-auto custom-scrollbar'>
           {trailerTypes.map((clip, index) => (
             <iframe

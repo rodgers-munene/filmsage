@@ -5,7 +5,7 @@ import { XMarkIcon} from '@heroicons/react/20/solid'
 import BackdropSection from './backdropSection'
 import AboutShow from './aboutShow'
 import TrailerDiv from './trailerDiv'
-import SimilarMovies from './similarMovies'
+import ExtraMovies from '././extraMovies'
 import { useRouter } from 'next/navigation'
 
 interface Language{
@@ -36,6 +36,10 @@ interface DetailsCardProps {
     movieData: Movie;
 }
 const DetailsCard = ( { movieData }: DetailsCardProps ) => {
+  const movieGenres = movieData.genres.map((genre) => (
+          genre.id
+      ))
+  
 
   const router = useRouter()
 
@@ -66,7 +70,8 @@ const DetailsCard = ( { movieData }: DetailsCardProps ) => {
       <BackdropSection movieData={movieData} />
       <TrailerDiv data={movieData}/> 
       <AboutShow data={movieData}/>
-      <SimilarMovies data={movieData} />
+      <ExtraMovies title='Related Movies' data={movieData} propInput={movieData.id}/>
+      <ExtraMovies title='Recommendations' data={movieData} propInput={movieGenres}/>
     </div>
   )
 }

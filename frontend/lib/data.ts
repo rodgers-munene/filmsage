@@ -85,3 +85,15 @@ export async function fetchSimilar(movieId: number){
    }
 }
 
+export async function fetchUpcoming(genreIds: number[]){
+   try {
+      const genres = genreIds.join(",")
+      const today = new Date().toISOString().split("T")[0];
+      let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=${genres}&sort_by=popularity.desc`)
+      let data = await response.json()
+      return data.results.slice(0, 10);
+   } catch (error) {
+      console.error("Error fetching upcoming movies", error)
+   }
+}
+

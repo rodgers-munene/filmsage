@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { fetchSimilar } from '@/lib/data';
+import { fetchSimilar, fetchUpcoming, Genres } from '@/lib/data';
 import { HeartIcon, PlayIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import Image from 'next/image'
+
+interface Genre {
+    id: number
+    name: string
+  }
 
 interface Movie{
     id: number;
@@ -12,35 +17,41 @@ interface Movie{
     release_date: string
     vote_average: number,
     overview: string,
+    genres: Genre[]
 }
 
-interface SimilarMoviesProps {
+interface ExtraMoviesProps {
     data: Movie;
-}
-
-interface Similar {
-    
-    title: string,
-    id: number,
-    
-    
-    
+    title: string
+    propInput: number | number[];
 }
 
 
 
-const SimilarMovies = ( { data }: SimilarMoviesProps ) => {
+
+const ExtraMovies = ( { data, title, propInput }: ExtraMoviesProps ) => {
     const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
-    const [similarMovies, setSimilarMovies] = useState<Movie[]>([])
+    const [ExtraMovies, setExtraMovies] = useState<Movie[]>([])
     const [loading, setLoading] = useState(false)
+    
 
     useEffect(() => {
         setLoading(true)
-        const getSimilar = async () => {
-            let fetchedData = await fetchSimilar(data.id)
-            setSimilarMovies(fetchedData)
+        
+        if( typeof propInput === "number"){
+            const getExtra = async () => {
+                let fetchedData = await fetchSimilar(propInput)
+                setExtraMovies(fetchedData)
+            }
+            getExtra()
+        }else if(Array.isArray(propInput)){
+            const getExtra = async () => {
+                let fetchedData = await fetchUpcoming(propInput)
+                setExtraMovies(fetchedData)
+            }
+            getExtra()
         }
-        getSimilar()
+
         setLoading(false)
     }, [data])
 
@@ -54,11 +65,11 @@ const SimilarMovies = ( { data }: SimilarMoviesProps ) => {
 
   return (
     <div className='w-screen h-96 flex flex-col mt-4 justify-between'>
-        <h1 className='ml-4 text-2xl font-bold text-gray-400 '>Similar Movies</h1>
+        <h1 className='ml-4 text-2xl font-bold text-gray-400 '>{title}</h1>
 
         <div className='py-2 '>
             <div className='flex overflow-x-auto overflow-y-hidden h-[22rem] gap-x-4 ml-3 mr-7 no-scrollbar '>
-            {similarMovies ? (similarMovies.map( (movie) => (
+            {ExtraMovies.length > 0 ? (ExtraMovies.map( (movie) => (
                 <Link href={`/movies/${movie.id}`}
                     key={movie.id}
                     className='relative group min-w-[180px] h-[270px] max-w-sm rounded-lg hover:scale-105 transition-transform duration-500 first:ml-1'>
@@ -102,11 +113,13 @@ const SimilarMovies = ( { data }: SimilarMoviesProps ) => {
                         </div>
                     </div>
                 </Link>
-            ))): "error"}
+            ))): (
+                <p className='text-gray-600'>Not Available!</p>
+            )}
             </div>
         </div>
     </div>
   )
 }
 
-export default SimilarMovies
+export default ExtraMovies
