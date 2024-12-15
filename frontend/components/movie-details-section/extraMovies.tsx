@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetchSimilar, fetchUpcoming, Genres } from '@/lib/data';
+import { fetchRecommendation, fetchSimilar, } from '@/lib/data';
 import { HeartIcon, PlayIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import Image from 'next/image'
@@ -40,13 +40,13 @@ const ExtraMovies = ( { data, title, propInput }: ExtraMoviesProps ) => {
         
         if( typeof propInput === "number"){
             const getExtra = async () => {
-                let fetchedData = await fetchSimilar(propInput)
+                let fetchedData = await fetchSimilar(propInput, 'movie')
                 setExtraMovies(fetchedData)
             }
             getExtra()
         }else if(Array.isArray(propInput)){
             const getExtra = async () => {
-                let fetchedData = await fetchUpcoming(propInput)
+                let fetchedData = await fetchRecommendation(propInput, 'movie')
                 setExtraMovies(fetchedData)
             }
             getExtra()
@@ -65,7 +65,7 @@ const ExtraMovies = ( { data, title, propInput }: ExtraMoviesProps ) => {
 
   return (
     <div className='w-screen h-96 flex flex-col mt-4 justify-between'>
-        <h1 className='ml-4 text-2xl font-bold text-gray-400 '>{title}</h1>
+        <h1 className='ml-4 text-2xl font-bold text-gray-400 uppercase'>{title}</h1>
 
         <div className='py-2 '>
             <div className='flex overflow-x-auto overflow-y-hidden h-[22rem] gap-x-4 ml-3 mr-7 no-scrollbar '>
@@ -80,6 +80,7 @@ const ExtraMovies = ( { data, title, propInput }: ExtraMoviesProps ) => {
                      style={{objectFit: 'fill'}}
                      sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
                      className='rounded-xl'
+                     priority
                     >
 
                     </Image>

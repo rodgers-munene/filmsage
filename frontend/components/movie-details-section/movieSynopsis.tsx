@@ -23,7 +23,7 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
 
   useEffect(() => {
       const getTrailers = async () => {
-        const trailers = await fetchTrailers(data.id)
+        const trailers = await fetchTrailers(data.id, 'movie')
         
         setTrailerData(trailers)
       }

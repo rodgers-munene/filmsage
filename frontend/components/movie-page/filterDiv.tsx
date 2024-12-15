@@ -74,7 +74,7 @@ const FilterDiv = () => {
  
   useEffect(() =>{
     const getData = async () =>{
-      const genresData = await fetchGenres()
+      const genresData = await fetchGenres('movie')
 
       setGenres(genresData.genres )
 
@@ -86,7 +86,7 @@ const FilterDiv = () => {
   useEffect(() => {
     const getMoviesByGenre = async () => {
       try {
-        const moviesByGenre = await fetchMoviesByGenre(selectedGenres)
+        const moviesByGenre = await fetchMoviesByGenre(selectedGenres, 'movie')
 
         setMovies(moviesByGenre)
       } catch (error) {

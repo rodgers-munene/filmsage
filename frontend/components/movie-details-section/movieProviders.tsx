@@ -42,7 +42,7 @@ const MovieProviders  = ( {data}: MovieProviderProps ) => {
 
   useEffect(() => {
     const getProviders = async () =>{
-      const streamProviders = await fetchMovieProviders(data.id)
+      const streamProviders = await fetchMovieProviders(data.id, 'movie')
       setMovieProviders(streamProviders.link)
     
       const providerTypes: Array<Provider['type']> = ['flatrate', 'buy', 'rent', 'ads'];

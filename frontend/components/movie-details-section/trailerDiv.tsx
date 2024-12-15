@@ -24,7 +24,7 @@ const TrailerDiv = ( {data}: TrailerDivProps ) => {
  
   useEffect(() => {
     const getData = async () => {
-      const trailerData = await fetchTrailers(data.id)
+      const trailerData = await fetchTrailers(data.id, 'movie')
 
       setAllTrailers(trailerData)
     }

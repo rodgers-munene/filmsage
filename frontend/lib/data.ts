@@ -32,9 +32,9 @@ export const Genres: { [key: number]: string }  = {
 
 // fetch all available genres
 
-export async function fetchGenres() {
+export async function fetchGenres( type: 'tv' | 'movie') {
    try {
-      let response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.TMDB_API_KEY}`)
+      let response = await fetch(`https://api.themoviedb.org/3/genre/${type}/list?api_key=${process.env.TMDB_API_KEY}`)
       let data = await response.json() 
       return data
    } catch (error) {
@@ -42,10 +42,10 @@ export async function fetchGenres() {
    }
 }
 
-export async function fetchMoviesByGenre(genreIds: number[]) {
+export async function fetchMoviesByGenre(genreIds: number[], type: 'tv' | 'movie') {
    try {
       const genreQuery = genreIds.join(",")
-      let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=${genreQuery}`)
+      let response = await fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.TMDB_API_KEY}&with_genres=${genreQuery}`)
       let data = await response.json()
       return data.results
    } catch (error) {
@@ -53,9 +53,9 @@ export async function fetchMoviesByGenre(genreIds: number[]) {
    }
 }
 
-export async function fetchMovieProviders(movieId: number) {
+export async function fetchMovieProviders(movieId: number,  type: 'tv' | 'movie') {
    try {
-      let response  = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${process.env.TMDB_API_KEY}`)
+      let response  = await fetch(`https://api.themoviedb.org/3/${type}/${movieId}/watch/providers?api_key=${process.env.TMDB_API_KEY}`)
       let data = await response.json()
       return data.results.US || {}
 
@@ -64,9 +64,9 @@ export async function fetchMovieProviders(movieId: number) {
    }
 }
 
-export async function fetchTrailers(movieId: number){
+export async function fetchTrailers(movieId: number,  type: 'tv' | 'movie'){
    try {
-      let response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${process.env.TMDB_API_KEY}`)
+      let response = await fetch(`https://api.themoviedb.org/3/${type}/${movieId}/videos?api_key=${process.env.TMDB_API_KEY}`)
       let data = await response.json()
       return data.results
    } catch (error) {
@@ -74,9 +74,10 @@ export async function fetchTrailers(movieId: number){
    }
 } 
 
-export async function fetchSimilar(movieId: number){
+export async function fetchSimilar(movieId: number,  type: 'tv' | 'movie'){
+      // https://api.themoviedb.org/3/movie/movie_id/recommendations?language=en-US&page=1'
    try {
-      let response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${process.env.TMDB_API_KEY}`)
+      let response = await fetch(`https://api.themoviedb.org/3/${type}/${movieId}/recommendations?api_key=${process.env.TMDB_API_KEY}`)
       let data = await response.json()
       return data.results.slice(0, 10);
    } catch (error) {
@@ -85,11 +86,11 @@ export async function fetchSimilar(movieId: number){
    }
 }
 
-export async function fetchUpcoming(genreIds: number[]){
+export async function fetchRecommendation(genreIds: number[],  type: 'tv' | 'movie'){
    try {
       const genres = genreIds.join(",")
       const today = new Date().toISOString().split("T")[0];
-      let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=${genres}&sort_by=popularity.desc`)
+      let response = await fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.TMDB_API_KEY}&with_genres=${genres}&sort_by=popularity.desc`)
       let data = await response.json()
       return data.results.slice(0, 10);
    } catch (error) {

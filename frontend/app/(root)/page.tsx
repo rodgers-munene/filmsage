@@ -21,7 +21,7 @@ const handleMainClick = () => {
 }
 useEffect(()=>{
   const fetchMovies = async () =>{
-    const data = await fetchMoviesByGenre(selectedGenres)
+    const data = await fetchMoviesByGenre(selectedGenres, 'movie')
     setMovies(data)
   
   }
