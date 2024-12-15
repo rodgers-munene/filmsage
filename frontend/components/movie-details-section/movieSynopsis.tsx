@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { fetchTrailers } from '@/lib/data'
+import { fetchCast, fetchTrailers } from '@/lib/data'
+import Link from 'next/link'
 
 interface Movie {
     id: number
@@ -14,12 +15,19 @@ interface Trailer{
   name: string
 }
 
+interface Cast {
+  id: number;
+  name: string;
+  character: string;
+}
+
 interface MovieSynopsisProps {
     data: Movie
 }
 
 const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
   const [trailerData, setTrailerData] = useState<Trailer[]>([])
+  const [movieCast, setMovieCast] = useState<Cast[]>([])
 
   useEffect(() => {
       const getTrailers = async () => {
@@ -27,6 +35,12 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
         
         setTrailerData(trailers)
       }
+      const getCast = async () => {
+        const castData = await fetchCast(data.id, 'movie')
+
+        setMovieCast(castData)
+      }
+      getCast()
       getTrailers()
    }, [data])
 
@@ -62,6 +76,20 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
             </iframe>
           ))}
           </div>
+      </div>
+
+      <div className='w-full h-auto mt-10'>
+        <h1 className='uppercase text-xl font-bold ml-5'>Cast</h1>
+        <div className='w-[90%] h-auto ml-5 mt-3 flex gap-x-5 overflow-auto no-scrollbar'>
+          {movieCast.map((cast) => (
+            <div
+             key={cast.id}
+             className='min-w-40 flex flex-col h-14 items-center p-1 rounded-lg justify-center bg-gray-900 mb-4'>
+              <Link href='' className='text-sm '>{cast.name}</Link>
+              <p className='text-gray-500 text-xs'>{cast.character}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
     </div>
