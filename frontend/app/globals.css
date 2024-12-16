@@ -150,7 +150,7 @@ select::-webkit-scrollbar-track {
 
   /* Sidebar */
   .sidebar {
-    @apply fixed top-14 left-0 flex items-start flex-col justify-between border-r border-gray-500 pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
+    @apply fixed top-14 left-0 flex items-start flex-col justify-between border-r border-gray-500 pt-8 text-white;
   }
   .sidebar-items{
     @apply flex flex-col gap-36;
@@ -160,7 +160,7 @@ select::-webkit-scrollbar-track {
   }
 
   .sidebar-link {
-    @apply flex flex-col gap-12 py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start ;
+    @apply flex flex-col gap-12 py-1 rounded-lg justify-center;
   }
 
   .sidebar-label {

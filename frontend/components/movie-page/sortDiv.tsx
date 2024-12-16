@@ -42,14 +42,14 @@ const SortDiv = () => {
     }
 
   return (
-    <div className='sortDiv h-20 flex justify-between items-center'>
+    // sortDiv
+    <div className='h-auto w-screen flex justify-between items-center flex-col'>
       {/* latest and year select */}
-      <div className='w-1/3 flex justify-between items-center'>
-        <div className='flex w-2/3 justify-around items-center'>
-          <p>Sort by: </p>
-          <button className='bg-[#373737] px-6 py-2 rounded-lg'>Latest</button>
+      <div className='w-full flex justify-between flex-col'>
+        <div className='flex flex-col items-start ml-1'>
+          <p className='text-sm'>Sort by: </p>
         </div>
-        <Box width="130px" height="50px" >
+        <Box width="130px" height="50px" className='ml-1'>
           <TextField
           className="custom-scrollbar"
           label='Year'
@@ -124,36 +124,36 @@ const SortDiv = () => {
 
       {/* rating select range  */}
 
-      <div className='flex items-center'>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gold" className="size-6 mr-2">
-        <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
-      </svg>
+      <div className='flex items-center w-full '>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gold" className="size-6 mr-2 ml-1">
+          <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+        </svg>
 
 
-       <Slider 
-       aria-label='Ratings'
-       defaultValue={4}
-       getAriaValueText={valueText}
-       valueLabelDisplay="auto"
-       onChange={handleChange}
-       step={1}
-       marks={false}
-       min={1}
-       max={5}
-       sx={{
-        width: 200,
-        '& .MuiSlider-track': { color: 'gold', // Color of the covered part
-           },
-        '& .MuiSlider-rail': { color: 'gray', // Color of the uncovered part
-         },
-         '& .MuiSlider-thumb': { color: 'white', // Color of the thumb
-         },
-       }}
-       />
+        <Slider 
+        aria-label='Ratings'
+        defaultValue={4}
+        getAriaValueText={valueText}
+        valueLabelDisplay="auto"
+        onChange={handleChange}
+        step={1}
+        marks={false}
+        min={1}
+        max={5}
+        sx={{
+          width: 200,
+          '& .MuiSlider-track': { color: 'gold', // Color of the covered part
+            },
+          '& .MuiSlider-rail': { color: 'gray', // Color of the uncovered part
+          },
+          '& .MuiSlider-thumb': { color: 'white', // Color of the thumb
+          },
+        }}
+        />
 
-       <p className='ml-3'>
-        {sliderValue}
-       </p>
+        <p className='ml-3'>
+          {sliderValue}
+        </p>
       </div>
 
     </div>

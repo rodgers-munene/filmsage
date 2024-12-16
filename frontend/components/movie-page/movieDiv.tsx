@@ -33,12 +33,16 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
   return (
     <div className='w-screen'>
         <h2 className='text-2xl font-semibold mb-4 ml-5'>{title}</h2>
-        <div className='py-2'>
-            <div className='grid grid-cols-6 justify-around ml-3 gap-y-16 '>
+        <div className='py-2 border w-full flex justify-center'>
+            <div className='flex flex-wrap border w-[97%] gap-y-16 gap-x-5
+            justify-center'>
             {movies ? (movies.map( (movie) => (
                 <Link href={`/movies/${movie.id}`}
                     key={movie.id}
-                    className='relative inline-block group w-[200px] h-[330px] max-w-sm rounded-lg hover:scale-105 transition-transform duration-500'>
+                    className='relative inline-block group w-[130px] sm:w-[150px]
+                    h-[200px] sm:h-[240px] max-w-sm 
+                    rounded-lg hover:scale-105 transition-transform duration-500
+                    '>
                     <Image
                      src={movie.poster_path? `${IMAGE_BASE_URL}${movie.poster_path}`: "/default_image.png"}
                      alt={movie.title}
@@ -71,8 +75,8 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
                     {/* hovered div */}
                     <div className='absolute top-0 left-0 w-full h-full bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-500 bg-black z-10 flex flex-col justify-around rounded-lg'>
                         <h1 className='text-white pl-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500'>{movie.title}</h1>
-                        <div className='w-full h-1/3 overflow-hidden text-ellipsis line-clamp-[7]'>
-                            <p className='text-gray-500 pl-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500 w-full'>{movie.overview}</p>
+                        <div className='w-full h-[30%] overflow-hidden text-ellipsis line-clamp-[5]'>
+                            <p className='text-gray-300 pl-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500 w-full'>{movie.overview}</p>
                         </div>
                         <div className='flex w-full items-center justify-center opacity-0 group-hover:opacity-100'>
                             <button className='bg-red-600 p-2 rounded-lg flex items-center'><PlayIcon className='h-5 w-5 mr-2' />Watch Trailer</button>
