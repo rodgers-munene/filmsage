@@ -8,6 +8,27 @@
   box-sizing: border-box;
 }
 
+/* Apply styles to the entire page or a specific container */
+.body-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 2px;
+  border-radius: 2px;
+}
+
+.body-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.body-scrollbar::-webkit-scrollbar-thumb {
+  background: #dddddd;
+  border-radius: 50px;
+}
+
+.body-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #7878a3;
+}
+
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-gray-950 text-gray-50
       relative dark:bg-gray-950 dark:text-gray-50
-      dark:text-opacity-90 antialiased overflow-x-hidden`}>
+      dark:text-opacity-90 antialiased overflow-x-hidden body-scrollbar`}>
         <SidebarProvider>
           <GenreProvider>            
             <TrailerProvider>

@@ -102,16 +102,16 @@ const FilterDiv = () => {
 
 
   return (
-    <div className='w-full h-auto'>
+    <div className='w-screen h-auto'>
       {/* genres filter div */}
-      <div className='filterDiv h-20 flex mt-14 ml-7 items-center relative'>
+      <div className='w-full h-20 flex mt-14 items-center relative'>
       
       {canScrollLeft && (
         <button
         onClick={() => {
          scrollContainer('left')
         }} // Calls scrollLeft when clicked.
-        className={"absolute left-[-28px] top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-400}"}
+        className={"absolute p-2 bg-gray-950 "}
       >
         <ChevronLeftIcon className='h-5 w-5 text-white' />
       </button>
@@ -120,13 +120,13 @@ const FilterDiv = () => {
 
       <div 
       ref={containerRef}
-      className='filterDiv h-full overflow-auto flex justify-evenly items-center no-scrollbar'>        
+      className='w-full h-full overflow-auto flex justify-evenly items-center no-scrollbar'>        
  
       {/* all button */}
-        <div className='min-w-32 flex justify-center items-center mx-4'>
+        <div className='min-w-28 sm:min-w-32 flex justify-center items-center mx-4'>
           <button
           onClick={resetGenres}
-          className={`px-0 py-1 w-full text-white rounded-lg ${selectedGenres.length === 0? "bg-red-700": "bg-[#373737]"}`}  >
+          className={`py-1 w-full text-sm sm:text-base text-white rounded-lg ${selectedGenres.length === 0? "bg-red-700": "bg-[#373737]"}`}  >
             All
           </button>
         </div>
@@ -135,12 +135,12 @@ const FilterDiv = () => {
         {genres? genres.map((genre) => (
         <div 
         key={genre.id}
-        className='min-w-32 flex justify-center items-center mx-4'>
+        className='min-w-28 sm:min-w-32 flex justify-center items-center mx-2 sm:mx-4'>
            <button
            onClick={() =>{
             toggleGenre(genre.id)
            }}
-           className={`px-0 py-1 w-full text-white rounded-lg ${selectedGenres.includes(genre.id) ? "bg-red-700" : "bg-[#373737]"}`}>{genre.name}</button>
+           className={`py-1 w-full text-sm sm:text-base  text-white rounded-lg ${selectedGenres.includes(genre.id) ? "bg-red-700" : "bg-[#373737]"}`}>{genre.name}</button>
         </div>
       )): "loading"}
 
@@ -151,7 +151,7 @@ const FilterDiv = () => {
         onClick={() => {
           scrollContainer('right')
         }}
-        className='absolute right-[-38px] top-1/2 transform bg-opacity-80 -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-400'
+        className='absolute right-0 p-2 bg-gray-950'
         >
           <ChevronRightIcon className='h-5 w-5 text-white' />
   
