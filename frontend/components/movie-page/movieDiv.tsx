@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { HeartIcon, PlayIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
+import TrendingMovies from './trendingMovies'
 
 
 
@@ -33,15 +34,15 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
   return (
     <div className='w-screen'>
         <h2 className='text-2xl font-semibold mb-4 ml-4'>{title}</h2>
-        <div className='w-full flex justify-center'>
+        <div className='w-full flex justify-center flex-col lg:flex-row'>
             
-            <div className='py-2 lg:w-[97%] 2xl:w-[97%]'>
-                <div className='flex flex-wrap justify-evenly gap-y-16 xl:justify-start xl:gap-x-6 '>
+            <div className='lg:w-3/4 flex'>
+                <div className='flex flex-wrap justify-around gap-y-16 xl:gap-x-4'>
                 {movies ? (movies.map( (movie) => (
                     <Link href={`/movies/${movie.id}`}
                         key={movie.id}
-                        className='relative inline-block group max-xs:w-[140px] w-[165px] sm:w-[165px]
-                        h-[240px] sm:h-[240px] max-w-sm md:h-[300px] xl:w-[165px] xl:h-[300px]
+                        className='relative inline-block group max-xs:w-[140px] sm:w-[170px] 
+                        h-[240px] md:h-[300px]  xl:h-[300px] xl:w-[180px]
                         rounded-lg hover:scale-105 transition-transform duration-500
                         '>
                         <Image
@@ -50,12 +51,12 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
                         fill
                         style={{objectFit: 'fill'}}
                         sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className='rounded-xl'
+                        className=''
                         >
 
                         </Image>
                     <div className='absolute w-full -bottom-12'>
-                    <h1 className='text-lg font-semibold truncate'>{movie.title}</h1>
+                        <h1 className='text-lg font-semibold truncate'>{movie.title}</h1>
                         <div className='w-full flex justify-between'>
                             <p className='text-gray-500 text-sm'>
                                 {getYear(movie.release_date)}
@@ -74,9 +75,9 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
                     </div>
 
                         {/* hovered div */}
-                        <div className='absolute top-0 left-0 w-full h-full bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-500 bg-black z-10 flex flex-col justify-around rounded-lg'>
+                        <div className='absolute top-0 left-0 w-full h-full bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-500 bg-black z-10 flex flex-col justify-around'>
                             <h1 className='text-white pl-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500'>{movie.title}</h1>
-                            <div className='w-full h-[27%] sm:h-[32%] overflow-hidden text-ellipsis line-clamp-[4] sm:line-clamp-5'>
+                            <div className='w-full h-[27%] sm:h-[32%] overflow-hidden text-ellipsis line-clamp-[4] sm:line-clamp-6'>
                                 <p className='text-gray-300 pl-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500 w-full'>{movie.overview}</p>
                             </div>
                             <div className='flex w-full items-center justify-center opacity-0 group-hover:opacity-100'>
@@ -87,6 +88,9 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
                 ))): "error"}
                 </div>
             </div>
+            <div className='lg:w-1/4 h-96 bg-gray-900'>
+                <TrendingMovies type='movie'/>
+           </div>
         </div>
     </div>
   )

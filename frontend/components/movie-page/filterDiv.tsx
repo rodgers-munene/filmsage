@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, {useEffect, useRef, useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
-import SortDiv from './sortDiv';
 import { fetchMoviesByGenre, fetchGenres } from '@/lib/data';
 import { useGenreContext } from '@/context/GenreMoviesContext';
 
@@ -158,10 +157,7 @@ const FilterDiv = () => {
         </button>
       )}
 
-    </div>
-
-      {/* sort by div */}
-    <SortDiv />
+    </div>    
     </div>
   )
 }

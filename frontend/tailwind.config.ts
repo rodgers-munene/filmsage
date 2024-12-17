@@ -12,7 +12,7 @@ const config: Config = {
       md: '768px',
       lg: '1024px',
       xl: '1270px',
-      'max-xs': { max: '375px' },
+      'max-xs': { max: '640px' },
       '2xl': '1400px',
     },
     extend: {

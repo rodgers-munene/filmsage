@@ -27,7 +27,6 @@ useEffect(()=>{
   }
   
   fetchMovies()
-  console.log(selectedGenres)
 }, [selectedGenres])
 
 

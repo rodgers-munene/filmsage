@@ -47,7 +47,7 @@ export async function fetchMoviesByGenre(genreIds: number[], type: 'tv' | 'movie
       const genreQuery = genreIds.join(",")
       let response = await fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.TMDB_API_KEY}&with_genres=${genreQuery}`)
       let data = await response.json()
-      return data.results
+      return data.results;
    } catch (error) {
       console.error("Error Fetching data")
    }
@@ -109,3 +109,13 @@ export async function fetchCast(movieId: number, type: 'tv' | 'movie') {
 
 }
 
+export async function FetchTrending(type: 'tv' | 'movie', timeline: 'week' | 'day') {
+   try {
+      let response = await fetch(`https://api.themoviedb.org/3/trending/${type}/${timeline}?api_key=${process.env.TMDB_API_KEY}`)
+      let data = await response.json()
+      return data.results.slice(0, 10)
+   } catch (error) {
+      console.error("Error Fetching Trending Movies", error)
+   }
+   
+}
