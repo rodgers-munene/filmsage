@@ -46,6 +46,7 @@ const TrendingMovies = ( {type}: TrendingMoviesProps) => {
         }
         getData()
         setLoading(false)
+        
     }, [currentTimeLine])
 
     
@@ -88,7 +89,7 @@ const TrendingMovies = ( {type}: TrendingMoviesProps) => {
                     </div>
                     <div className='ml-4 flex flex-col w-2/3'>
                        <div className=''>
-                        <h1 className='text-white mb-4 text-ellipsis'>{daily.title}</h1>
+                        <h1 className='text-white mb-4 text-ellipsis text-sm'>{daily.title}</h1>
                        </div>
                         <div className=' flex items-center'>
                             <div className="w-10 h-5 flex bg-yellow-500 items-center justify-center rounded-md ">
