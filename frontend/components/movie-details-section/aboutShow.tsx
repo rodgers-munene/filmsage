@@ -56,15 +56,15 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
   
 
   return (
-    <div className='w-full h-auto flex flex-grow'>
+    <div className='w-full h-auto flex justify-center flex-col lg:flex-row items-center'>
         {/* left section */}
-        <div className='w-2/3'>
+        <div className='w-[90%] lg:w-[62%]'>
           <MovieProviders data={data}/>
           <MovieSynopsis data={data} />
         </div>
 
         {/* right section */}
-        <div className='w-1/3 flex flex-col'>
+        <div className='w-[32%] flex flex-col'>
         {/* about movie and movie poster */}
           <div className='w-full h-72 flex'>
             <div className='w-1/2 h-full pl-3 pt-4'>
@@ -88,7 +88,7 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
             </div>
 
             {/* poster image */}
-            <div className='w-1/2 h-full flex justify-start items-center'>
+            <div className='w-1/2 h-full flex justify-center items-center'>
               <Image
               src={data.poster_path? `${BACKDROP_BASE_URL}${data.poster_path}`: "/default_image.png" }
               alt={data.title}
@@ -101,18 +101,20 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
           </div>
 
           {/* buttons */}
-          <div className='w-full grid grid-cols-2 gap-6 justify-around mt-5'>
-            <button className='w-44 h-12 bg-gray-600 flex justify-center items-center rounded-md'><HandThumbUpIcon className='h-7 w-7' /></button>
-            <button className='w-44 h-12 bg-gray-600 flex justify-center items-center rounded-md'><HandThumbDownIcon className='h-7 w-7'/></button>
-            <button className='w-44 h-12 bg-gray-600 flex justify-center items-center rounded-md'><HeartIcon className='h-7 w-7'/><span className='ml-1'>Favorite</span></button>
-            <button className='w-44 h-12 bg-gray-600 flex justify-center items-center rounded-md'><CheckIcon className='h-7 w-7'/><span className='ml-1'> Seen</span></button>
-            <button className='w-[26rem] col-span-2 bg-gray-600 h-12 rounded-md'>Sign In to Sync Watchlist</button>
+          <div className='w-full flex justify-center '>
+            <div className='w-[90%] grid grid-cols-2 gap-8 justify-between mt-5'>
+              <button className=' h-12 bg-gray-600 flex justify-center items-center rounded-md'><HandThumbUpIcon className='h-7 w-7' /></button>
+              <button className=' h-12 bg-gray-600 flex justify-center items-center rounded-md'><HandThumbDownIcon className='h-7 w-7'/></button>
+              <button className=' h-12 bg-gray-600 flex justify-center items-center rounded-md'><HeartIcon className='h-7 w-7'/><span className='ml-1'>Favorite</span></button>
+              <button className=' h-12 bg-gray-600 flex justify-center items-center rounded-md'><CheckIcon className='h-7 w-7'/><span className='ml-1'> Seen</span></button>
+              <button className='col-span-2 bg-gray-600 h-12 rounded-md'>Sign In to Sync Watchlist</button>
+            </div>
           </div>
 
              {/* genres */}
           <div className='relative mt-7 w-full'>
-            <hr className='absolute w-[93%] border-gray-600 top-0'/>
-            <div className='h-24 flex flex-col justify-center'>
+            <hr className='absolute w-full border-gray-600 top-0'/>
+            <div className='h-24 flex flex-col justify-center pl-4'>
               <h1 className='uppercase text-gray-400'>Genres</h1>
               <div className='flex flex-wrap' >
                 {data.genres? data.genres.map((genre) => (
@@ -126,8 +128,8 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
 
           {/* runtime */}
           <div className='relative w-full'>
-            <hr className='absolute w-[93%] top-0 border-gray-600'/>
-            <div className='h-24 flex flex-col justify-center'>
+            <hr className='absolute w-full top-0 border-gray-600'/>
+            <div className='h-24 flex flex-col justify-center pl-4'>
               <h1 className='uppercase text-gray-400'>Runtime</h1>
               <p className='text-sm text-gray-300'>{formatRunTime(data.runtime)}</p>
             </div>
@@ -135,8 +137,8 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
 
           {/* Language*/}
           <div className='relative w-full'>
-            <hr className='absolute w-[93%] top-0 border-gray-600'/>
-            <div className='h-24 flex flex-col justify-center'>
+            <hr className='absolute w-full top-0 border-gray-600'/>
+            <div className='h-24 flex flex-col justify-center pl-4'>
               <h1 className='uppercase text-gray-400'>Languages</h1>
               <div className='flex flex-wrap'>
               {data.spoken_languages? data.spoken_languages.map((language, index) => (

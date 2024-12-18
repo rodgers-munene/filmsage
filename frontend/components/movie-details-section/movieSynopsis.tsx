@@ -52,15 +52,15 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
     <div className='w-full h-auto'>
 
       <div className='w-full mt-4 min-h-40 h-auto flex items-center'>
-        <div className='w-[90%] ml-7'>
+        <div className='w-[90%]'>
             <h1 className='uppercase text-xl font-bold'>Synopsis</h1>
             <p className=' text-gray-400 mt-4'>{data.overview}</p>
         </div>
       </div>
       {/* fetch movie trailers */}
       <div className='w-full h-64 mt-6'>
-        <h1 className='uppercase text-xl font-bold ml-5'>Trailers & Teasers</h1>
-          <div className='w-[90%] h-[90%] ml-5 mt-3 flex gap-x-10 overflow-auto custom-scrollbar'>
+        <h1 className='uppercase text-xl font-bold'>Trailers & Teasers</h1>
+          <div className='w-[90%] h-[90%] mt-3 flex gap-x-10 overflow-auto custom-scrollbar'>
           {trailerTypes.map((clip, index) => (
             <iframe
             key={index}
@@ -79,8 +79,8 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
       </div>
 
       <div className='w-full h-auto mt-10'>
-        <h1 className='uppercase text-xl font-bold ml-5'>Cast</h1>
-        <div className='w-[90%] h-auto ml-5 mt-3 flex gap-x-5 overflow-auto no-scrollbar'>
+        <h1 className='uppercase text-xl font-bold'>Cast</h1>
+        <div className='w-[90%] h-auto mt-3 flex gap-x-5 overflow-auto no-scrollbar'>
           {movieCast.map((cast) => (
             <div
              key={cast.id}

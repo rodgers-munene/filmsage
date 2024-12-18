@@ -83,7 +83,7 @@ const MovieProviders  = ( {data}: MovieProviderProps ) => {
 
   return (
     <div className='w-full h-auto'>
-        <div className='mt-4 ml-7'>
+        <div className='mt-4'>
             <h1 className='text-xl uppercase font-bold'>Watch Now</h1>
             <div className='flex flex-col'>
               {/* buttons */}
