@@ -64,15 +64,15 @@ const ExtraMovies = ( { data, title, propInput }: ExtraMoviesProps ) => {
 
 
   return (
-    <div className='w-screen h-96 flex flex-col mt-4 justify-between'>
-        <h1 className='ml-4 text-2xl font-bold text-gray-400 uppercase'>{title}</h1>
+    <div className='w-screen h-80 lg:h-96 flex flex-col justify-between'>
+        <h1 className='ml-4 text-2xl max-xs:text-xs font-bold text-gray-400 uppercase'>{title}</h1>
 
         <div className='py-2 '>
-            <div className='flex overflow-x-auto overflow-y-hidden h-[22rem] gap-x-4 ml-3 mr-7 no-scrollbar '>
+            <div className='flex overflow-x-auto overflow-y-hidden h-[18rem] lg:h-[22rem] gap-x-4 ml-3 mr-7 no-scrollbar'>
             {ExtraMovies.length > 0 ? (ExtraMovies.map( (movie) => (
                 <Link href={`/movies/${movie.id}`}
                     key={movie.id}
-                    className='relative group min-w-[180px] h-[270px] max-w-sm rounded-lg hover:scale-105 transition-transform duration-500 first:ml-1'>
+                    className='relative group min-w-[150px] h-[220px] lg:min-w-[180px] lg:h-[270px] rounded-lg hover:scale-105 transition-transform duration-500 first:ml-1'>
                     <Image
                      src={movie.poster_path? `${IMAGE_BASE_URL}${movie.poster_path}`: "/default_image.png"}
                      alt={movie.title}

@@ -70,8 +70,10 @@ const DetailsCard = ( { movieData }: DetailsCardProps ) => {
       <BackdropSection movieData={movieData} />
       <TrailerDiv data={movieData}/> 
       <AboutShow data={movieData}/>
-      <ExtraMovies title={`People Who Liked ${movieData.title} also Liked`} data={movieData} propInput={movieData.id}/>
-      <ExtraMovies title='Recommendations' data={movieData} propInput={movieGenres}/>
+      <div className='mt-4'>
+        <ExtraMovies title={`People Who Liked ${movieData.title} also Liked`} data={movieData} propInput={movieData.id}/>
+        <ExtraMovies title='Recommendations' data={movieData} propInput={movieGenres}/>
+      </div>
     </div>
   )
 }

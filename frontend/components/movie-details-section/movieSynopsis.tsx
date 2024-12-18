@@ -52,21 +52,21 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
     <div className='w-full h-auto'>
 
       <div className='w-full mt-4 min-h-40 h-auto flex items-center'>
-        <div className='w-[90%]'>
-            <h1 className='uppercase text-xl font-bold'>Synopsis</h1>
-            <p className=' text-gray-400 mt-4'>{data.overview}</p>
+        <div className='max-xs:w-full w-[90%]'>
+            <h1 className='uppercase lg:text-xl font-bold'>Synopsis</h1>
+            <p className=' text-gray-400 mt-4 text-sm'>{data.overview}</p>
         </div>
       </div>
       {/* fetch movie trailers */}
       <div className='w-full h-64 mt-6'>
-        <h1 className='uppercase text-xl font-bold'>Trailers & Teasers</h1>
-          <div className='w-[90%] h-[90%] mt-3 flex gap-x-10 overflow-auto custom-scrollbar'>
+        <h1 className='uppercase lg:text-xl font-bold'>Trailers & Teasers</h1>
+          <div className='max-xs:w-full w-[90%] lg:h-[90%] mt-3 flex gap-x-10 overflow-auto custom-scrollbar'>
           {trailerTypes.map((clip, index) => (
             <iframe
             key={index}
             src={`https://www.youtube.com/embed/${clip.key}`}
-            width={310}
-            height={220}
+            width={270}
+            height={180}
             style={{ border: 'none' }}
             allowFullScreen
             title='Trailer'
@@ -78,9 +78,9 @@ const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
           </div>
       </div>
 
-      <div className='w-full h-auto mt-10'>
+      <div className='w-full h-auto lg:mt-10'>
         <h1 className='uppercase text-xl font-bold'>Cast</h1>
-        <div className='w-[90%] h-auto mt-3 flex gap-x-5 overflow-auto no-scrollbar'>
+        <div className='max-xs:w-full w-[90%] h-auto mt-3 flex gap-x-5 overflow-auto no-scrollbar'>
           {movieCast.map((cast) => (
             <div
              key={cast.id}

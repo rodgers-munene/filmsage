@@ -56,16 +56,16 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
     }
   return (
     <div>
-         <div className='relative w-[calc(100vw - 50px)] h-72 flex justify-between '>
+         <div className='relative w-full h-[26rem] flex justify-between border flex-col-reverse lg:flex-row'>
           {/* shade */}
-          <div className='absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900 to-transparent z-20'></div>
+          <div className='absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-gray-900 via-gray-900 to-transparent z-20'></div>
             {/* movie description */}
-            <div className='h-full w-1/3  flex flex-col justify-around z-30 ml-10'>
+            <div className='h-full w-1/3 max-xs:w-full flex flex-col max-xs:justify-between justify-around z-30 lg:ml-10 mt-2 lg:mt-0'>
 
                 {/* title and Year */}
               <div className='flex items-center w-full'>
-                <h1 className='text-2xl text-gray-200 uppercase'> {movieData.title}</h1>
-                <p className='text-gray-400 ml-2 te'>({getYear(movieData.release_date)})</p>
+                <h1 className='lg:text-2xl text-gray-200 uppercase'> {movieData.title}</h1>
+                <p className='text-gray-400 ml-2'>({getYear(movieData.release_date)})</p>
               </div>
 
               {/* Ratings and timing */}
@@ -89,9 +89,11 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
               </div>
 
                 {/* buttons */}
-              <div className='flex justify-between w-full'>
+              <div className=' flex lg:justify-between w-full overflow-auto gap-x-5 pb-3 pl-1'>
                 {detailsButtons.map((btn, index) => (
-                    <button key={index} className='text-gray-400 px-3 py-2 bg-gray-800 rounded-xl'>{btn}</button>
+                    <div className='min-w-32 h-auto'>
+                      <button key={index} className='text-gray-400 w-full py-2 bg-gray-800 rounded-xl'>{btn}</button>
+                    </div>
                 ))}
               </div>
 
@@ -106,7 +108,7 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
                 </button>
             </div>
               {/* image background */}
-            <div className='relative w-1/2 h-full'>
+            <div className='relative w-full lg:w-1/2 h-full'>
               <div className='relative w-full h-full '>
                 <Image
                 src={`${BACKDROP_BASE_URL}${movieData.backdrop_path}`}

@@ -86,42 +86,43 @@ const MovieProviders  = ( {data}: MovieProviderProps ) => {
         <div className='mt-4'>
             <h1 className='text-xl uppercase font-bold'>Watch Now</h1>
             <div className='flex flex-col'>
+
               {/* buttons */}
-              <div className='w-2/3 flex justify-between mt-5'>
+              <div className='max-xs:w-full w-3/4 lg:w-2/3 flex justify-between mt-5 overflow-auto gap-x-6 pb-2'>
                 <button
-                className={`px-4 py-1 rounded-lg text-gray-300 ${streamToggled === 'all'? "bg-red-600": "bg-gray-900"}`}
+                className={`text-sm px-3 lg:px-4 lg:text-base py-1 rounded-lg text-gray-300 ${streamToggled === 'all'? "bg-red-600": "bg-gray-900"}`}
                 onClick={() => {
                   toggleProvider('all')
                 }}
 
                 >All</button>
                 <button
-                className={`px-4 py-1 rounded-lg text-gray-300 ${streamToggled === 'flatrate'? "bg-red-600": "bg-gray-900"}`}
+                className={`text-sm px-3 lg:px-4 lg:text-base py-1 rounded-lg text-gray-300 ${streamToggled === 'flatrate'? "bg-red-600": "bg-gray-900"}`}
                 onClick={() => {
                   toggleProvider('flatrate');
                 }}
                 >Subscription</button>
                 <button
-                className={`px-4 py-1 rounded-lg text-gray-300 ${streamToggled === 'buy'? "bg-red-600": "bg-gray-900"}`}
+                className={`text-sm px-3 lg:px-4 lg:text-base py-1 rounded-lg text-gray-300 ${streamToggled === 'buy'? "bg-red-600": "bg-gray-900"}`}
                 onClick={() => {
                  toggleProvider('buy')
                 }}
                 >Buy</button>
                 <button
-                className={`px-4 py-1 rounded-lg text-gray-300 ${streamToggled === 'rent'? "bg-red-600": "bg-gray-900"}`}
+                className={`text-sm px-3 lg:px-4 lg:text-base py-1 rounded-lg text-gray-300 ${streamToggled === 'rent'? "bg-red-600": "bg-gray-900"}`}
                 onClick={() => {
                   toggleProvider('rent')
                 }}
                 >Rent</button>
                 <button
-                className={`px-4 py-1 rounded-lg text-gray-300 ${streamToggled === 'ads'? "bg-red-600": "bg-gray-900"}`}
+                className={`text-sm px-3 lg:px-4 lg:text-base py-1 rounded-lg text-gray-300 ${streamToggled === 'ads'? "bg-red-600": "bg-gray-900"}`}
                 onClick={() => {
                   toggleProvider('ads')
                 }}
                 >Ads</button>
               </div>
               {/* stream providers services */}
-              <div className='relative mt-5  w-[90%] h-auto max-h-52 min-h-20 bg-gray-900 rounded-xl overflow-y-auto custom-scrollbar flex flex-col'>
+              <div className='relative mt-5 max-xs:w-full w-[90%] h-auto max-h-52 min-h-20 bg-gray-900 rounded-xl overflow-y-auto custom-scrollbar flex flex-col'>
                 {(streamToggled === 'all' ? streamServices: filteredProviders).map((service) => (
                       <div className='w-full h-auto  flex items-center justify-between py-4 pr-3 pl-1 hover:bg-gray-800 rounded-xl'>
                         <Image
@@ -134,7 +135,7 @@ const MovieProviders  = ( {data}: MovieProviderProps ) => {
                         >
 
                         </Image>
-                        <p>{service.provider_name}</p>
+                        <p className='max-xs:hidden'>{service.provider_name}</p>
 
                         <button className='flex bg-yellow-300 p-2 rounded-lg'><PlayIcon className='h-6 w-6'/> Watch Now</button>
                       </div>

@@ -64,11 +64,11 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
         </div>
 
         {/* right section */}
-        <div className='w-[32%] flex flex-col'>
+        <div className='max-xs:w-full w-[90%] lg:w-[32%] flex flex-col'>
         {/* about movie and movie poster */}
-          <div className='w-full h-72 flex'>
-            <div className='w-1/2 h-full pl-3 pt-4'>
-             <h1 className='uppercase text-lg'>About the Movie</h1>
+          <div className='w-full h-72 max-xs:h-64 flex justify-center'>
+            <div className='w-[45%] h-full pl-3 pt-4'>
+             <h1 className='uppercase text-lg max-xs:text-xs'>About the Movie</h1>
              <div className='flex py-2'>
                 <div className="w-12 h-6 flex bg-yellow-500 items-center justify-center rounded-md ">
                     <span className="text-black font-bold text-xs">IMDb</span>
@@ -88,7 +88,7 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
             </div>
 
             {/* poster image */}
-            <div className='w-1/2 h-full flex justify-center items-center'>
+            <div className='w-[45%] h-full flex justify-center items-start sm:items-center max-xs:pt-4'>
               <Image
               src={data.poster_path? `${BACKDROP_BASE_URL}${data.poster_path}`: "/default_image.png" }
               alt={data.title}
