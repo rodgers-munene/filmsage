@@ -34,7 +34,7 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
   return (
     <div className='w-screen'>
         <h2 className='text-2xl font-semibold mb-4 ml-4'>{title}</h2>
-        <div className='w-full flex justify-center flex-col lg:flex-row'>
+        <div className='w-full flex justify-center flex-col lg:flex-row items-start'>
             
             <div className='lg:w-3/4 flex'>
                 <div className='flex flex-wrap justify-around gap-y-16 xl:gap-x-4'>
@@ -88,7 +88,7 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
                 ))): "error"}
                 </div>
             </div>
-            <div className='lg:w-1/4 h-96 bg-gray-900'>
+            <div className='lg:w-1/4 min-h-10 h-auto max-h bg-gray-900 rounded-md'>
                 <TrendingMovies type='movie'/>
            </div>
         </div>
