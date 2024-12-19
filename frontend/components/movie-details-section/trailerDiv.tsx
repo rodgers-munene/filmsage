@@ -38,7 +38,7 @@ const TrailerDiv = ( {data}: TrailerDivProps ) => {
   return (
    <div>
      {visibility && (
-      <div className={`absolute w-3/4 h-[85%] bg-gray-950 top-20 left-[12.5%] z-50 rounded-lg flex flex-col justify-between`}>
+      <div className={`absolute w-full h-[50%] sm:w-3/4 bg-gray-800 top-20 left-0 sm:left-[12.5%] z-50 rounded-lg flex flex-col justify-between`}>
         <div className='w-full h-10 flex items-center justify-between'>
           <h1 className='text-2xl text-gray-200 ml-3'>{data.title}</h1>
           <button

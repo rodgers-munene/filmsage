@@ -14,6 +14,7 @@ const config: Config = {
       xl: '1270px',
       'max-xs': { max: '640px' },
       '2xl': '1400px',
+      
     },
     extend: {
       backgroundImage: {

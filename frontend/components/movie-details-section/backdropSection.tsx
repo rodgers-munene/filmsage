@@ -70,7 +70,7 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
 
               {/* Ratings and timing */}
               <div className='flex lg:items-center flex-col lg:flex-row pl-2'>
-                <div className='flex mb-2'>
+                <div className='flex mb-2 lg:mb-0'>
                   <div className="w-12 h-6 flex bg-yellow-500 items-center justify-center rounded-md ">
                       <span className="text-black font-bold text-xs">IMDb</span>
                       
