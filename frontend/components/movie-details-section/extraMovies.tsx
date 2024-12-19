@@ -15,9 +15,12 @@ interface Movie{
     poster_path: string,
     // genre: string,
     release_date: string
+    first_air_date: string
     vote_average: number,
     overview: string,
+    name: string,
     genres: Genre[]
+   
 }
 
 interface ExtraMoviesProps {
@@ -71,7 +74,7 @@ const ExtraMovies = ( { data, title, propInput, show_type }: ExtraMoviesProps ) 
         <div className='py-2 '>
             <div className='flex overflow-x-auto overflow-y-hidden h-[18rem] lg:h-[22rem] gap-x-4 ml-3 mr-7 no-scrollbar'>
             {ExtraMovies.length > 0 ? (ExtraMovies.map( (movie) => (
-                <Link href={`/movies/${movie.id}`}
+                <Link href={`${show_type === 'movie' ? `/movies/${movie.id}`: `/tv-shows/${movie.id}` }`}
                     key={movie.id}
                     className='relative group min-w-[150px] h-[220px] lg:min-w-[180px] lg:h-[270px] rounded-lg hover:scale-105 transition-transform duration-500 first:ml-1'>
                     <Image
@@ -85,10 +88,10 @@ const ExtraMovies = ( { data, title, propInput, show_type }: ExtraMoviesProps ) 
 
                     </Image>
                    <div className='absolute w-full -bottom-12'>
-                   <h1 className='text-lg font-semibold truncate'>{movie.title}</h1>
+                   <h1 className='text-lg font-semibold truncate'>{movie.title? movie.title : movie.name}</h1>
                     <div className='w-full flex justify-between'>
                         <p className='text-gray-500 text-sm'>
-                            {getYear(movie.release_date)}
+                            {getYear(movie.release_date? movie.release_date : movie.first_air_date)}
                         </p>
 
                         <div className='flex items-center w-1/2 justify-between text-sm'>

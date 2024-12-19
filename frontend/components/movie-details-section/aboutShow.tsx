@@ -18,12 +18,15 @@ interface Movie{
   title: string
   poster_path: string
   runtime: number
+  first_air_date: string
   vote_count: number
   vote_average: number
   release_date: string
   spoken_languages: Language[]
   overview: string
   genres: Genre[]
+  number_of_episodes: number
+  number_of_seasons: number
 }
 
 interface AboutSectionProps {
@@ -78,8 +81,8 @@ const AboutShow = ( { data, show_type } : AboutSectionProps)  => {
                     <p className='text-sm text-gray-500'>{data.vote_average.toFixed(1)} ({formatVoteCount(data.vote_count)})</p>
                 </div>
              </div>
-             <p className='py-2 text-gray-500'>{formatRunTime(data.runtime)}</p>
-             <p className='py-2 text-gray-500'>{formatYear(data.release_date)}</p>
+             {data.runtime? <p className='text-sm'>{formatRunTime(data.runtime)}</p>: <p className='text-sm'></p>}
+             <p className='py-2 text-gray-500'>{formatYear(data.release_date? data.release_date : data.first_air_date)}</p>
              {/* languages */}
              <div className='flex flex-wrap'>
              {data.spoken_languages? data.spoken_languages.map((language, index) => (
@@ -132,7 +135,10 @@ const AboutShow = ( { data, show_type } : AboutSectionProps)  => {
             <hr className='absolute w-full top-0 border-gray-600'/>
             <div className='h-24 flex flex-col justify-center pl-4'>
               <h1 className='uppercase text-gray-400'>Runtime</h1>
-              <p className='text-sm text-gray-300'>{formatRunTime(data.runtime)}</p>
+              <div className='text-sm text-gray-300'>
+                {data.runtime? formatRunTime(data.runtime) :
+                 <p>
+                  {data.number_of_seasons === 1? data.number_of_seasons + " Season" : data.number_of_seasons + " Seasons"} </p>}</div>
             </div>
           </div>
 

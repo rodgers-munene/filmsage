@@ -11,6 +11,8 @@ interface Genre{
 interface Movie{
     id: number
     title: string
+    name: string
+    first_air_date: string
     overview: string
     poster_path: string
     backdrop_path:string
@@ -64,8 +66,8 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
 
                 {/* title and Year */}
               <div className='flex items-center w-full mt-2 md:mt-0 pl-2'>
-                <h1 className='max-xs:text-xs text-sm lg:text-2xl text-gray-200 uppercase'> {movieData.title}</h1>
-                <p className='text-gray-400 ml-2 text-sm pr-2'>({getYear(movieData.release_date)})</p>
+                <h1 className='max-xs:text-xs text-sm lg:text-2xl text-gray-200 uppercase'> {movieData.title? movieData.title : movieData.name}</h1>
+                <p className='text-gray-400 ml-2 text-sm pr-2'>({getYear(movieData.release_date? movieData.release_date : movieData.first_air_date)})</p>
               </div>
 
               {/* Ratings and timing */}
@@ -79,7 +81,7 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
                   <p className='text-sm'>{movieData.vote_average.toFixed(1)} ({formatVoteCount(movieData.vote_count)})</p>
                   </div>
                   <div className='flex'>
-                  <p className='text-sm text-gray-200 mx-1'> - {formatRunTime(movieData.runtime)}</p>
+                  {movieData.runtime? <p className='text-sm'>{formatRunTime(movieData.runtime)}</p>: <p className='text-sm'></p>}
                   </div>
                 </div>
                 {/* genres */}

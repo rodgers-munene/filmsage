@@ -82,7 +82,7 @@ const MovieSynopsis = ( { data, show_type }: MovieSynopsisProps ) => {
       <div className='w-full h-auto lg:mt-10'>
         <h1 className='uppercase text-xl font-bold'>Cast</h1>
         <div className='max-xs:w-full w-[90%] h-auto mt-3 flex gap-x-5 overflow-auto no-scrollbar'>
-          {movieCast.map((cast) => (
+          {movieCast?.map((cast) => (
             <div
              key={cast.id}
              className='min-w-40 flex flex-col h-14 items-center p-1 rounded-lg justify-center bg-gray-900 mb-4'>

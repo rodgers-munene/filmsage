@@ -10,7 +10,7 @@ import { useGenreContext } from '@/context/GenreMoviesContext'
 
 const Home = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebar();
-  const { selectedGenres } = useGenreContext()
+  const { selectedGenres, resetGenres } = useGenreContext()
   const [movies, setMovies] = useState([])
   
   
@@ -19,6 +19,11 @@ const handleMainClick = () => {
     toggleSidebar();
   }
 }
+
+useEffect(() => {
+  resetGenres()
+}, [])
+
 useEffect(()=>{
   const fetchMovies = async () =>{
     const data = await fetchMoviesByGenre(selectedGenres, 'movie')

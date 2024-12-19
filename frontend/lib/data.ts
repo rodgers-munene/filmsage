@@ -100,7 +100,7 @@ export async function fetchRecommendation(genreIds: number[],  type: 'tv' | 'mov
 
 export async function fetchCast(movieId: number, type: 'tv' | 'movie') {
    try {
-      let response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${process.env.TMDB_API_KEY}`)
+      let response = await fetch(`https://api.themoviedb.org/3/${type}/${movieId}/credits?api_key=${process.env.TMDB_API_KEY}`)
       let data = await response.json()
       return data.cast
    } catch (error) {

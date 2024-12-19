@@ -10,7 +10,7 @@ import MovieDiv from '@/components/movie-page/movieDiv'
 
 const TvShows = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebar()
-  const { selectedGenres } = useGenreContext()
+  const { selectedGenres, resetGenres } = useGenreContext()
   const [ shows, setShows ] = useState([])
 
   // functions
@@ -19,11 +19,13 @@ const TvShows = () => {
       toggleSidebar();
     }
   } 
+  useEffect(() => {
+    resetGenres()
+  }, [])
 
   // fetch tv shows
   useEffect(() =>{
     const fetchShows = async () =>{
-
       const data = await fetchMoviesByGenre(selectedGenres, 'tv')
       setShows(data)
     }

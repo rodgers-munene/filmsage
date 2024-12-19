@@ -21,6 +21,7 @@ interface Genre {
 interface Movie{
   id: number
   title: string
+  name: string
   overview: string
   poster_path: string
   backdrop_path:string
@@ -30,6 +31,7 @@ interface Movie{
   runtime: number
   vote_count: number
   spoken_languages: Language[]
+  first_air_date: string
 }
 
 interface DetailsCardProps {
@@ -55,8 +57,8 @@ const DetailsCard = ( { movieData, show_type }: DetailsCardProps ) => {
       {/* movie title and year section */}
         <div className=' w-full h-36 flex items-center justify-between '>
           <div className='mt-16 ml-5'>
-            <h1 className='text-gray-300 max-xs:text-sm text-base lg:text-2xl'>{movieData.title}</h1>
-            <p className='text-gray-300'>{getYear(movieData.release_date)}</p>
+            <h1 className='text-gray-300 max-xs:text-sm text-base lg:text-2xl'>{movieData.title? movieData.title : movieData.name}</h1>
+            <p className='text-gray-300'>{getYear(movieData.release_date? movieData.release_date : movieData.first_air_date)}</p>
           </div>
           <div className='mt-16 mr-5'>
             <button
