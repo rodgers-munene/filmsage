@@ -24,12 +24,13 @@ interface ExtraMoviesProps {
     data: Movie;
     title: string
     propInput: number | number[];
+    show_type: 'movie' | 'tv'
 }
 
 
 
 
-const ExtraMovies = ( { data, title, propInput }: ExtraMoviesProps ) => {
+const ExtraMovies = ( { data, title, propInput, show_type }: ExtraMoviesProps ) => {
     const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
     const [ExtraMovies, setExtraMovies] = useState<Movie[]>([])
     const [loading, setLoading] = useState(false)
@@ -40,13 +41,13 @@ const ExtraMovies = ( { data, title, propInput }: ExtraMoviesProps ) => {
         
         if( typeof propInput === "number"){
             const getExtra = async () => {
-                let fetchedData = await fetchSimilar(propInput, 'movie')
+                let fetchedData = await fetchSimilar(propInput, show_type)
                 setExtraMovies(fetchedData)
             }
             getExtra()
         }else if(Array.isArray(propInput)){
             const getExtra = async () => {
-                let fetchedData = await fetchRecommendation(propInput, 'movie')
+                let fetchedData = await fetchRecommendation(propInput, show_type)
                 setExtraMovies(fetchedData)
             }
             getExtra()

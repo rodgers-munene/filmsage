@@ -12,13 +12,16 @@ type MovieData = {
     id: number,
     genre: string,
     release_date: string
+    first_air_date: string
     vote_average: number,
     overview: string,
+    name:string
 }
 
 type MovieDivProps = {
     movies: MovieData[],
     title: string 
+    show_type: 'movie' | 'tv'
 }
 
 const getYear = (fullDate: string) => {
@@ -28,7 +31,7 @@ const getYear = (fullDate: string) => {
 }
 
 
-const MovieDiv = ( { movies, title }: MovieDivProps ) => {
+const MovieDiv = ( { movies, title, show_type }: MovieDivProps ) => {
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
 
   return (
@@ -39,7 +42,7 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
             <div className='w-full lg:w-3/4 flex'>
                 <div className='flex flex-wrap justify-around gap-y-16 xl:gap-x-4'>
                 {movies ? (movies.map( (movie) => (
-                    <Link href={`/movies/${movie.id}`}
+                    <Link href={`${show_type === 'movie' ? `/movies/${movie.id}`: `/tv-shows/${movie.id}` }`}
                         key={movie.id}
                         className='relative inline-block group max-xs:w-[140px] sm:w-[170px] 
                         h-[240px] md:h-[300px]  xl:h-[300px] xl:w-[180px]
@@ -56,10 +59,10 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
 
                         </Image>
                     <div className='absolute w-full -bottom-12'>
-                        <h1 className='text-lg font-semibold truncate'>{movie.title}</h1>
+                        <h1 className='text-lg font-semibold truncate'>{movie.title? movie.title : movie.name}</h1>
                         <div className='w-full flex justify-between'>
                             <p className='text-gray-500 text-sm'>
-                                {getYear(movie.release_date)}
+                                {getYear(movie.release_date? movie.release_date : movie.first_air_date)}
                             </p>
 
                             <div className='flex items-center w-1/2 justify-between text-sm'>
@@ -89,7 +92,7 @@ const MovieDiv = ( { movies, title }: MovieDivProps ) => {
                 </div>
             </div>
             <div className='w-full lg:w-1/4 min-h-10 h-auto max-h bg-gray-900 rounded-md mt-20 lg:mt-0'>
-                <TrendingMovies type='movie'/>
+                <TrendingMovies type={show_type}/>
            </div>
         </div>
     </div>

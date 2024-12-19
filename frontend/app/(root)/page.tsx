@@ -31,19 +31,16 @@ useEffect(()=>{
 
 
   return (
-    <div className="flex flex-col">
-      {/* header */}
-
       <div onClick={handleMainClick} className='w-screen h-screen'>
-     
-      {/* filters */}
-      <FilterDiv />
+      
+        {/* filters */}
+        <FilterDiv show_type='movie' />
 
-      <MovieDiv movies={movies} title='Movies' />
+        <MovieDiv movies={movies} title='Movies' show_type='movie'/>
 
       </div>
 
-    </div>
+   
   )
 }
 

@@ -49,7 +49,7 @@ export default async function MovieDetails({ params }: { params: { id: string } 
     return(
         <div className="">
            <div>
-                <DetailsCard  movieData={movieData}/>
+                <DetailsCard  movieData={movieData} show_type='movie'/>
            </div>
         </div>
     )

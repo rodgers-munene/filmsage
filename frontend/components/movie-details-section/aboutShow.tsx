@@ -28,9 +28,10 @@ interface Movie{
 
 interface AboutSectionProps {
   data: Movie;
+  show_type: 'movie' | 'tv'
 }
 
-const AboutShow = ( { data } : AboutSectionProps)  => {
+const AboutShow = ( { data, show_type } : AboutSectionProps)  => {
 
   const BACKDROP_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -59,8 +60,8 @@ const AboutShow = ( { data } : AboutSectionProps)  => {
     <div className='w-full h-auto flex justify-center flex-col lg:flex-row items-center'>
         {/* left section */}
         <div className='w-[90%] lg:w-[62%]'>
-          <MovieProviders data={data}/>
-          <MovieSynopsis data={data} />
+          <MovieProviders data={data} show_type={show_type}/>
+          <MovieSynopsis data={data} show_type={show_type}/>
         </div>
 
         {/* right section */}

@@ -34,8 +34,9 @@ interface Movie{
 
 interface DetailsCardProps {
     movieData: Movie;
+    show_type: 'movie' | 'tv'
 }
-const DetailsCard = ( { movieData }: DetailsCardProps ) => {
+const DetailsCard = ( { movieData, show_type }: DetailsCardProps ) => {
   const movieGenres = movieData.genres.map((genre) => (
           genre.id
       ))
@@ -68,11 +69,11 @@ const DetailsCard = ( { movieData }: DetailsCardProps ) => {
 
       {/* movie description, play button and image */}
       <BackdropSection movieData={movieData} />
-      <TrailerDiv data={movieData}/> 
-      <AboutShow data={movieData}/>
+      <TrailerDiv data={movieData} show_type={show_type}/> 
+      <AboutShow data={movieData} show_type={show_type}/>
       <div className='mt-4'>
-        <ExtraMovies title={`People Who Liked ${movieData.title} also Liked`} data={movieData} propInput={movieData.id}/>
-        <ExtraMovies title='Recommendations' data={movieData} propInput={movieGenres}/>
+        <ExtraMovies title={`People Who Liked ${movieData.title} also Liked`} data={movieData} propInput={movieData.id} show_type={show_type}/>
+        <ExtraMovies title='Recommendations' data={movieData} propInput={movieGenres} show_type={show_type}/>
       </div>
     </div>
   )

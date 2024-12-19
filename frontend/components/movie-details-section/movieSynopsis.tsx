@@ -23,20 +23,21 @@ interface Cast {
 
 interface MovieSynopsisProps {
     data: Movie
+    show_type: 'movie' | 'tv'
 }
 
-const MovieSynopsis = ( { data }: MovieSynopsisProps ) => {
+const MovieSynopsis = ( { data, show_type }: MovieSynopsisProps ) => {
   const [trailerData, setTrailerData] = useState<Trailer[]>([])
   const [movieCast, setMovieCast] = useState<Cast[]>([])
 
   useEffect(() => {
       const getTrailers = async () => {
-        const trailers = await fetchTrailers(data.id, 'movie')
+        const trailers = await fetchTrailers(data.id, show_type)
         
         setTrailerData(trailers)
       }
       const getCast = async () => {
-        const castData = await fetchCast(data.id, 'movie')
+        const castData = await fetchCast(data.id, show_type)
 
         setMovieCast(castData)
       }

@@ -10,6 +10,7 @@ interface Movie{
 
 interface TrailerDivProps{
   data: Movie;
+  show_type: 'movie' | 'tv'
 }
 interface Trailer{
   key: string;
@@ -18,13 +19,13 @@ interface Trailer{
   official: boolean;
 }
 
-const TrailerDiv = ( {data}: TrailerDivProps ) => {
+const TrailerDiv = ( {data, show_type}: TrailerDivProps ) => {
   const {visibility, toggleVisibility } = useTrailer()
   const [allTrailers, setAllTrailers] = useState<Trailer[]>()
  
   useEffect(() => {
     const getData = async () => {
-      const trailerData = await fetchTrailers(data.id, 'movie')
+      const trailerData = await fetchTrailers(data.id, show_type)
 
       setAllTrailers(trailerData)
     }

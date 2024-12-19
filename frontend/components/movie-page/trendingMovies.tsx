@@ -5,6 +5,7 @@ import Image from 'next/image'
 type MovieData = {
     poster_path: string,
     title: string,
+    name: string
     id: number,
     genre: string,
     release_date: string
@@ -39,7 +40,7 @@ const TrendingMovies = ( {type}: TrendingMoviesProps) => {
     useEffect( ()=>{
         setLoading(true)
         const getData = async () => {
-            const getTrending = await FetchTrending('movie', currentTimeLine)
+            const getTrending = await FetchTrending(type, currentTimeLine)
 
             setDailyTrending(getTrending)
             
@@ -89,7 +90,7 @@ const TrendingMovies = ( {type}: TrendingMoviesProps) => {
                     </div>
                     <div className='ml-4 flex flex-col w-2/3'>
                        <div className=''>
-                        <h1 className='text-white mb-4 text-ellipsis text-sm'>{daily.title}</h1>
+                        <h1 className='text-white mb-4 text-ellipsis text-sm'>{daily.title? daily.title : daily.name}</h1>
                        </div>
                         <div className=' flex items-center'>
                             <div className="w-10 h-5 flex bg-yellow-500 items-center justify-center rounded-md ">

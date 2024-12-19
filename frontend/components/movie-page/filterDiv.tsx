@@ -8,9 +8,13 @@ type Genre = {
   name: string;
 };
 
+type FilterDivProps = {
+  show_type: 'movie' | 'tv' 
+}
 
 
-const FilterDiv = () => {
+
+const FilterDiv = ( { show_type }: FilterDivProps ) => {
   const[genres, setGenres] = useState<Genre[]>([])
   const containerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] =  useState(false)
@@ -73,7 +77,7 @@ const FilterDiv = () => {
  
   useEffect(() =>{
     const getData = async () =>{
-      const genresData = await fetchGenres('movie')
+      const genresData = await fetchGenres(show_type)
 
       setGenres(genresData.genres )
 
@@ -85,7 +89,7 @@ const FilterDiv = () => {
   useEffect(() => {
     const getMoviesByGenre = async () => {
       try {
-        const moviesByGenre = await fetchMoviesByGenre(selectedGenres, 'movie')
+        const moviesByGenre = await fetchMoviesByGenre(selectedGenres, show_type)
 
         setMovies(moviesByGenre)
       } catch (error) {
@@ -125,7 +129,7 @@ const FilterDiv = () => {
         <div className='min-w-28 sm:min-w-32 flex justify-center items-center mx-4'>
           <button
           onClick={resetGenres}
-          className={`py-1 w-full text-sm sm:text-base text-white rounded-lg ${selectedGenres.length === 0? "bg-red-700": "bg-[#373737]"}`}  >
+          className={`py-1 w-full text-sm text-white rounded-lg ${selectedGenres.length === 0? "bg-red-700": "bg-[#373737]"}`}  >
             All
           </button>
         </div>
@@ -134,12 +138,12 @@ const FilterDiv = () => {
         {genres? genres.map((genre) => (
         <div 
         key={genre.id}
-        className='min-w-28 sm:min-w-32 flex justify-center items-center mx-2 sm:mx-4'>
+        className='min-w-28 sm:min-w-[9rem] flex justify-center items-center mx-2 sm:mx-4'>
            <button
            onClick={() =>{
             toggleGenre(genre.id)
            }}
-           className={`py-1 w-full text-sm sm:text-base  text-white rounded-lg ${selectedGenres.includes(genre.id) ? "bg-red-700" : "bg-[#373737]"}`}>{genre.name}</button>
+           className={`py-1 w-full text-sm text-white rounded-lg text-ellipsis ${selectedGenres.includes(genre.id) ? "bg-red-700" : "bg-[#373737]"}`}>{genre.name}</button>
         </div>
       )): "loading"}
 

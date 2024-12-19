@@ -10,6 +10,7 @@ interface Movie{
 
 interface MovieProviderProps{
     data: Movie
+    show_type: 'movie' | 'tv'
 }
 interface Provider {
     logo_path: string;
@@ -17,7 +18,7 @@ interface Provider {
     type: 'flatrate' | 'buy' | 'rent' | 'ads';
   }
 
-const MovieProviders  = ( {data}: MovieProviderProps ) => {
+const MovieProviders  = ( {data, show_type}: MovieProviderProps ) => {
   const [movieProviders, setMovieProviders] = useState('')
   const [streamServices, setStreamServices] = useState<Provider[]>([])
   const [streamToggled, setIsStreamToggled] = useState<string>('all')
@@ -42,7 +43,7 @@ const MovieProviders  = ( {data}: MovieProviderProps ) => {
 
   useEffect(() => {
     const getProviders = async () =>{
-      const streamProviders = await fetchMovieProviders(data.id, 'movie')
+      const streamProviders = await fetchMovieProviders(data.id, show_type)
       setMovieProviders(streamProviders.link)
     
       const providerTypes: Array<Provider['type']> = ['flatrate', 'buy', 'rent', 'ads'];
