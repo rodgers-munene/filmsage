@@ -54,7 +54,7 @@ const DetailsCard = ( { movieData }: DetailsCardProps ) => {
       {/* movie title and year section */}
         <div className=' w-full h-36 flex items-center justify-between '>
           <div className='mt-16 ml-5'>
-            <h1 className='text-gray-300 text-3xl'>{movieData.title}</h1>
+            <h1 className='text-gray-300 max-xs:text-sm text-base lg:text-2xl'>{movieData.title}</h1>
             <p className='text-gray-300'>{getYear(movieData.release_date)}</p>
           </div>
           <div className='mt-16 mr-5'>

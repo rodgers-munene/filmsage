@@ -65,7 +65,7 @@ const ExtraMovies = ( { data, title, propInput }: ExtraMoviesProps ) => {
 
   return (
     <div className='w-screen h-80 lg:h-96 flex flex-col justify-between'>
-        <h1 className='ml-4 text-2xl max-xs:text-xs font-bold text-gray-400 uppercase'>{title}</h1>
+        <h1 className='ml-4 lg:text-2xl text-xs font-bold text-gray-400 uppercase'>{title}</h1>
 
         <div className='py-2 '>
             <div className='flex overflow-x-auto overflow-y-hidden h-[18rem] lg:h-[22rem] gap-x-4 ml-3 mr-7 no-scrollbar'>

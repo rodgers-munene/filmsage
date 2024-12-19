@@ -56,25 +56,31 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
     }
   return (
     <div>
-         <div className='relative w-full h-[26rem] flex justify-between border flex-col-reverse lg:flex-row'>
+         <div className='relative w-full max-xs:h-[28rem] h-96 md:h-72 flex justify-between flex-col-reverse md:flex-row'>
           {/* shade */}
-          <div className='absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-gray-900 via-gray-900 to-transparent z-20'></div>
+          <div className='absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-gray-900 via-gray-900 to-transparent z-20'></div>
             {/* movie description */}
-            <div className='h-full w-1/3 max-xs:w-full flex flex-col max-xs:justify-between justify-around z-30 lg:ml-10 mt-2 lg:mt-0'>
+            <div className='h-full lg:w-1/3 w-full flex flex-col justify-around z-30 lg:ml-10 mt-2 lg:mt-0'>
 
                 {/* title and Year */}
-              <div className='flex items-center w-full'>
-                <h1 className='lg:text-2xl text-gray-200 uppercase'> {movieData.title}</h1>
-                <p className='text-gray-400 ml-2'>({getYear(movieData.release_date)})</p>
+              <div className='flex items-center w-full mt-2 md:mt-0 pl-2'>
+                <h1 className='max-xs:text-xs text-sm lg:text-2xl text-gray-200 uppercase'> {movieData.title}</h1>
+                <p className='text-gray-400 ml-2 text-sm pr-2'>({getYear(movieData.release_date)})</p>
               </div>
 
               {/* Ratings and timing */}
-              <div className='flex items-center absolute'>
-                <div className="w-12 h-6 flex bg-yellow-500 items-center justify-center rounded-md ">
-                    <span className="text-black font-bold text-xs">IMDb</span>
-                </div>
-                <div className='px-2'>
-                    <p className='text-sm'>{movieData.vote_average.toFixed(1)} ({formatVoteCount(movieData.vote_count)}) - </p>
+              <div className='flex lg:items-center flex-col lg:flex-row pl-2'>
+                <div className='flex mb-2'>
+                  <div className="w-12 h-6 flex bg-yellow-500 items-center justify-center rounded-md ">
+                      <span className="text-black font-bold text-xs">IMDb</span>
+                      
+                  </div>
+                  <div className='px-2'>
+                  <p className='text-sm'>{movieData.vote_average.toFixed(1)} ({formatVoteCount(movieData.vote_count)})</p>
+                  </div>
+                  <div className='flex'>
+                  <p className='text-sm text-gray-200 mx-1'> - {formatRunTime(movieData.runtime)}</p>
+                  </div>
                 </div>
                 {/* genres */}
                 <div className='flex flex-wrap max-w-80'>
@@ -83,16 +89,14 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
                     <p key={genre.id} className='text-xs text-white mx-1'>{genre.name}</p>
                   )): <p className='text-sm text-white mx-1'>Undefined</p>}
                 </div>
-                <div className='flex'>
-                  <p className='text-sm text-gray-200 mx-1'> - {formatRunTime(movieData.runtime)}</p>
-                </div>
+                
               </div>
 
                 {/* buttons */}
-              <div className=' flex lg:justify-between w-full overflow-auto gap-x-5 pb-3 pl-1'>
+              <div className=' flex lg:justify-between w-full overflow-auto gap-x-5 py-3 pl-2'>
                 {detailsButtons.map((btn, index) => (
-                    <div className='min-w-32 h-auto'>
-                      <button key={index} className='text-gray-400 w-full py-2 bg-gray-800 rounded-xl'>{btn}</button>
+                    <div className='min-w-32'>
+                      <button key={index} className='text-gray-400 w-full py-2 bg-gray-800 rounded-xl max-xs:text-sm'>{btn}</button>
                     </div>
                 ))}
               </div>
@@ -123,7 +127,7 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
               </div>
 
             </div>
-        </div>
+          </div>
     </div>
   )
 }
