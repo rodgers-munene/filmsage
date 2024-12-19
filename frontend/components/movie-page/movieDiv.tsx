@@ -46,7 +46,7 @@ const MovieDiv = ( { movies, title, show_type }: MovieDivProps ) => {
                         key={movie.id}
                         className='relative inline-block group max-xs:w-[140px] sm:w-[170px] 
                         h-[240px] md:h-[300px]  xl:h-[300px] xl:w-[180px]
-                        rounded-lg hover:scale-105 transition-transform duration-500
+                        rounded-lg hover:scale-105 transition-transform duration-300
                         '>
                         <Image
                         src={movie.poster_path? `${IMAGE_BASE_URL}${movie.poster_path}`: "/default_image.png"}
@@ -55,6 +55,7 @@ const MovieDiv = ( { movies, title, show_type }: MovieDivProps ) => {
                         style={{objectFit: 'fill'}}
                         sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className=''
+                        priority
                         >
 
                         </Image>
@@ -78,13 +79,13 @@ const MovieDiv = ( { movies, title, show_type }: MovieDivProps ) => {
                     </div>
 
                         {/* hovered div */}
-                        <div className='absolute top-0 left-0 w-full h-full bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-500 bg-black z-10 flex flex-col justify-around'>
-                            <h1 className='text-white pl-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500'>{movie.title}</h1>
-                            <div className='w-full h-[27%] sm:h-[32%] overflow-hidden text-ellipsis line-clamp-[4] sm:line-clamp-6'>
-                                <p className='text-gray-300 pl-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500 w-full'>{movie.overview}</p>
+                        <div className='absolute top-0 left-0 w-full h-full bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-300 bg-black z-10 flex flex-col justify-around'>
+                            <h1 className='text-white pl-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>{movie.title}</h1>
+                            <div className='w-full h-[27%] sm:h-[32%] overflow-hidden text-ellipsis line-clamp-[4] sm:line-clamp-6 max-xs:hidden'>
+                                <p className='text-gray-300 pl-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-full'>{movie.overview}</p>
                             </div>
                             <div className='flex w-full items-center justify-center opacity-0 group-hover:opacity-100'>
-                                <button className='bg-red-600 p-2 rounded-lg flex items-center'><PlayIcon className='h-5 w-5 mr-2' />Watch Trailer</button>
+                                <button className='bg-red-600 h-10 px-1 rounded-lg flex items-center'><PlayIcon className='h-5 w-5 mr-2' />Watch Trailer</button>
                             </div>
                         </div>
                     </Link>

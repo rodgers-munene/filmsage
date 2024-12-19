@@ -72,7 +72,7 @@ const AboutShow = ( { data, show_type } : AboutSectionProps)  => {
         {/* about movie and movie poster */}
           <div className='w-full h-72 max-xs:h-64 flex justify-center'>
             <div className='w-[45%] h-full pl-3 pt-4'>
-             <h1 className='uppercase text-lg max-xs:text-xs'>About the Movie</h1>
+             <h1 className='uppercase text-lg max-xs:text-xs'>{show_type === 'movie'? "About The Movie" : "About The Show"}</h1>
              <div className='flex py-2'>
                 <div className="w-12 h-6 flex bg-yellow-500 items-center justify-center rounded-md ">
                     <span className="text-black font-bold text-xs">IMDb</span>
@@ -81,7 +81,9 @@ const AboutShow = ( { data, show_type } : AboutSectionProps)  => {
                     <p className='text-sm text-gray-500'>{data.vote_average.toFixed(1)} ({formatVoteCount(data.vote_count)})</p>
                 </div>
              </div>
-             {data.runtime? <p className='text-sm'>{formatRunTime(data.runtime)}</p>: <p className='text-sm'></p>}
+             {data.runtime? formatRunTime(data.runtime) :
+                 <p className='text-gray-500'>
+                  {data.number_of_seasons === 1? data.number_of_seasons + " Season" : data.number_of_seasons + " Seasons"} </p>}
              <p className='py-2 text-gray-500'>{formatYear(data.release_date? data.release_date : data.first_air_date)}</p>
              {/* languages */}
              <div className='flex flex-wrap'>
@@ -138,7 +140,8 @@ const AboutShow = ( { data, show_type } : AboutSectionProps)  => {
               <div className='text-sm text-gray-300'>
                 {data.runtime? formatRunTime(data.runtime) :
                  <p>
-                  {data.number_of_seasons === 1? data.number_of_seasons + " Season" : data.number_of_seasons + " Seasons"} </p>}</div>
+                  {data.number_of_seasons === 1? data.number_of_seasons + " Season" : data.number_of_seasons + " Seasons"} </p>}
+              </div>
             </div>
           </div>
 

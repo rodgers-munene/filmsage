@@ -41,7 +41,7 @@ const TrailerDiv = ( {data, show_type}: TrailerDivProps ) => {
      {visibility && (
       <div className={`absolute w-full h-[50%] sm:w-3/4 bg-gray-800 top-20 left-0 sm:left-[12.5%] z-50 rounded-lg flex flex-col justify-between`}>
         <div className='w-full h-10 flex items-center justify-between'>
-          <h1 className='text-2xl text-gray-200 ml-3'>{data.title}</h1>
+          <h1 className='text-sm md:text-2xl text-gray-200 ml-3'>{data.title}</h1>
           <button
           onClick={toggleVisibility}
           className='mr-3'>

@@ -138,7 +138,7 @@ const FilterDiv = ( { show_type }: FilterDivProps ) => {
         {genres? genres.map((genre) => (
         <div 
         key={genre.id}
-        className='min-w-28 sm:min-w-[9rem] flex justify-center items-center mx-2 sm:mx-4'>
+        className='min-w-[9rem] flex justify-center items-center mx-2 sm:mx-4'>
            <button
            onClick={() =>{
             toggleGenre(genre.id)
