@@ -108,7 +108,7 @@ const ExtraMovies = ( { data, title, propInput, show_type }: ExtraMoviesProps ) 
 
                     {/* hovered div */}
                     <div className='absolute top-0 left-0 w-full h-full bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-500 bg-black z-10 flex flex-col justify-around rounded-lg'>
-                        <h1 className='text-white pl-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500'>{movie.title}</h1>
+                        <h1 className='text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500'>{movie.title? movie.title : movie.name}</h1>
                         <div className='w-full h-[18%] overflow-hidden text-ellipsis line-clamp-[3]'>
                             <p className='text-gray-500 pl-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500 w-full'>{movie.overview}</p>
                         </div>
