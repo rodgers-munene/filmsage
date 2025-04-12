@@ -1,26 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import { HeartIcon, CalendarIcon, ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/20/solid'
+import { StarIcon } from '@heroicons/react/20/solid'
 import { Genres } from '@/lib/data'
 import { useTrailer } from '@/context/TrailerDivContext'
 // import getConfig from 'next/config'
 
+interface Genre {
+  id: number,
+  name: string
+}
 interface Slide {
   id: number,
   poster_path: string,
   backdrop_path: string,
   title: string,
-  genre_ids: number,
+  genre_ids: number[],
   release_date: string,
   media_type: string,
+  genres: Genre[],
+  vote_average: number
+  overview: string
 }
 interface SlideshowProps{
     slides: Slide[],
     interval: number,
 }
 
-function getGenreName(genreId: number): string{
-  return Genres[genreId as keyof typeof Genres] || "unknown Genre";
+const  getGenreName = (genreId: number[]) => {
+  let genreArray
+  for (let i = 0; i < genreId.length; i++) {
+    genreArray = Genres[genreId[i]] || "unknown Genre"
+    
+  }
+ 
+  return genreArray
 }
+ 
 
 const Slideshow = ( {slides, interval}: SlideshowProps ) => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -40,16 +54,12 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
     
   }, [interval, slides.length]);
 
-  // button manual navigation
+//  format vote average
+
+  const formatVoteAverage = (num: number) =>{
+    return num.toFixed(1)
+  }
   
-  // navigate left
-  const navLeft = () => {
-    setCurrentIndex(currentIndex - 1);
-  }
-  // navigate right
-  const navRight = () => {
-    setCurrentIndex(currentIndex + 1)
-  }
 
   // get release Date
 
@@ -60,79 +70,78 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
   }
   
   return (
-    <div className={`relative w-screen h-[37rem] mt-14 mx-auto flex flex-col justify-between min-w-screen bg-slate-900`}>
-      <div>
-      <h2 className='text-center text-2xl font-semibold'>Your Weekend buddy for this Week</h2> 
-      </div>
+    <div className={`relative w-screen h-[37rem] mx-auto flex flex-col justify-between min-w-screen bg-slate-900`}>
+      
 
-      <div className='w-screen h-[28rem] mx-auto flex items-center justify-center min-w-screen overflow-hidden'>
-        {/* slideshow */}
-        
-        {/* button to manage the slideshow */}
-
-        {/* left button */}
-        {currentIndex > 0 && (
-          <div
-           onClick={navLeft}
-           className='absolute z-[999] left-7 w-12 h-12
-           bg-black bg-opacity-70 flex justify-center
-            items-center rounded-full cursor-pointer
-            hover:scale-110 transition-all duration-75 ease-in-out
-            border border-white'>
-            < ArrowLeftIcon className='w-10'/>
-          </div>
-        )}
-
-        {/* // right button */}
-        {currentIndex < 9 && (
-          <div 
-           onClick={navRight}
-           className='absolute z-50 right-7 w-12 h-12
-           bg-black bg-opacity-70 flex justify-center
-            items-center rounded-full cursor-pointer
-            hover:scale-110 transition-all duration-75 ease-in-out
-            border border-white'>
-            < ArrowRightIcon className='w-10'/>
-          </div>
-        )}
-       
+      <div className='w-screen h-full mx-auto flex items-center justify-center min-w-screen overflow-hidden'>
+        {/* slideshow */}      
 
         {slides.map((slide, index) => (
           <div
           key={index}
-          className={`relative transition-all flex flex-col justify-around items-center duration-700 ease-in-out ${index === currentIndex? "w-2/3 h-[90%]": ""} ${index - currentIndex >= 1 || currentIndex - index >= 1? "hidden" : ""}`}
+          className={`relative w-full h-full transition-all flex flex-col justify-around items-center duration-700 ease-in-out ${index === currentIndex? "": "hidden"}`}
           >
               <img
               src={` ${slide.backdrop_path? `${BACKDROP_BASE_URL}${slide.backdrop_path}`: "/default_image"}`}
               alt={slide.title}
               
-              className={`w-full h-full object-cover absolute
-                ${index === currentIndex? "rounded-lg": ""} 
-                ${index === currentIndex - 1? "rounded-r-lg": ""} 
-                ${index === currentIndex + 1? "rounded-l-lg" : ""}`}
+              className={`w-full h-full object-cover absolute`}
               >
                  
-              </img>
+              </img>              
 
-             
+                {/* shadow and movie details */}
+                <div className='w-full h-full z-50 bg-black bg-opacity-80 flex flex-col justify-center items-center'>
 
-                {/* show movie title */}
-              <h4 className={` z-10
-                ${index === currentIndex? "text-3xl font-bold": ""} 
-                ${index === currentIndex - 1? "text-lg": ""} 
-                ${index === currentIndex + 1? "text-lg" : ""}
-                `}>{slide.title}</h4>
+                  {/* movie details */}
+                  <div className='flex w-2/3 h-2/3'>
+                    <img 
+                    src={`${slide.poster_path? `${IMAGE_BASE_URL}${slide.poster_path}`: "/default_image"}`} 
+                    alt={slide.title}
 
-                 {/* play trailer button */}
+                    className="h-full w-1/3"
+                     />
+                    <div className='ml-5 w-2/3 h-full flex flex-col justify-around'>
+                      {/* title */}
+                      <h1 className='text-2xl'>{slide.title}</h1>
+                      {/* title */}
+                      <p>{getYear(slide.release_date)}</p>
+                      {/* genres */}
 
-              {index === currentIndex && (
-                  <div className='z-10'>
-                    <button  className='p-2 bg-blue-400 bg-opacity-75'>
-                      More details
-                      
-                    </button>
+                      <div>
+                        <p>{getGenreName(slide.genre_ids)}</p>
+                      </div>
+                      {/* rating */}
+                      <div className='flex w-1/3 justify-around'>
+                        <StarIcon className=' w-5 h-5 text-yellow-400'/>
+                        <p>{formatVoteAverage(slide.vote_average)}
+                          <span className='text-gray-600 text-xs'>/10</span>
+                        </p>
+                        <div className="w-12 h-6 flex bg-yellow-500 items-center justify-center rounded-md ">
+                          <span className="text-black font-bold text-xs">IMDb</span>
+                        </div>
+                      </div>
+                      {/* overview */}
+                      <div className='h-[6.5rem] overflow-hidden'>
+                        <p className='text-sm text-gray-400 line-clamp-5'>{slide.overview}</p>
+                      </div>
+                      {/* buttons */}
+                      <div className=''>
+                        <button className='p-3 bg-red-500 rounded-xl'>
+                          More Details
+                        </button>
+                        
+                      </div>
+                    </div>
+
                   </div>
-                )}
+
+                  {/* for similar shows/movies */}
+                  <div className=''>
+
+                  </div>
+
+                </div>
           </div>
         ))}
 

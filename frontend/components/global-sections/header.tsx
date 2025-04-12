@@ -32,9 +32,9 @@ const Header = ( { firstName }: navBarProps ) => {
           </div>
        </div>
         
-        <div className=' w-[45%] h-full flex items-center justify-around'>
+        <div className=' w-72 h-full flex items-center justify-around'>
             {/* <img src="" alt="" /> */}
-          <div className='w-full'>
+          <div className='h-full w-full '>
               <SearchBar onSearch={handleSearch} />
               {searchResult && (
                 <p className="mt-4 text-center text-lg font-medium text-gray-700">{searchResult}</p>
