@@ -108,6 +108,7 @@ const BackdropSection = ( {movieData} : DetailsCardProps ) => {
               {/* play button */}
             <div className='absolute h-full w-1/5 flex justify-center items-center z-50 left-[40%] '>
                 <button
+                
                 onClick={toggleVisibility}
                 >
                   <PlayIcon className='h-16 w-16 text-red-600 rounded-full' />

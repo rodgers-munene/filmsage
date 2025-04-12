@@ -1,52 +1,30 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-// import Header from '@/components/header'
-import { useSidebar } from '@/context/SidebarContext'
-import { fetchMoviesByGenre } from '@/lib/data'
+import React, { useState, useEffect } from 'react'
 import Slideshow from '@/components/home-section/SlideShow'
-import MovieDiv from '@/components/movie-page/movieDiv'
-import FilterDiv from '@/components/movie-page/filterDiv'
-import { useGenreContext } from '@/context/GenreMoviesContext'
+import { fetchTrending } from '@/lib/data'
 
-const Home = () => {
-  const { isSidebarOpen, toggleSidebar } = useSidebar();
-  const { selectedGenres, resetGenres } = useGenreContext()
-  const [movies, setMovies] = useState([])
-  
-  
-const handleMainClick = () => {
-  if(isSidebarOpen){
-    toggleSidebar();
-  }
-}
 
-useEffect(() => {
-  resetGenres()
-}, [])
+const page = () => {
+  const [topTen, setTopTen] = useState([]);
 
-useEffect(()=>{
-  const fetchMovies = async () =>{
-    const data = await fetchMoviesByGenre(selectedGenres, 'movie')
-    setMovies(data)
-  
-  }
-  
-  fetchMovies()
-}, [selectedGenres])
 
+  // update the state function
+  useEffect(() => {
+    const fetchTopTen = async () =>{
+      const data = await fetchTrending('movie', 'day');
+      setTopTen(data);
+    }
+
+    fetchTopTen();
+  }, [fetchTrending]);
 
   return (
-      <div onClick={handleMainClick} className='w-screen h-screen'>
-      
-        {/* filters */}
-        <FilterDiv show_type='movie' />
+    
+    <div>
+      <Slideshow slides={topTen} interval={10000} />
 
-        <MovieDiv movies={movies} title='Movies' show_type='movie'/>
-
-      </div>
-
-   
+    </div>
   )
 }
 
-export default Home
+export default page

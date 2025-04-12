@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import { HeartIcon, CalendarIcon } from '@heroicons/react/20/solid'
+import { HeartIcon, CalendarIcon, ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/20/solid'
 import { Genres } from '@/lib/data'
+import { useTrailer } from '@/context/TrailerDivContext'
 // import getConfig from 'next/config'
 
 interface Slide {
@@ -27,15 +27,29 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
   const BACKDROP_BASE_URL = 'https://image.tmdb.org/t/p/w1280';
 
+  const { toggleVisibility } = useTrailer();
+
   // Automatic SLideshow
   useEffect(() =>{
     const slideInterval = setInterval(() =>{
       setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length)
     }, interval)
 
+    
     return () => clearInterval(slideInterval)
-  }, [interval, slides.length])
+    
+  }, [interval, slides.length]);
 
+  // button manual navigation
+  
+  // navigate left
+  const navLeft = () => {
+    setCurrentIndex(currentIndex - 1);
+  }
+  // navigate right
+  const navRight = () => {
+    setCurrentIndex(currentIndex + 1)
+  }
 
   // get release Date
 
@@ -46,85 +60,94 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
   }
   
   return (
-    <div className='relative w-screen h-[28rem] mt-14 mx-auto flex min-w-screen'>
-      
-     {slides.map((slide, index) => (
-      <div
-      key={index}
-      className={`absolute inset-0 flex justify-center transition-transform duration-500 ${index === currentIndex? "opacity-100" : "opacity-0"}`}
-      >
-        <div className='relative w-[90%] h-full mt-4 flex flex-col'>
+    <div className={`relative w-screen h-[30rem] mt-14 mx-auto flex flex-col justify-between min-w-screen bg-slate-900`}>
+      <div>
+      <h2 className='text-center text-2xl font-semibold'>Your Weekend buddy for this Week</h2> 
+      </div>
 
-          {/* Trending this week */}
-          
-          {/* Title, watch button and favorite button */}
-          <div className='w-full h-full z-20  flex items-end justify-center gap-3'>
-              <Image
-              src={slide.poster_path? `${IMAGE_BASE_URL}${slide.poster_path}`: "/default_image.png"}
+      <div className='w-screen h-[28rem] mx-auto flex items-center justify-between min-w-screen overflow-hidden'>
+        {/* slideshow */}
+        
+        {/* button to manage the slideshow */}
+
+        {/* left button */}
+        {currentIndex > 0 && (
+          <div
+           onClick={navLeft}
+           className='absolute z-[999] left-7 w-12 h-12
+           bg-black bg-opacity-70 flex justify-center
+            items-center rounded-full cursor-pointer
+            hover:scale-110 transition-all duration-75 ease-in-out
+            border border-white'>
+            < ArrowLeftIcon className='w-10'/>
+          </div>
+        )}
+
+        {/* // right button */}
+        {currentIndex < 9 && (
+          <div 
+           onClick={navRight}
+           className='absolute z-50 right-7 w-12 h-12
+           bg-black bg-opacity-70 flex justify-center
+            items-center rounded-full cursor-pointer
+            hover:scale-110 transition-all duration-75 ease-in-out
+            border border-white'>
+            < ArrowRightIcon className='w-10'/>
+          </div>
+        )}
+        {/* to be active only when current index is 0 */}
+        {currentIndex === 0 && (
+          <div className='w-52 h-2/3'></div>
+        )}
+
+        {slides.map((slide, index) => (
+          <div
+          key={index}
+          className={`relative transition-all flex flex-col justify-around items-center duration-700 ease-in-out ${index === currentIndex? "w-2/3 h-[90%]": ""} ${index === currentIndex - 1 || index === currentIndex + 1? "w-52 h-1/2": "" } ${index - currentIndex > 1 || currentIndex - index > 1? "hidden" : ""}`}
+          >
+              <img
+              src={` ${slide.backdrop_path? `${BACKDROP_BASE_URL}${slide.backdrop_path}`: "/default_image"}`}
               alt={slide.title}
-              width={200}
-              height={100}
-              style={{ objectFit: 'cover' }}
-
-              priority
-              className='rounded-md shadow-xl'
+              
+              className={`w-full h-full object-cover absolute
+                ${index === currentIndex? "rounded-lg": ""} 
+                ${index === currentIndex - 1? "rounded-r-lg": ""} 
+                ${index === currentIndex + 1? "rounded-l-lg" : ""}`}
               >
+                 
+              </img>
 
-              </Image>
-              <div className='relative flex flex-col gap-6 w-1/2 h-1/2 '>
-                <div className='ml-2 '>
-                    <h2 className='text-white/90 font-bold uppercase text-3xl'>{slide.title}</h2>
-                </div>
+             
 
-                <div className='flex w-1/2 justify-between'>
-                  <h2 className='ml-2 text-white font-semibold '>{getGenreName(slide.genre_ids)}</h2>
-                  <h2 className='text-white font-semibold flex flex-center'> <CalendarIcon className='h-4 w-4 mr-2 text-red-800'/>
-                  {getYear(slide.release_date)}
-                  </h2>
-                  <h2 className='text-white font-semibold uppercase'>{slide.media_type}</h2>
-                </div>
+                {/* show movie title */}
+              <h4 className={` z-10
+                ${index === currentIndex? "text-3xl font-bold": ""} 
+                ${index === currentIndex - 1? "text-lg": ""} 
+                ${index === currentIndex + 1? "text-lg" : ""}
+                `}>{slide.title}</h4>
 
-               <div className='flex'>
-                <button
-                className='mr-4 w-32 h-10 bg-red-900 text-white font-semibold text-xl rounded-2xl hover:scale-105' 
-                >Watch</button>
+                 {/* play trailer button */}
 
-                <button className='ml-4 w-10 h-10 bg-gray-950 text-white flex justify-center items-center rounded-lg hover:scale-105'>
-                  <HeartIcon className='h-6 w-6' />
-                </button>
-               </div>
-
-              </div>
+              {index === currentIndex && (
+                  <div className='z-10'>
+                    <button  className='p-2 bg-blue-400 bg-opacity-75'>
+                      More details
+                      
+                    </button>
+                  </div>
+                )}
           </div>
+        ))}
 
-          {/* shade */}
-          <div className=' absolute w-full h-full pointer-events-none z-10 bg-black opacity-50'>   
-          </div>
+        {/* to be active only when index is 9 */}
 
-          {/* image */}
-          <Image
-            src={slide.backdrop_path ? `${BACKDROP_BASE_URL}${slide.backdrop_path}` : '/default_image.png'}
-            alt={slide.title}
-            className='object-fill transition-transform duration-500 ease-in-out transform overflow-hidden'
-            fill
-            style={{ objectFit: 'cover', width: '100%'}}
-            priority
-            />
-            
-        </div>
+        {currentIndex === 9 && (
+          <div className='w-52 h-2/3'></div>
+        )}
 
       </div>
-     ))}
 
-    
-     
-
-     
-
-    
-
-     
-    </div>
+     </div>
   )
 }
 

@@ -109,7 +109,7 @@ export async function fetchCast(movieId: number, type: 'tv' | 'movie') {
 
 }
 
-export async function FetchTrending(type: 'tv' | 'movie', timeline: 'week' | 'day') {
+export async function fetchTrending(type: 'tv' | 'movie', timeline: 'week' | 'day') {
    try {
       let response = await fetch(`https://api.themoviedb.org/3/trending/${type}/${timeline}?api_key=${process.env.TMDB_API_KEY}`)
       let data = await response.json()
