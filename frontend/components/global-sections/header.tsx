@@ -20,8 +20,8 @@ const Header = ( { firstName }: navBarProps ) => {
 
   return (
     // bg-[#0d0a2b -backup background
-    <div className='home-header bg-gray-950 dark:bg-[#0d0a2b] rounded-b-lg text-gray-200 dark:text-gray-100 h-14 border-b-2 border-white dark:border-black z-[999]'>
-       <div className='w-full flex flex-row items-center ml-2'>
+    <div className='home-header bg-gray-950 dark:bg-[#0d0a2b] bg-opacity-30 rounded-b-lg text-gray-200 dark:text-gray-100 h-14 dark:border-black z-[999]'>
+       <div className='w-72 flex flex-row items-center ml-2'>
           <div className=''>
             < Hamburger isOpen={isSidebarOpen} onClick={toggleSidebar}/>
             < Sidebar isOpen={isSidebarOpen} firstName='Rodgers'/>
@@ -31,15 +31,16 @@ const Header = ( { firstName }: navBarProps ) => {
           <h1 className='header-2'><Link href="/">FilmSage</Link></h1>
           </div>
        </div>
-        <div className='w-full'>
-            <SearchBar onSearch={handleSearch} />
-            {searchResult && (
-              <p className="mt-4 text-center text-lg font-medium text-gray-700">{searchResult}</p>
-           )}
-        </div>
-        <div className='mr-12 w-full flex items-center justify-end'>
+        
+        <div className=' w-[45%] h-full flex items-center justify-around'>
             {/* <img src="" alt="" /> */}
-            <p>
+          <div className='w-full'>
+              <SearchBar onSearch={handleSearch} />
+              {searchResult && (
+                <p className="mt-4 text-center text-lg font-medium text-gray-700">{searchResult}</p>
+            )}
+          </div>
+            <p className='mr-14'>
                 {firstName}
             </p>
         </div>

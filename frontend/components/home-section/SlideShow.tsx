@@ -60,12 +60,12 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
   }
   
   return (
-    <div className={`relative w-screen h-[30rem] mt-14 mx-auto flex flex-col justify-between min-w-screen bg-slate-900`}>
+    <div className={`relative w-screen h-[37rem] mt-14 mx-auto flex flex-col justify-between min-w-screen bg-slate-900`}>
       <div>
       <h2 className='text-center text-2xl font-semibold'>Your Weekend buddy for this Week</h2> 
       </div>
 
-      <div className='w-screen h-[28rem] mx-auto flex items-center justify-between min-w-screen overflow-hidden'>
+      <div className='w-screen h-[28rem] mx-auto flex items-center justify-center min-w-screen overflow-hidden'>
         {/* slideshow */}
         
         {/* button to manage the slideshow */}
@@ -95,15 +95,12 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
             < ArrowRightIcon className='w-10'/>
           </div>
         )}
-        {/* to be active only when current index is 0 */}
-        {currentIndex === 0 && (
-          <div className='w-52 h-2/3'></div>
-        )}
+       
 
         {slides.map((slide, index) => (
           <div
           key={index}
-          className={`relative transition-all flex flex-col justify-around items-center duration-700 ease-in-out ${index === currentIndex? "w-2/3 h-[90%]": ""} ${index === currentIndex - 1 || index === currentIndex + 1? "w-52 h-1/2": "" } ${index - currentIndex > 1 || currentIndex - index > 1? "hidden" : ""}`}
+          className={`relative transition-all flex flex-col justify-around items-center duration-700 ease-in-out ${index === currentIndex? "w-2/3 h-[90%]": ""} ${index - currentIndex >= 1 || currentIndex - index >= 1? "hidden" : ""}`}
           >
               <img
               src={` ${slide.backdrop_path? `${BACKDROP_BASE_URL}${slide.backdrop_path}`: "/default_image"}`}
@@ -139,11 +136,7 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
           </div>
         ))}
 
-        {/* to be active only when index is 9 */}
-
-        {currentIndex === 9 && (
-          <div className='w-52 h-2/3'></div>
-        )}
+      
 
       </div>
 
