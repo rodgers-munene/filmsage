@@ -40,6 +40,7 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
   const BACKDROP_BASE_URL = 'https://image.tmdb.org/t/p/w1280';
+  const [movieTrailers, setMovieTrailers] = useState("")
 
   const { toggleVisibility } = useTrailer();
 
@@ -53,6 +54,10 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
     return () => clearInterval(slideInterval)
     
   }, [interval, slides.length]);
+
+
+
+  
 
 //  format vote average
 
@@ -136,10 +141,7 @@ const Slideshow = ( {slides, interval}: SlideshowProps ) => {
 
                   </div>
 
-                  {/* for similar shows/movies */}
-                  <div className=''>
-
-                  </div>
+                 
 
                 </div>
           </div>
